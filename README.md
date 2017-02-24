@@ -1,14 +1,14 @@
 Showcase Lite
 ==================
 
-This repository contains the Drupal installation that runs at [drupalizing.com](http://drupalizing.com) and demonstrates the ["Showcase+ Lite"](https://drupal.org/project/showcase_lite) Drupal theme. We use this repository in order to maintain the above mentioned site and develop the corresponding theme. 
+This repository contains the Drupal installation that runs at [drupalizing.com](http://drupalizing.com) and demonstrates the ["Showcase+ Lite"](https://drupal.org/project/showcase_lite) Drupal theme. We use this repository in order to maintain the above mentioned site and develop the corresponding theme.
 
 You are welcome however to grab this code and have the demonstration site running on your end. By doing this you have the chance to see the ["Showcase+ Lite" theme in action](http://demo.drupalizing.com/?theme=showcase-lite) exactly the way it looks like on our demo.
 
 Installation instructions
 --------------
 + Checkout this repository and place the “site” folder under your apache path.
-+ Create an empty MySQL database and import there the “db_instances/db_instance.sql” file. 
++ Create an empty MySQL database and import there the “db_instances/db_instance.sql” file.
 + Start the Drupal installation wizard by pointing your browser to the recently created folder.
  + Continue the installation by selection "Standard" installation profile.
  + In the 4th step enter your recently created database information.
