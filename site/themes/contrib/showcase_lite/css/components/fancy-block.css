@@ -1,0 +1,97 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s fancy block.
+ */
+.fancy-block-container {
+  position: relative;
+  min-height: 560px;
+}
+.fancy-block {
+  padding: 60px;
+  position: absolute;
+}
+.fancy-block-text {
+  background-color: #ffffff;
+  border-color: #ebebeb;
+  border-width: 3px;
+  border-style: solid;
+}
+.fancy-block-image {
+  padding-bottom: 0;
+}
+.fancy-block h3 {
+  font-size: 35px;
+  margin-top: 0;
+}
+.fancy-top-left {
+  top: 0;
+  left: 0;
+}
+.fancy-top-middle {
+  top: 0;
+  left: 29%;
+  padding-right: 0;
+}
+.fancy-top-right {
+  top: 0;
+  right: 0;
+}
+.fancy-top-right.fancy-block-image {
+  padding-right: 0;
+}
+.fancy-bottom-left {
+  bottom: 0;
+  left: 0;
+}
+.fancy-bottom-right {
+  bottom: 0;
+  right: 0;
+}
+@media (min-width: 768px) {
+  .fancy-top-left.fancy-block-text {
+    padding-right: 85px;
+  }
+}
+@media (min-width: 992px) {
+  .fancy-bottom-right.fancy-block-text {
+    margin-right: 70px;
+  }
+  .fancy-top-left.fancy-block-text {
+    padding-right: 140px;
+  }
+}
+@media (min-width: 1200px) {
+  .fancy-top-left.fancy-block-text {
+    padding-right: 180px;
+  }
+}
+@media (max-width: 991px) {
+  .fancy-top-middle {
+    left: 38%;
+  }
+  .fancy-bottom-left {
+    padding-left: 0;
+  }
+}
+@media (max-width: 767px) {
+  .fancy-block {
+    position: static;
+    padding: 30px;
+  }
+  .fancy-block-text {
+    width: 100%;
+  }
+  .fancy-block-image {
+    max-width: 50%;
+    padding: 0;
+    float: left;
+  }
+}
+
+/*Fancy block @colored regions*/
+.region--black-background .fancy-block-text {
+  background-color: #1d1d1d;
+}
+.region--gray-background .fancy-block-text {
+  background-color: #f4f4f4;
+}

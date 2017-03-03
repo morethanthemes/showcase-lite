@@ -1,0 +1,119 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s search block.
+ */
+.block-search form {
+  position: relative;
+}
+.block-search input.form-search {
+  padding: 11px 15px;
+  font-size: 14px;
+  width: 100%;
+  border-radius: 25px;
+}
+.block-search .form-actions {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  margin: 0;
+  font-size: 16px;
+}
+.block-search .form-actions:after {
+  font-family: 'FontAwesome';
+  content: "\f002";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  line-height: 46px;
+  width: 20px;
+  display: block;
+  color: #9c9c9c;
+}
+.block-search input.form-submit {
+  background-color: transparent;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+  height: 40px;
+  margin: 0;
+  padding: 15px;
+  text-indent: -9999px;
+  border: none;
+  box-shadow: none;
+}
+.block-search input.form-submit:focus,
+.block-search input.form-submit:hover {
+  outline: none;
+  background: transparent;
+}
+
+/*Search blocks @colored-regions*/
+.region--black-background .block-search input.form-submit,
+.region--black-background .block-search input.form-submit:hover {
+  background-color: transparent;
+}
+
+/*Header top highlighted search bar*/
+.header-top-highlighted__section .block-search {
+  margin: 10px 0 0;
+}
+.header-top-highlighted__section .block-search form {
+  position: relative;
+  padding-left: 35px;
+}
+.header-top-highlighted__section input.form-search {
+  background-color: transparent;
+  padding: 5px 0;
+  border-width: 0 0 1px 0;
+  border-radius: 0;
+  margin: 0;
+}
+.region--light-typography .header-top-highlighted__section input.form-search {
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+.header-top-highlighted__section input.form-search:focus,
+.header-top-highlighted__section input.form-search:hover {
+  box-shadow: none;
+}
+.header-top-highlighted__section .block-search .form-actions {
+  left: 0;
+  width: 35px;
+  text-align: center;
+}
+.header-top-highlighted__section .block-search .form-actions:after {
+  font-family: 'FontAwesome';
+  content: "\f002";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  display: block;
+  line-height: 35px;
+}
+.header-top-highlighted__section .block-search input.form-submit {
+  height: 35px;
+  width: 35px;
+  box-shadow: none;
+}
+.region--light-typography .header-top-highlighted__section .block-search .form-actions:after {
+  color: #ffffff;
+}
+.region--light-typography .header-top-highlighted__section ::-webkit-input-placeholder,
+.region--light-typography .header-top-highlighted__section :-moz-placeholder,
+.region--light-typography .header-top-highlighted__section ::-moz-placeholder,
+.region--light-typography .header-top-highlighted__section :-ms-input-placeholder {
+  color: #ffffff;
+}
+@media (max-width: 767px) {
+  .header-top-highlighted__section .block-search {
+    margin-bottom: 10px;
+  }
+}
+
+/*Navigation search bar*/
+.header__section .block-search {
+  padding-top: 8px;
+}

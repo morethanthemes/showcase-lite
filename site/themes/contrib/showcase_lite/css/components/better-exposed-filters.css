@@ -1,0 +1,24 @@
+/**
+ * @file
+ * Styles for Showcase+'s better exposed filters.
+ */
+.sidebar__section .bef-exposed-form .form--inline > .form-item {
+  float: none;
+}
+.sidebar__section .bef-exposed-form .form--inline fieldset legend {
+  display: block;
+  width: 100%;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  border-width: 0 0 1px 0;
+  border-color: #f4f4f4;
+}
+.sidebar__section .bef-exposed-form .form--inline fieldset legend .fieldset-legend {
+  display: block;
+  float: none;
+}
+@media (min-width: 992px) {
+  .sidebar__section .bef-exposed-form .form--inline > .form-item {
+    margin: 0 0 20px;
+  } 
+}

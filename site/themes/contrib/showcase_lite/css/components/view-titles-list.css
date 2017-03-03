@@ -1,0 +1,38 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s view titles list views.
+ */
+.view-titles-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.view-titles-list .views-field-title {
+  margin: 0;
+  position: relative;
+  list-style: none;
+  padding: 0;
+}
+.view-titles-list .views-field-title a {
+  padding: 8px 0 8px 25px;
+  line-height: 150%;
+  display: block;
+  text-decoration: none;
+}
+.region--light-typography .view-titles-list .views-field-title a:hover {
+  text-decoration: underline;
+}
+.region--light-typography.region--dark-background .view-titles-list .views-field-title a:hover {
+  text-decoration: none;
+}
+.view-titles-list .views-field-title a:before {
+  font-family: "FontAwesome";
+  content: "\f105";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  font-size: 12px;
+}
+.region--light-typography .view-titles-list .views-field-title a:before {
+  color: #ffffff;
+}

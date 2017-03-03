@@ -1,0 +1,20 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s showcase content type.
+ */
+.node--type-mt-showcase .node__meta {
+  margin-bottom: 0;
+}
+.node--type-mt-showcase .node__meta .inline-list {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.node--type-mt-showcase .node__header {
+  padding-bottom: 0;
+}
+.node--type-mt-showcase .node__header + .field:not(.field--name-field-mt-subtitle) {
+  padding-top: 10px;
+}
+.node--type-mt-showcase .node__title {
+  margin-bottom: 20px;
+}

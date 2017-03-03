@@ -1,0 +1,71 @@
+/**
+ * @file
+ * Visual styles for highlights in Showcase+.
+ */
+.highlights {
+  margin: 30px 0;
+}
+.highlight {
+  text-align: center;
+  padding: 30px 0 40px;
+  position: relative;
+}
+.highlight--bordered:before {
+  content: "";
+  width: 1px;
+  height: 100%;
+  left: -15px;
+  top: 0;
+  position: absolute;
+  background-color: #dfdfdf;
+}
+.highlight-head {
+  display: block;
+  margin: 0 auto;
+  font-size: 35px;
+  margin-bottom: 10px;
+}
+.highlight-body {
+  font-size: 14px;
+}
+.headings-wide-spacing-enabled .highlight-body {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+/*highoights @colored regions*/
+.region--light-typography .highlight--bordered:before {
+  background-color: #ffffff;
+}
+
+/*highlights style 2*/
+.highlight-2 {
+  text-align: center;
+  padding: 5px 0 40px;
+}
+.highlight-2-head {
+  display: block;
+  margin: 0 auto;
+  font-size: 40px;
+  margin-bottom: 25px;
+  font-weight: 300;
+  background-color: #f4f4f4;
+  border-radius: 100%;
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+}
+.region--gray-background .highlight-2-head {
+  background-color: #ffffff;
+}
+.region--light-typography .highlight-2-head {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.highlight-2-body {
+  font-size: 12px;
+  font-weight: 600;
+}
+.headings-wide-spacing-enabled .highlight-2-body {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}

@@ -1,0 +1,55 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s featured linked text tiles block.
+ */
+.featured-linked-text-tile {
+  text-align: center;
+  padding: 30px 30px 20px;
+  position: relative;
+  overflow: hidden;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #e2e2e2;
+  background-color: #ffffff;
+  color: #2d2d2d;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.featured-linked-text-tile:hover {
+  -moz-box-shadow: rgba(28, 56, 72, 0.1) 0px 2px 2px, rgba(28, 56, 72, 0.1) 0px 4px 4px, rgba(28, 56, 72, 0.1) 0px 8px 8px, rgba(28, 56, 72, 0.1) 0px 16px 16px, rgba(28, 56, 72, 0.1) 0px 32px 32px, rgba(28, 56, 72, 0.1) 0px 64px 64px;
+  -o-box-shadow: rgba(28, 56, 72, 0.1) 0px 2px 2px, rgba(28, 56, 72, 0.1) 0px 4px 4px, rgba(28, 56, 72, 0.1) 0px 8px 8px, rgba(28, 56, 72, 0.1) 0px 16px 16px, rgba(28, 56, 72, 0.1) 0px 32px 32px, rgba(28, 56, 72, 0.1) 0px 64px 64px;
+  -webkit-box-shadow: rgba(28, 56, 72, 0.1) 0px 2px 2px, rgba(28, 56, 72, 0.1) 0px 4px 4px, rgba(28, 56, 72, 0.1) 0px 8px 8px, rgba(28, 56, 72, 0.1) 0px 16px 16px, rgba(28, 56, 72, 0.1) 0px 32px 32px, rgba(28, 56, 72, 0.1) 0px 64px 64px;
+  box-shadow: rgba(28, 56, 72, 0.1) 0px 2px 2px, rgba(28, 56, 72, 0.1) 0px 4px 4px, rgba(28, 56, 72, 0.1) 0px 8px 8px, rgba(28, 56, 72, 0.1) 0px 16px 16px, rgba(28, 56, 72, 0.1) 0px 32px 32px, rgba(28, 56, 72, 0.1) 0px 64px 64px;
+}
+.featured-linked-text-tile .featured-linked-text-tile__title {
+  font-size: 14px;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+.headings-wide-spacing-enabled .featured-linked-text-tile .featured-linked-text-tile__title {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.featured-linked-text-tile .featured-linked-text-tile__title a {
+  text-decoration: none;
+}
+.featured-linked-text-tile__body {
+  padding-bottom: 10px;
+}
+.region--light-typography .featured-linked-text-tile__body a {
+  text-decoration: none;
+}
+.region--light-typography .featured-linked-text-tile__body a:hover {
+  text-decoration: none;
+}
+.region--light-typography .featured-linked-text-tile a.button {
+  color: #ffffff;
+}
+.region--light-typography .featured-linked-text-tile a.button:hover {
+  color: #ffffff;
+}

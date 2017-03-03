@@ -1,0 +1,10 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s view showcases grid views.
+ */
+.view-showcases-grid .views-field-field-image img {
+  border-radius: 0px;
+}
+.view-showcases-grid .overlay {
+  border-radius: 0px;
+}

@@ -1,0 +1,7 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s related nodes carousel.
+ */
+.mt-carousel-related-nodes .mt-carousel-item {
+  margin: 15px;
+}

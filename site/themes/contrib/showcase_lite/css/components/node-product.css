@@ -1,0 +1,157 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s product content type.
+ */
+@media (min-width: 992px) {
+  .node--type-mt-product .col-md-4 + .col-md-8 .node__main-content {
+    padding-left: 20px;
+  }
+  .node--type-mt-product .col-md-4 + .col-md-6 .node__main-content {
+    padding-left: 15px;
+  }
+}
+.node--type-mt-product .node__header {
+  padding: 0;
+}
+.node--type-mt-product .node__header + .field:not(.field--name-field-mt-price) {
+  padding-top: 15px;
+}
+.node--type-mt-product .node__title {
+  font-size: 35px;
+  font-weight: 300;
+  margin-bottom: 5px;
+}
+
+/*image field*/
+.node--type-mt-product .field--name-field-image {
+  margin-bottom: 30px;
+}
+.node--type-mt-product.node--view-mode-teaser .images-container {
+  margin-bottom: 15px;
+}
+
+/*price field*/
+.node--type-mt-product .field--name-field-mt-price {
+  font-size: 24px;
+  line-height: 1.4;
+}
+.node--type-mt-product .field--name-field-mt-price + .field {
+  padding-top: 25px;
+}
+
+/*buy link field*/
+.node--type-mt-product .field--name-field-mt-buy-link a {
+  font-size: 14px;
+  padding: 15px 30px;
+  color: #ffffff;
+  display: inline-block;
+  line-height: 1;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  margin: 20px 0;
+  text-align: center;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+}
+.headings-wide-spacing-enabled .node--type-mt-product .field--name-field-mt-buy-link a {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.region--light-typography.region--colored-background .field--name-field-mt-buy-link a {
+  background-color: transparent;
+}
+.node--type-mt-product .field--name-field-mt-buy-link a:hover {
+  color: #ffffff;
+  border-color: transparent;
+  text-decoration: none;
+  -webkit-box-shadow: rgba(28, 56, 72, 0.1) 0px 2px 2px, rgba(28, 56, 72, 0.1) 0px 4px 4px, rgba(28, 56, 72, 0.1) 0px 8px 8px, rgba(28, 56, 72, 0.1) 0px 16px 16px, rgba(28, 56, 72, 0.1) 0px 32px 32px, rgba(28, 56, 72, 0.1) 0px 64px 64px;
+  -moz-box-shadow: rgba(28, 56, 72, 0.1) 0px 2px 2px, rgba(28, 56, 72, 0.1) 0px 4px 4px, rgba(28, 56, 72, 0.1) 0px 8px 8px, rgba(28, 56, 72, 0.1) 0px 16px 16px, rgba(28, 56, 72, 0.1) 0px 32px 32px, rgba(28, 56, 72, 0.1) 0px 64px 64px;
+  -ms-box-shadow:rgba(28, 56, 72, 0.1) 0px 2px 2px, rgba(28, 56, 72, 0.1) 0px 4px 4px, rgba(28, 56, 72, 0.1) 0px 8px 8px, rgba(28, 56, 72, 0.1) 0px 16px 16px, rgba(28, 56, 72, 0.1) 0px 32px 32px, rgba(28, 56, 72, 0.1) 0px 64px 64px;
+  box-shadow: rgba(28, 56, 72, 0.1) 0px 2px 2px, rgba(28, 56, 72, 0.1) 0px 4px 4px, rgba(28, 56, 72, 0.1) 0px 8px 8px, rgba(28, 56, 72, 0.1) 0px 16px 16px, rgba(28, 56, 72, 0.1) 0px 32px 32px, rgba(28, 56, 72, 0.1) 0px 64px 64px;
+}
+.region--light-typography .field--name-field-mt-buy-link a {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: transparent;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ffffff;
+}
+
+/*availabilty and product code fields*/
+.node--type-mt-product .field--name-field-mt-product-code,
+.node--type-mt-product .field--name-field-mt-product-availability {
+  margin: 10px 0;
+}
+.node--type-mt-product .field--name-field-mt-product-code .field__label,
+.node--type-mt-product .field--name-field-mt-product-availability .field__label {
+  font-weight: 400;
+}
+.node--type-mt-product .field--name-field-mt-product-code .field__item,
+.node--type-mt-product .field--name-field-mt-product-availability .field__item {
+  color: #9c9c9c;
+}
+.node--type-mt-product .field--name-field-mt-product-code .field__item:before {
+  content: "#";
+}
+
+/*taxonomy terms fields*/
+.node--type-mt-product .field--entity-reference-target-type-taxonomy-term,
+.node--type-mt-product .field--entity-reference-target-type-taxonomy-term.field__item {
+  margin: 10px 0;
+}
+.node--type-mt-product .field--entity-reference-target-type-taxonomy-term .field__label,
+.node--type-mt-product .field--entity-reference-target-type-taxonomy-term.field__item .field__label {
+  font-weight: 400;
+}
+.node--type-mt-product .field--entity-reference-target-type-taxonomy-term .field__item {
+  margin: 0;
+}
+.node--type-mt-product .field--entity-reference-target-type-taxonomy-term .field__item a,
+.node--type-mt-product .field--entity-reference-target-type-taxonomy-term.field__item a {
+  display: block;
+  text-decoration: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: 15px;
+  background-color: transparent;
+}
+.node--type-mt-product .field--entity-reference-target-type-taxonomy-term .field__item a:after,
+.node--type-mt-product .field--entity-reference-target-type-taxonomy-term.field__item a:after {
+  content: ",";
+}
+.node--type-mt-product .field--entity-reference-target-type-taxonomy-term .field__item:last-child a:after,
+.node--type-mt-product .field--entity-reference-target-type-taxonomy-term.field__item:last-child a:after {
+  content: "";
+}
+.node--type-mt-product .field--entity-reference-target-type-taxonomy-term .field__item a:hover,
+.node--type-mt-product .field--entity-reference-target-type-taxonomy-term.field__item a:hover {
+  background-color: transparent;
+}
+
+/*highlighted text in products*/
+.node--type-mt-product .highlighted {
+  display: block;
+  padding: 10px 16px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  font-size: 11px;
+  text-align: center;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.node--type-mt-product .highlighted i {
+  margin-right: 6px;
+}
+@media (max-width: 991px) {
+  .node--type-mt-product .highlighted {
+    display: inline-block;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+}

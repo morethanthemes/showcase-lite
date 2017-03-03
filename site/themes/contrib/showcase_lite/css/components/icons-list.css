@@ -1,0 +1,40 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s icons list.
+ */
+ul.icons-list {
+  list-style: none;
+  margin: 0 -15px;
+  padding: 0;
+}
+ul.icons-list li {
+  display: inline-block;
+  margin: 10px 15px;
+  vertical-align: middle;
+}
+ul.icons-list li a {
+  display: block;
+}
+ul.icons-list li a:hover {
+  text-decoration: none;
+  -ms-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+ul.icons-list li i {
+  font-size: 20px;
+}
+ul.icons-list--large li i {
+  font-size: 24px;
+}
+ul.icons-list--extra-large li i {
+  font-size: 55px;
+}
+
+/*icons list @colored-region*/
+.region--light-typography ul.icons-list li a {
+  color: rgba(255, 255, 255, 0.70);
+}
+.region--light-typography ul.icons-list li a:hover {
+  color: #ffffff;
+}

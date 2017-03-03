@@ -1,0 +1,127 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s fancy linked images block.
+ */
+.fancy-linked-image {
+  padding: 10px;
+  position: relative;
+}
+.clip-path-support .clip-pentagon-container {
+  -webkit-clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+}
+.clip-path-support .clip-pentagon-container .overlay {
+  -webkit-clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+}
+.clip-path-support .clip-pentagon {
+  margin: 1%;
+  width: 98%;
+  height: 98%;
+  -webkit-clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+}
+.clip-path-support .clip-circle-container {
+  -webkit-clip-path: circle(50% at 50% 50%);
+  clip-path: circle(50% at 50% 50%);
+}
+.clip-path-support .clip-circle-container .overlay {
+  -webkit-clip-path: circle(50% at 50% 50%);
+  clip-path: circle(50% at 50% 50%);
+}
+.clip-path-support .clip-circle {
+  margin: 1%;
+  width: 98%;
+  height: 98%;
+  -webkit-clip-path: circle(50% at 50% 50%);
+  clip-path: circle(50% at 50% 50%);
+}
+.clip-path-support .clip-rectangle-container {
+  position: relative;
+  z-index: 1;
+}
+.clip-path-support .clip-rectangle-container:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-width: 3px;
+  border-style: solid;
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  z-index: -1;
+}
+.fancy-linked-image .field--name-field-mt-fli-title {
+  font-size: 24px;
+  text-align: center;
+  margin-top: 40px; 
+}
+.svg-clip-path-pentagon,
+.svg-clip-path-circle {
+  position: absolute;
+}
+
+/*fancy linked images block @colored-regions*/
+.clip-path-support .region--colored-background .clip-pentagon-container {
+  background-color: #ffffff;
+}
+.clip-path-support .region--colored-background .clip-circle-container {
+  background-color: #ffffff;
+}
+.clip-path-support .region--colored-background .clip-rectangle-container:before {
+  border-color: #ffffff;
+}
+
+/*CSS rules only for FF*/
+@-moz-document url-prefix() {
+  .clip-pentagon-container {
+    -webkit-clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+    overflow: hidden;
+  }
+  .clip-pentagon {
+    margin: 1%;
+    width: 98%;
+    height: 98%;
+    -webkit-clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  }
+  .clip-circle-container {
+    -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
+    overflow: hidden;
+  }
+  .clip-circle {
+    margin: 1%;
+    width: 98%;
+    height: 98%;
+    -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
+  }
+  .clip-rectangle-container {
+    position: relative;
+    z-index: 1;
+  }
+  .clip-rectangle-container:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-width: 3px;
+    border-style: solid;
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    z-index: -1;
+  }
+
+  /*fancy linked images block @colored-regions*/
+  .region--colored-background .clip-pentagon-container {
+    background-color: #ffffff;
+  }
+  .region--colored-background .clip-circle-container {
+    background-color: #ffffff;
+  }
+  .region--colored-background .clip-rectangle-container:before {
+    border-color: #ffffff;
+  }
+}

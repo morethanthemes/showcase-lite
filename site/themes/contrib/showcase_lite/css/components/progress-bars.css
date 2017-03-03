@@ -1,0 +1,28 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s progress bars.
+ */
+.progress-title {
+	font-size: 12px;
+  font-weight: 600;
+  padding-top: 10px;
+}
+.headings-wide-spacing-enabled .progress-title {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.progress {
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  height: 10px;
+  background-color: #f4f4f4;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  margin-bottom: 30px;
+  margin-top: 5px;
+}
+.progress-bar {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}

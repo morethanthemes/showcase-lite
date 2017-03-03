@@ -1,0 +1,42 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s products grid views.
+ */
+.view-products-grid .views-row {
+  margin-bottom: 45px;
+  text-align: center;
+}
+.view-products-grid .views-field-field-image {
+  margin-bottom: 50px;
+}
+.view-products-grid .views-field-title h5 {
+  font-size: 14px;
+  font-weight: 400;
+}
+.headings-wide-spacing-enabled .view-products-grid .views-field-title h5 {
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+.view-products-grid .views-field-title h5 a:hover {
+  text-decoration: none;
+}
+.region--light-typography .view-products-grid .views-field-title h5 a {
+  color: #ffffff;
+}
+.region--light-typography .view-products-grid .views-field-title h5 a:hover {
+  color: #ffffff;
+}
+.view-products-grid .views-field-field-mt-price {
+  font-size: 24px;
+}
+.view-products-grid .views-field-link {
+  margin-top: 20px;
+}
+.view-products-grid .views-field-link a.button {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.view-products-grid .col-md-3 .views-field-link a.button {
+  padding-left: 20px;
+  padding-right: 20px;
+}

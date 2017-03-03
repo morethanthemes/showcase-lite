@@ -1,0 +1,7 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s products carousel.
+ */
+.mt-carousel-products .mt-carousel-item {
+  margin: 15px;
+}

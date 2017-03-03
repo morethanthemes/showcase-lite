@@ -1,0 +1,70 @@
+{#
+/**
+ * @file
+ * Showcase+s's theme implementation to display a Article node.
+ */
+#}
+
+{% extends "node.html.twig" %}
+{% block meta_area %}
+  {{ title_prefix }}
+  {% if not page %}
+    <h2{{ title_attributes.addClass('node__title') }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h2>
+  {% endif %}
+  {{ title_suffix }}
+  {% if display_submitted %}
+    {{ author_picture }}
+  {% endif %}
+  {% if display_submitted or node.comment or (view_mode == "full" and mt_setting.reading_time) %}
+    <div class="node__meta">
+       <ul class="inline-list">
+          {% if display_submitted or (node.comment and comment_count > 0) %}
+            <li class="inline-list__item">
+              {% if display_submitted %}
+                <span{{ author_attributes.addClass('node__submitted-info') }}>
+                  <span class="node__submitted-date">
+                    {{ node.createdtime|format_date('custom', 'F d, Y') }}
+                  </span>
+                  {% trans %}<span class="node__submitted-info-text">By</span> {{ author_name }}{% endtrans %}
+                </span>
+                {{ metadata }}
+              {% endif %}
+              {% if node.comment and comment_count > 0 %}
+                <span class="comments-count__counter text--colored">
+                  {% trans %}
+                    1 comment
+                  {% plural comment_count %}
+                    {{ comment_count }} comments
+                  {% endtrans %}
+                </span>
+              {% endif %}
+            </li>
+          {% endif %}
+        {% if view_mode == "full" and mt_setting.reading_time %}
+          <li class="inline-list__item">
+            {{ attach_library('showcase_lite/reading-time') }}
+            <span class="reading-time">
+              <span class="text--dark">{% trans %}Time to read{% endtrans %}</span>
+              {% if minutes < 1 %}
+                {% trans %}less than 1 minute{% endtrans %}
+              {% elseif minutes < 2 %}
+                {{ minutes }} {% trans %}minute{% endtrans %}
+              {% else %}
+                {{ minutes }} {% trans %}minutes{% endtrans %}
+              {% endif %}
+            </span>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  {% endif %}
+{% endblock %}
+{% block content %}
+  {{ attach_library('showcase_lite/node-article') }}
+  <div class="node__main-content-section">
+    {{ content|without('comment') }}
+  </div>
+  {{ content.comment }}
+{% endblock %}

@@ -1,0 +1,54 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s blocks.
+ */
+.block {
+  padding: 0 0 25px 0;
+}
+.col-md-12 .block {
+  padding-bottom: 50px;
+}
+.header .block-menu.block,
+.header-container .block-superfish.block,
+.block.block-page-title-block,
+.block-system-breadcrumb-block,
+#block-googlemapbanner {
+  padding: 0;
+}
+.slideout__section .block {
+  padding-bottom: 50px;
+}
+.header-top-highlighted__section .block {
+  padding: 0;
+}
+.header-top-highlighted__section .block + .block {
+  padding: 10px 0 0 0;
+}
+.header-top__section .block {
+  padding-bottom: 10px;
+}
+.header__section .block:first-child:last-child {
+  padding: 0;
+}
+.content-top__section .block {
+  padding-bottom: 75px;
+}
+.subfooter__section .block {
+  padding-bottom: 10px;
+}
+.sidebar__section .block {
+  padding: 0 0 70px 0;
+}
+.block-local-tasks-block {
+  padding: 10px 0;
+}
+.block .block {
+  padding: 0;
+}
+.region .block:last-child {
+  padding-bottom: 0;
+}
+.region--no-block-paddings .block,
+.region--no-block-paddings .block + .block {
+  padding: 0;
+}

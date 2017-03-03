@@ -1,0 +1,900 @@
+bootstrap:
+  version: 3.3.7
+  css:
+    base: #The CSS category. base is loaded before theme category
+      bootstrap/css/bootstrap.min.css: { weight: 0 } #weight sets the order within the category above
+  js:
+    bootstrap/js/bootstrap.min.js: {}
+  dependencies:
+    - core/jquery
+
+global-styling:
+  version: VERSION
+  css:
+    base:
+      css/base/elements.css: { weight: 1 }
+      css/base/layout.css: {}
+      css/base/typography.css: {}
+    component:
+      css/components/alert.css: {}
+      css/components/accordion.css: {}
+      css/components/block.css: {}
+      css/components/buttons.css: {}
+      css/components/better-exposed-filters.css: {}
+      css/components/contact-info.css: {}
+      css/components/dropdowns.css: {}
+      css/components/fancy-block.css: {}
+      css/components/fancy-block-2.css: {}
+      css/components/highlights.css: {}
+      css/components/more-links.css: {}
+      css/components/fa-icons-list.css: {}
+      css/components/forms.css: {}
+      css/components/field-taxonomy-term.css: {}
+      css/components/icons-list.css: {}
+      css/components/social-links.css: {}
+      css/components/social-media.css: {}
+      css/components/item-list.css: {}
+      css/components/inline-list.css: {}
+      css/components/image-overlay.css: {}
+      css/components/node-testimonial.css: {}
+      css/components/node-links.css: {}
+      css/components/separators.css: {}
+      css/components/subscribe-forms.css: {}
+      css/components/search.css: {}
+      css/components/site-branding.css: {}
+      css/components/static-promoted-images-grid.css: {}
+      css/components/text-blocks.css: {}
+      css/components/tables.css: {}
+      css/components/tabs.css: {}
+      css/components/team-members.css: {}
+      css/components/pills.css: {}
+      css/components/progress-bars.css: {}
+      css/components/layout-switcher.css: {}
+      css/components/language-switcher.css: {}
+      css/components/menu.css: {}
+      css/components/username.css: {}
+      css/components/views.css: {}
+
+to-top:
+  version: VERSION
+  css:
+    component:
+      css/components/to-top.css: {}
+  js:
+    js/custom/to-top.js: {}
+  dependencies:
+    - core/jquery
+
+fixed-header:
+  version: VERSION
+  css:
+    component:
+      css/components/fixed-header.css: {}
+  js:
+    js/init/waypoints-fixed-header-init.js: {}
+  dependencies:
+    - showcase_lite/waypoints
+    - showcase_lite/waypoints-sticky
+
+transparent-header:
+  version: VERSION
+  css:
+    component:
+      css/components/transparent-header.css: {}
+  js:
+    js/custom/transparent-header.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings
+
+animate:
+  version: 3.4.0
+  css:
+    component:
+      js/animate/animate.css: { weight: 0 }
+
+animate-global:
+  version: VERSION
+  css:
+    theme:
+      css/theme/animations.css: { weight: 1 }
+  dependencies:
+    - showcase_lite/animate
+
+slideout:
+  version: 0.1.12
+  css:
+    component:
+      js/slideout/slideout.css: { weight: 0 }
+  js:
+    js/slideout/slideout.min.js: {}
+  dependencies:
+    - core/jquery
+
+slideout-init:
+  version: VERSION
+  css:
+    component:
+      css/components/slideout.css: { weight: 0 }
+  js:
+    js/init/slideout-init.js: {}
+  dependencies:
+    - showcase_lite/slideout
+
+waypoints:
+  version: 4.0.1
+  js:
+    js/waypoints/jquery.waypoints.min.js: {}
+  dependencies:
+    - core/jquery
+
+waypoints-sticky:
+  version: 4.0.1
+  js:
+    js/waypoints/shortcuts/sticky.min.js: {}
+  dependencies:
+    - core/jquery
+
+waypoints-animations-init:
+  version: VERSION
+  js:
+    js/init/waypoints-animations-init.js: {}
+  dependencies:
+    - showcase_lite/waypoints
+
+magnific-popup:
+  version: 1.1.0
+  css:
+    component:
+      js/magnific-popup/magnific-popup.css: { weight: 0 }
+  js:
+    js/magnific-popup/jquery.magnific-popup.min.js: {}
+  dependencies:
+    - core/jquery
+
+magnific-popup-field-image-init:
+  version: VERSION
+  js:
+    js/init/magnific-popup-field-image-init.js: {}
+  dependencies:
+    - showcase_lite/magnific-popup
+
+magnific-popup-field-member-photo-init:
+  version: VERSION
+  js:
+    js/init/magnific-popup-field-member-photo-init.js: {}
+  dependencies:
+    - showcase_lite/magnific-popup
+
+magnific-popup-field-image-slider-init:
+  version: VERSION
+  js:
+    js/init/magnific-popup-field-image-slider-init.js: {}
+  dependencies:
+    - showcase_lite/magnific-popup
+
+magnific-popup-field-video-init:
+  version: VERSION
+  js:
+    js/init/magnific-popup-field-video-init.js: {}
+  dependencies:
+    - showcase_lite/magnific-popup
+
+flexslider:
+  version: 2.6.1
+  css:
+    base:
+      js/flexslider/flexslider.css: { weight: 0 }
+  js:
+    js/flexslider/jquery.flexslider-min.js: {}
+  dependencies:
+    - core/jquery
+
+flexslider-global:
+  version: VERSION
+  css:
+    component:
+      css/components/flexslider-global.css: {}
+  dependencies:
+    - showcase_lite/flexslider
+
+flexslider-in-page-init:
+  version: VERSION
+  css:
+    component:
+      css/components/flexslider-in-page.css: {}
+  js:
+    js/init/flexslider-in-page-init.js: {}
+  dependencies:
+    - showcase_lite/flexslider-global
+    - core/drupalSettings
+
+flexslider-nodes-slideshow:
+  version: VERSION
+  css:
+    component:
+      css/components/flexslider-nodes-slideshow.css: {}
+  js:
+    js/init/flexslider-nodes-slideshow-init.js: {}
+  dependencies:
+    - showcase_lite/flexslider-global
+
+owl-carousel:
+  version: 1.3.3
+  css:
+    base:
+      js/owl-carousel/owl.carousel.css: { weight: 0 }
+  js:
+    js/owl-carousel/owl.carousel.js: {}
+  dependencies:
+    - core/jquery
+
+owl-carousel-global:
+  version: VERSION
+  css:
+    component:
+      css/components/owl-carousel-global.css: {}
+  dependencies:
+    - showcase_lite/owl-carousel
+
+owl-carousel-products-init:
+  version: VERSION
+  css:
+    component:
+      css/components/view-products-carousel.css: {}
+  js:
+    js/init/owl-carousel-products-init.js: {}
+  dependencies:
+    - showcase_lite/view-products-grid
+    - showcase_lite/owl-carousel-global
+    - core/drupalSettings
+
+owl-carousel-testimonials-init:
+  version: VERSION
+  css:
+    component:
+      css/components/view-testimonials-carousel.css: {}
+  js:
+    js/init/owl-carousel-testimonials-init.js: {}
+  dependencies:
+    - showcase_lite/view-testimonials-list-2
+    - showcase_lite/owl-carousel-global
+    - core/drupalSettings
+
+owl-carousel-articles-init:
+  version: VERSION
+  css:
+    component:
+      css/components/view-articles-carousel.css: {}
+  js:
+    js/init/owl-carousel-articles-init.js: {}
+  dependencies:
+    - showcase_lite/view-articles-grid
+    - showcase_lite/owl-carousel-global
+    - core/drupalSettings
+
+owl-carousel-related-nodes-init:
+  version: VERSION
+  css:
+    component:
+      css/components/view-related-nodes-carousel.css: {}
+  js:
+    js/init/owl-carousel-related-nodes-init.js: {}
+  dependencies:
+    - showcase_lite/view-products-grid
+    - showcase_lite/owl-carousel-global
+    - core/drupalSettings
+
+owl-carousel-brands-init:
+  version: VERSION
+  css:
+    component:
+      css/components/view-brands-carousel.css: {}
+  js:
+    js/init/owl-carousel-brands-init.js: {}
+  dependencies:
+    - showcase_lite/owl-carousel-global
+    - core/drupalSettings
+
+owl-carousel-collections-init:
+  version: VERSION
+  css:
+    component:
+      css/components/view-collections-carousel.css: {}
+  js:
+    js/init/owl-carousel-collections-init.js: {}
+  dependencies:
+    - showcase_lite/owl-carousel-global
+    - core/drupalSettings
+
+smooth-scroll:
+  version: VERSION
+  css:
+    component:
+      css/components/to-bottom-button.css: {}
+  js:
+    js/custom/smooth-scroll.js: {}
+  dependencies:
+    - core/jquery
+
+slider-revolution:
+  version: 5.3.0.2
+  css:
+    component:
+      js/revolution/css/settings.css: {}
+      js/revolution/css/layers.css: {}
+      js/revolution/css/navigation.css: {}
+  js:
+    js/revolution/js/jquery.themepunch.tools.min.js: { scope: 'header', preprocess: FALSE }
+    js/revolution/js/jquery.themepunch.revolution.min.js: { scope: 'header', preprocess: FALSE }
+  dependencies:
+    - core/jquery
+
+slider-revolution-global:
+  version: VERSION
+  css:
+    component:
+      css/components/slider-revolution-global.css: { weight: 1 }
+  dependencies:
+    - showcase_lite/slider-revolution
+
+slider-revolution-full-screen-init:
+  version: VERSION
+  css:
+    component:
+      css/components/slider-revolution-full-screen.css: {}
+  js:
+    js/init/slider-revolution-full-screen-init.js: {}
+  dependencies:
+    - showcase_lite/slider-revolution-global
+    - core/drupalSettings
+
+slider-revolution-full-width-init:
+  version: VERSION
+  js:
+    js/init/slider-revolution-full-width-init.js: {}
+  dependencies:
+    - showcase_lite/slider-revolution-global
+    - core/drupalSettings
+
+slider-revolution-boxed-width-init:
+  version: VERSION
+  css:
+    component:
+      css/components/slider-revolution-boxed-width.css: {}
+  js:
+    js/init/slider-revolution-boxed-width-init.js: {}
+  dependencies:
+    - showcase_lite/slider-revolution-global
+    - core/drupalSettings
+
+slider-revolution-internal-banner-init:
+  version: VERSION
+  css:
+    component:
+      css/components/slider-revolution-internal.css: {}
+  js:
+    js/init/slider-revolution-internal-banner-init.js: {}
+  dependencies:
+    - showcase_lite/slider-revolution-global
+    - core/drupalSettings
+
+slider-revolution-video-gallery-init:
+  version: VERSION
+  css:
+    component:
+      css/components/slider-revolution-video-gallery.css: {}
+  js:
+    js/init/slider-revolution-video-gallery-init.js: {}
+  dependencies:
+    - showcase_lite/slider-revolution-global
+    - core/drupalSettings
+
+main-slideshow-block-init:
+  version: VERSION
+  js:
+    js/init/main-slideshow-block-init.js: {}
+  dependencies:
+    - showcase_lite/slider-revolution-global
+    - core/drupalSettings
+
+view-promoted-items:
+  version: VERSION
+  css:
+    component:
+      css/components/view-promoted-items.css: {}
+
+view-items-list:
+  version: VERSION
+  css:
+    component:
+      css/components/view-items-list.css: {}
+
+view-promoted-items-masonry:
+  version: VERSION
+  css:
+    component:
+      css/components/view-promoted-items-masonry.css: {}
+
+view-grid-style-2:
+  version: VERSION
+  css:
+    component:
+      css/components/view-grid-style-2.css: {}
+
+view-products-grid:
+  version: VERSION
+  css:
+    component:
+      css/components/view-products-grid.css: {}
+
+view-products-list:
+  version: VERSION
+  css:
+    component:
+      css/components/view-products-list.css: {}
+
+view-showcases-grid:
+  version: VERSION
+  css:
+    component:
+      css/components/view-showcases-grid.css: {}
+
+view-showcases-grid-2:
+  version: VERSION
+  css:
+    component:
+      css/components/view-showcases-grid-2.css: {}
+
+view-articles-grid:
+  version: VERSION
+  css:
+    component:
+      css/components/view-articles-grid.css: {}
+
+view-popular-taxonomy:
+  version: VERSION
+  css:
+    component:
+      css/components/view-popular-taxonomy.css: {}
+
+view-product-tags:
+  version: VERSION
+  css:
+    component:
+      css/components/view-product-tags.css: {}
+
+view-latest-items:
+  version: VERSION
+  css:
+    component:
+      css/components/view-latest-items.css: {}
+
+view-testimonials-list:
+  version: VERSION
+  css:
+    component:
+      css/components/view-testimonials-list.css: {}
+
+view-testimonials-list-2:
+  version: VERSION
+  css:
+    component:
+      css/components/view-testimonials-list-2.css: {}
+
+view-testimonials-grid:
+  version: VERSION
+  css:
+    component:
+      css/components/view-testimonials-grid.css: {}
+
+view-testimonials-grid-2:
+  version: VERSION
+  css:
+    component:
+      css/components/view-testimonials-grid-2.css: {}
+
+view-testimonials-masonry:
+  version: VERSION
+  css:
+    component:
+      css/components/view-testimonials-masonry.css: {}
+  js:
+    js/init/isotope-testimonials-masonry-init.js: {}
+  dependencies:
+    - showcase_lite/imagesloaded
+    - showcase_lite/isotope
+    - core/jquery
+
+view-team-members-grid:
+  version: VERSION
+  css:
+    component:
+      css/components/view-team-members-grid.css: {}
+
+view-team-members-grid-2:
+  version: VERSION
+  css:
+    component:
+      css/components/view-team-members-grid-2.css: {}
+
+view-titles-list:
+  version: VERSION
+  css:
+    component:
+      css/components/view-titles-list.css: {}
+
+view-pricing-tables:
+  version: VERSION
+  css:
+    component:
+      css/components/view-pricing-tables.css: {}
+
+view-brands-grid:
+  version: VERSION
+  css:
+    component:
+      css/components/view-brands-grid.css: {}
+
+view-collections-grid:
+  version: VERSION
+  css:
+    component:
+      css/components/view-collections-grid.css: {}
+
+
+view-collections-image-overlay:
+  version: VERSION
+  css:
+    component:
+      css/components/view-collections-image-overlay.css: {}
+
+google-maps-init:
+  version: VERSION
+  css:
+    component:
+      css/components/google-map.css: {}
+  js:
+    js/init/google-map-init.js: {}
+  dependencies:
+    - showcase_lite/google-maps-dynamic
+    - core/jquery
+    - core/drupalSettings
+
+imagesloaded:
+  version: 3.2.0
+  js:
+    js/imagesloaded/imagesloaded.pkgd.min.js: {}
+  dependencies:
+    - core/jquery
+
+isotope:
+  version: 2.2.2
+  js:
+    js/isotope/isotope.pkgd.min.js: { scope: 'header' }
+  dependencies:
+    - core/jquery
+
+isotope-global:
+  version: VERSION
+  css:
+    component:
+      css/components/isotope-global.css: { weight: 1 }
+  dependencies:
+    - showcase_lite/isotope
+
+isotope-filters-grid-init:
+  version: VERSION
+  js:
+    js/init/isotope-filters-grid-init.js: {}
+  dependencies:
+    - showcase_lite/imagesloaded
+    - showcase_lite/isotope-global
+    - core/jquery
+    - core/drupalSettings
+
+isotope-masonry-init:
+  version: VERSION
+  js:
+    js/init/isotope-masonry-init.js: {}
+  dependencies:
+    - showcase_lite/imagesloaded
+    - showcase_lite/isotope
+    - showcase_lite/view-promoted-items-masonry
+    - core/jquery
+
+video-bg:
+  version: VERSION
+  css:
+    component:
+      css/components/video-bg.css: {}
+  js:
+    js/custom/video-bg.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings
+
+vide:
+  version: 0.5.0
+  js:
+    js/vide/jquery.vide.min.js: {}
+  dependencies:
+    - core/jquery
+
+video-background-init:
+  version: VERSION
+  css:
+    component:
+      css/components/video-background.css: {}
+  js:
+    js/init/video-background-init.js: {}
+  dependencies:
+    - showcase_lite/video-bg
+    - showcase_lite/vide
+    - core/jquery
+    - core/drupalSettings
+
+tooltip:
+  version: VERSION
+  css:
+    component:
+      css/components/tooltip.css: {}
+  js:
+    js/init/tooltip-init.js: {}
+  dependencies:
+    - showcase_lite/bootstrap
+    - core/jquery
+
+count-to:
+  version: 1.2.0
+  js:
+    js/count-to/jquery.countTo.js: {}
+  dependencies:
+    - core/jquery
+
+count-to-init:
+  version: VERSION
+  js:
+    js/init/count-to-init.js: {}
+  dependencies:
+    - showcase_lite/count-to
+    - showcase_lite/waypoints
+
+node:
+  version: VERSION
+  css:
+    component:
+      css/components/node.css: {}
+
+node-article:
+  version: VERSION
+  css:
+    component:
+      css/components/node-article.css: {}
+
+node-product:
+  version: VERSION
+  css:
+    component:
+      css/components/node-product.css: {}
+
+node-view-mode-slide-view:
+  version: VERSION
+  css:
+    component:
+      css/components/node-view-mode-slide-view.css: {}
+
+node-service:
+  version: VERSION
+  css:
+    component:
+      css/components/node-service.css: {}
+
+node-showcase:
+  version: VERSION
+  css:
+    component:
+      css/components/node-showcase.css: {}
+
+node-team-member:
+  version: VERSION
+  css:
+    component:
+      css/components/node-team-member.css: {}
+
+post-progress:
+  version: VERSION
+  css:
+    component:
+      css/components/post-progress.css: {}
+  js:
+    js/custom/post-progress.js: {}
+  dependencies:
+    - core/jquery
+
+reading-time:
+  version: VERSION
+  css:
+    component:
+      css/components/reading-time.css: {}
+
+node-images:
+  version: VERSION
+  css:
+    component:
+      css/components/node-images.css: {}
+
+field-mt-video:
+  version: VERSION
+  css:
+    component:
+      css/components/field-mt-video.css: {}
+
+field-mt-content-tabs:
+  version: VERSION
+  css:
+    component:
+      css/components/field-mt-content-tabs.css: {}
+
+field-mt-content-collapses:
+  version: VERSION
+  css:
+    component:
+      css/components/field-mt-content-collapses.css: {}
+
+media-tabs:
+  version: VERSION
+  css:
+    component:
+      css/components/media-tabs.css: {}
+
+fancy-linked-images-block:
+  version: VERSION
+  css:
+    component:
+      css/components/fancy-linked-images-block.css: {}
+  js:
+    js/custom/fancy-linked-images-block.js: {}
+    js/custom/clip-path-test.js: {}
+
+featured-linked-text-tiles-block:
+  version: VERSION
+  css:
+    component:
+      css/components/featured-linked-text-tiles-block.css: {}
+
+background-image-block:
+  version: VERSION
+  css:
+    component:
+      css/components/background-image-block.css: {}
+
+fontawesome:
+  version: 4.7.0
+  remote: //use.fontawesome.com/
+  js:
+    //use.fontawesome.com/f479fb1064.js: {}
+  license:
+    name: MIT
+    url: //opensource.org/licenses/mit-license.html
+    gpl-compatible: true
+
+breadcrumb:
+  version: VERSION
+  css:
+    component:
+      css/components/breadcrumb.css: {}
+
+pager:
+  version: VERSION
+  css:
+    component:
+      css/components/pager.css: {}
+
+mini-pager:
+  version: VERSION
+  css:
+    component:
+      css/components/mini-pager.css: {}
+
+detailed-pager:
+  version: VERSION
+  css:
+    component:
+      css/components/detailed-pager.css: {}
+
+messages:
+  version: VERSION
+  css:
+    component:
+      css/components/messages.css: { preprocess: false }
+
+comments:
+  version: VERSION
+  css:
+    component:
+      css/components/comments.css: {}
+
+comment:
+  version: VERSION
+  css:
+    component:
+      css/components/comment.css: {}
+
+theme-settings:
+  version: VERSION
+  css:
+    theme:
+      css/components/theme-settings.css: {}
+
+maintenance-page:
+  version: VERSION
+  css:
+    component:
+      css/components/maintenance-page.css: {}
+
+local-stylesheets:
+  version: VERSION
+  css:
+    base:
+      css/base/local-base.css: { weight: 100 }
+    component:
+      css/components/local-components.css: { weight: 100 }
+    theme:
+      css/theme/local-theme.css: { weight: 150 }
+
+#####################
+#   Color Schemes   #
+#####################
+color-gray:
+  version: VERSION
+  css:
+    theme:
+      css/theme/color-gray.css: { weight: 100, preprocess: FALSE }
+
+####################
+# Fonts collection #
+####################
+fonts-id-06:
+  version: VERSION
+  remote: //fonts.googleapis.com/css
+  css:
+    theme:
+      //fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i,800,800i&amp;subset=greek: { type: external }
+  license:
+    name: Apache License, version 2.0
+    url: //www.apache.org/licenses/LICENSE-2.0.html
+    gpl-compatible: true
+
+fonts-id-08:
+  version: VERSION
+  remote: //fonts.googleapis.com/css
+  css:
+    theme:
+      //fonts.googleapis.com/css?family=Roboto+Condensed:400italic,700italic,400,300,700&subset=latin-ext,latin,greek: { type: external }
+  license:
+    name: Apache License, version 2.0
+    url: //www.apache.org/licenses/LICENSE-2.0.html
+    gpl-compatible: true
+
+fonts-sourcecodepro:
+  version: VERSION
+  remote: //fonts.googleapis.com/css
+  css:
+    theme:
+      //fonts.googleapis.com/css?family=Source+Code+Pro&subset=latin,latin-ext: { type: external }
+  license:
+    name: SIL Open Font License, 1.1
+    url: //scripts.sil.org/OFL
+    gpl-compatible: true
+
+fonts-pt-serif:
+  version: VERSION
+  remote: //fonts.googleapis.com/css
+  css:
+    theme:
+      //fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic&subset=latin,latin-ext: { type: external }
+  license:
+    name: SIL Open Font License, 1.1
+    url: //scripts.sil.org/OFL
+    gpl-compatible: true

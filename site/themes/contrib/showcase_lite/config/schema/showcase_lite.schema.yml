@@ -1,0 +1,5 @@
+# Schema for the configuration files of the Showcase Lite theme.
+
+showcase_lite.settings:
+  type: theme_settings
+  label: 'Showcase Lite settings'

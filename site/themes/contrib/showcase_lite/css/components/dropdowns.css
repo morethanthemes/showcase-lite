@@ -1,0 +1,49 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s dropdowns.
+ */
+.field--mt-dropdowns-block {
+  text-align: right;
+}
+@media (min-width: 768px) {
+  .page-container-border-enabled .header-container .container-fluid .header-third .field--mt-dropdowns-block {
+    padding-right: 15px;
+  } 
+}
+.dropdown-trigger {
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: none;
+  font-size: 13px;
+  padding: 17px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.dropdown-menu {
+  min-width: 335px;
+  padding: 20px;
+  border: none;
+  -webkit-box-shadow: rgba(28, 56, 72, 0.1) 0px 2px 2px, rgba(28, 56, 72, 0.1) 0px 4px 4px, rgba(28, 56, 72, 0.1) 0px 8px 8px, rgba(28, 56, 72, 0.1) 0px 16px 16px, rgba(28, 56, 72, 0.1) 0px 32px 32px, rgba(28, 56, 72, 0.1) 0px 64px 64px;
+  box-shadow: rgba(28, 56, 72, 0.1) 0px 2px 2px, rgba(28, 56, 72, 0.1) 0px 4px 4px, rgba(28, 56, 72, 0.1) 0px 8px 8px, rgba(28, 56, 72, 0.1) 0px 16px 16px, rgba(28, 56, 72, 0.1) 0px 32px 32px, rgba(28, 56, 72, 0.1) 0px 64px 64px;
+  margin-top: 20px;
+}
+.region--white-background .dropdown-menu {
+  background-color: #ffffff;
+}
+.region--gray-background .dropdown-menu {
+  background-color: #f4f4f4;
+}
+.header.region--gray-background .dropdown-menu {
+  background-color: #f1f1f1;
+}
+.region--black-background .dropdown-menu {
+  background-color: #1d1d1d;
+}
+.region--white-pattern .dropdown-menu {
+  background-image: url('../../images/white-pattern.png');
+  background-repeat: repeat;
+  background-position: 0 0;
+}
+.dropdown-menu .field__item + .field__item {
+  padding-top: 20px;
+}

@@ -1,0 +1,9 @@
+# Define binary file attributes.
+# - Do not treat them as text.
+# - Include binary diff in patches instead of "binary files differ."
+*.mp4     -text diff
+*.webm     -text diff
+*.svg     -text diff
+*.eot     -text diff
+*.ttf     -text diff
+*.woff     -text diff

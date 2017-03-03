@@ -1,0 +1,33 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s team members grid 2 views.
+ */
+.view-team-members-grid-2 .views-row {
+  text-align: center;
+  margin-bottom: 25px;
+}
+.view-team-members-grid-2 h5 {
+  font-size: 18px;
+  margin-top: 25px;
+  margin-bottom: 5px;
+}
+.view-team-members-grid-2 .views-field-field-mt-subtitle {
+  line-height: 1.2;
+}
+.view-team-members-grid-2 .views-field-field-mt-member-photo img {
+  border-radius: 100%;
+  border-width: 4px;
+  border-style: solid;
+  border-color: #ececec;
+}
+.region--light-typography .view-team-members-grid-2 .views-field-title a {
+  color: #ffffff;
+}
+.region--light-typography .view-team-members-grid-2 .views-field-title a:hover {
+  text-decoration: underline;
+}
+.region--colored-background .view-team-members-grid-2 .views-field-field-mt-member-photo img,
+.region--dark-background .view-team-members-grid-2 .views-field-field-mt-member-photo img,
+.region--black-background .view-team-members-grid-2 .views-field-field-mt-member-photo img {
+  border-color: transparent;
+}

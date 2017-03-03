@@ -1,0 +1,25 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s brands grid views.
+ */
+.view-brands-grid .views-row {
+  margin-top: 30px;
+  text-align: center;
+}
+.view-brands-grid .views-field-field-mt-brand-image {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/*brans grid views overlay*/
+.view-brands-grid .overlay-target-link a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: block;
+  font-size: 0;
+}

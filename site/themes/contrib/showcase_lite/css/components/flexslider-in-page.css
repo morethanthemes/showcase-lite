@@ -1,0 +1,47 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s in page slider.
+ */
+.in-page-images-slider ul.slides li {
+  position: relative;
+}
+@media (max-width:767px) {
+  .in-page-images-slider .flex-viewport {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+
+/*Carousel direction Nav */
+.in-page-images-carousel .flex-direction-nav a {
+  width: 25px;
+}
+.in-page-images-carousel .flex-direction-nav a:before {
+  font-size: 28px;
+  margin-top: -14px;
+}
+
+/*In page slider's Carousel*/
+.in-page-images-carousel {
+  margin: 20px 0 0 0;
+}
+.in-page-images-carousel li {
+  margin-right: 20px;
+  cursor: pointer;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+.in-page-images-carousel li.flex-active-slide,
+.in-page-images-carousel li.flex-active-slide:hover {
+  cursor: default;
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+.in-page-images-carousel li:hover {
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+.in-page-images-carousel li .overlay-icon {
+  display: none;
+}

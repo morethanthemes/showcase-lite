@@ -1,0 +1,8 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s product content type slide view.
+ */
+.node--view-mode-mt-slide-view .node__title {
+  margin-bottom: 30px;
+}
+

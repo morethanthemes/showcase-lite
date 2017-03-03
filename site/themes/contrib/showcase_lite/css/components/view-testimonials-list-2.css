@@ -1,0 +1,107 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s testimonials list 2 views.
+ */
+ /*style elements*/
+.view-testimonials-list-2 .views-field-body {
+  font-size: 35px;
+  font-weight: 300;
+  line-height: 1.40;
+  padding-bottom: 20px;
+}
+.view-testimonials-list-2 .views-field-body p:before {
+  content: "“";
+}
+.view-testimonials-list-2 .views-field-body p:after {
+  content: "”";
+}
+.view-testimonials-list-2 .views-field-title {
+  font-size: 12px;
+  font-weight: 600;
+}
+.headings-wide-spacing-enabled .view-testimonials-list-2 .views-field-title {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+/*more link*/
+.view-testimonials-list-2.view > .more-link {
+  margin-top: 30px;
+}
+.view-testimonials-list-2.view > .more-link a {
+  border: 0;
+  background-color: transparent;
+  margin: 0;
+  padding-top: 90px;
+  position: relative;
+}
+.view-testimonials-list-2.view > .more-link a:hover {
+  background-color: transparent;
+  box-shadow: none;
+}
+.region--light-typography .view-testimonials-list-2.view > .more-link a,
+.region--light-typography .view-testimonials-list-2.view > .more-link a:hover {
+  color: #ffffff;
+  background-color: transparent;
+}
+.view-testimonials-list-2.view > .more-link a:before {
+  content: "\f067";
+  font-family: "FontAwesome";
+  font-size: 15;
+  position: absolute;
+  top: 0;
+  width: 30px;
+  left: 50%;
+  margin-left: -15px;
+  line-height: 75px;
+}
+.view-testimonials-list-2.view > .more-link a:after {
+  content: "";
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.05);
+  top: 0;
+  left: 50%;
+  margin-left: -37.5px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.region--light-typography .view-testimonials-list-2.view > .more-link a:after {
+  border-color: rgba(255, 255, 255, 0.05);
+}
+.region--light-typography .view-testimonials-list-2.view > .more-link a:hover:after {
+  border-color: #ffffff;
+}
+
+/*layout*/
+@media (min-width: 992px) {
+  .view-testimonials-list-2 > .view-content {
+    left: 41.66666667%;
+    width: 58.33333333%;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .view-testimonials-list-2.view > .more-link {
+    right: 58.33333333%;
+    width: 41.66666667%;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    text-align: left;
+  }
+  .view-testimonials-list-2.view > .more-link a {
+    margin-top: 80px;
+  }
+}

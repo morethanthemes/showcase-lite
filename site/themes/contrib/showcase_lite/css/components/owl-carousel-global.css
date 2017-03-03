@@ -1,0 +1,114 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s owl carousels.
+ */
+.owl-carousel {
+  margin: 0;
+  padding: 0;
+}
+.owl-carousel .owl-item li {
+  list-style: none;
+}
+
+/* Styling Next and Prev buttons */
+.owl-theme .owl-buttons {
+  position: absolute;
+  top: -40px;
+  width: 100%;
+}
+.block > h2.title ~ .content .owl-theme .owl-buttons {
+  position: absolute;
+  top: -85px;
+  width: 100%;
+}
+.region-content .block > h2.title ~ .content .owl-theme .owl-buttons {
+  top: -70px;
+}
+.owl-theme .owl-controls .owl-buttons div {
+  display: inline-block;
+  position: absolute;
+  width: 25px;
+  height: 50px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.owl-theme .owl-controls .owl-buttons div:hover {
+  text-decoration: none;
+}
+.region--light-typography .owl-theme .owl-controls .owl-buttons div {
+  color: #ffffff;
+}
+.region--light-typography .owl-theme .owl-controls .owl-buttons div:hover {
+  color: #ffffff;
+}
+.owl-theme .owl-controls .owl-buttons div:after {
+  font-family: "FontAwesome";
+  position: absolute;
+  font-size: 15px;
+  line-height: 1;
+  top: 0;
+  width: 25px;
+  line-height: 50px;
+  text-align: left;
+}
+.owl-theme .owl-controls .owl-buttons .owl-prev {
+  left: auto;
+  right: 40px;
+  padding-left: 25px;
+}
+.owl-theme .owl-controls .owl-buttons .owl-prev:after {
+  content: "\f060";
+  left: 0px;
+}
+.owl-theme .owl-controls .owl-buttons .owl-next {
+  right: 15px;
+  left: auto;
+  padding-right: 25px
+}
+.owl-theme .owl-controls .owl-buttons .owl-next:after {
+  content: "\f061";
+  right: 0px;
+  text-align: right;
+}
+
+/* Styling pager */
+.owl-theme .owl-controls .owl-pagination {
+  text-align: center;
+  margin-top: 50px;
+}
+.owl-theme .owl-controls .owl-page {
+  display: inline-block;
+  zoom: 1;
+}
+.owl-theme .owl-controls .owl-page span {
+  display: block;
+  width: 13px;
+  height: 13px;
+  margin: 5px;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  border-width: 2px;
+  border-style: solid;
+  background-color: transparent;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+/*pager at colored regions*/
+.region--light-typography .owl-theme .owl-controls .owl-page span {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.region--light-typography .owl-theme .owl-controls .owl-page.active span {
+  border-color: #ffffff;
+}
+.region--light-typography .owl-theme .owl-controls .owl-page:hover span {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-color: transparent;
+}

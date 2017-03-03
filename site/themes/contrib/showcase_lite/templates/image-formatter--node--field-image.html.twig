@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Theme override to display a formatted image field.
+ *
+ * Available variables:
+ * - image: A collection of image data.
+ * - image_style: An optional image style.
+ * - path: An optional array containing the link 'path' and link 'options'.
+ * - url: An optional URL the image can be linked to.
+ *
+ * @see template_preprocess_image_formatter()
+ */
+#}
+{% if url %}
+  <div class="overlay-container">
+    <span class="overlay overlay--colored">
+      <span class="overlay-inner">
+        <span class="overlay-icon overlay-icon--button overlay-icon--white overlay-animated overlay-fade-top">
+          <i class="fa fa-plus"></i>
+        </span>
+      </span>
+      <a class="overlay-target-link image-popup" href="{{ url }}"></a>
+    </span>
+    {{ image }}
+  </div>
+{% else %}
+  {{ image }}
+{% endif %}

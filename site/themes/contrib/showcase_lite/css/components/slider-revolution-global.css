@@ -1,0 +1,290 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s slider revolution.
+ */
+.slider-revolution-wrapper {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  text-align: center;
+}
+.container-fluid .view-mt-slideshow,
+.container-fluid .field--mt-main-slideshow-block {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.slider-revolution {
+  position: relative;
+  overflow: visible;
+}
+.slider-revolution img {
+  max-width: none!important;
+  -moz-transition: none;
+  -webkit-transition: none;
+  -o-transition: none;
+  transition: none;
+  margin: 0px;
+  padding: 0px;
+  border-width: 0px;
+  border: none;
+}
+.slider-revolution .no-slides-text {
+  font-weight: bold;
+  text-align: center;
+  padding-top: 80px;
+}
+.slider-revolution > ul,
+.slider-revolution-wrapper > ul,
+.slider-revolution > ul > li,
+.slider-revolution > ul > li:before {
+  list-style: none!important;
+  position: absolute;
+  margin: 0px!important;
+  padding: 0px!important;
+  overflow-x: visible;
+  overflow-y: visible;
+  list-style-type: none!important;
+  background-image: none;
+  background-position: 0px 0px;
+  text-indent: 0em;
+  top: 0px;
+  left: 0px;
+}
+.slider-revolution > ul > li,
+.slider-revolution > ul > li:before {
+  visibility: hidden;
+}
+.slider-revolution li.tp-revslider-slidesli {
+  position: absolute!important;
+}
+.slider-revolution .tp-caption,
+.slider-revolution .caption {
+  position: relative;
+  visibility: hidden;
+  white-space: nowrap;
+  display: block;
+}
+.slider-revolution .tp-mask-wrap .tp-caption,
+.slider-revolution .tp-mask-wrap *:last-child,
+.wpb_text_column .slider-revolution .tp-mask-wrap .tp-caption,
+.wpb_text_column .slider-revolution .tp-mask-wrap *:last-child {
+  margin-bottom: 0;
+}
+.slider-revolution embed,
+.slider-revolution iframe,
+.slider-revolution object,
+.slider-revolution audio,
+.slider-revolution video {
+  max-width: none!important
+}
+.slider-revolution embed,
+.slider-revolution iframe,
+.slider-revolution video {
+  border: 0;
+}
+
+/*IE > 9 fix*/
+@media screen and (min-width:0\0) {
+  .banner {
+    overflow: hidden !important;
+  }
+}
+
+/*Edge fix*/
+@supports (-ms-accelerator:true) {
+  .banner {
+    overflow: hidden !important;
+  }
+}
+
+/*Revolution Caption*/
+.transparent-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 100%;
+}
+.tp-caption--transparent-background {
+  border-radius: 5px;
+  padding: 50px;
+}
+.tp-caption__title {
+  font-size: 50px;
+  line-height: 1.1;
+  font-weight: 300;
+}
+.headings-wide-spacing-enabled .tp-caption__title {
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+.tp-caption__title a {
+  text-decoration: none;
+}
+@media (max-width: 767px) {
+  .tp-caption__title {
+    font-size: 35px;
+  }
+}
+.tp-caption__text {
+  margin-top: 15px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+.region--light-typography .tp-caption__title a,
+.region--light-typography.region--dark-background .tp-caption__title a {
+  color: #ffffff;
+}
+.region--light-typography .tp-caption__title a:hover {
+  text-decoration: underline;
+}
+.region--light-typography.region--dark-background .tp-caption__title a:hover {
+  text-decoration: none;
+}
+.tp-caption__buttons-container {
+  margin-top: 40px;
+}
+.tp-caption__button {
+  text-align: center;
+  display: inline-block;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 5px;
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: none;
+  padding: 15px 35px;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0 15px;
+}
+.headings-wide-spacing-enabled .tp-caption__button {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.tp-caption__button:hover {
+  color: #ffffff;
+}
+.region--light-typography a.tp-caption__button {
+  border-color: #ffffff;
+  color: #ffffff;
+  background-color: transparent;
+  text-decoration: none;
+}
+.region--light-typography.region--colored-background a.tp-caption__button:hover {
+  background-color: #ffffff;
+  border-color: #ffffff;
+}
+@media (max-width: 991px) {
+  .tp-caption__title {
+    font-size: 36px;
+  }
+  .tp-caption__text {
+    padding: 0 15px;
+  }
+  .tp-caption__button {
+    margin-top: 25px;
+  }
+}
+
+/*Revolution Nav Controls*/
+.tparrows {
+  width: 125px;
+  height: 125px;
+  border-radius: 100%;
+  -webkit-transition: all linear 0.2s;
+  -moz-transition: all linear 0.2s;
+  -o-transition: all linear 0.2s;
+  -ms-transition: all linear 0.2s;
+  transition: all linear 0.2s;
+  display: none;
+  text-align: center;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.5);
+  background-color: transparent;
+}
+.tparrows:hover {
+  background-color: #ffffff;
+  text-decoration: none;
+}
+.tparrows:before {
+  font-family: 'FontAwesome';
+  font-size: 30px;
+  display: inline-block;
+  line-height: 125px;
+  -webkit-transition: all linear 0.2s;
+  -moz-transition: all linear 0.2s;
+  -o-transition: all linear 0.2s;
+  -ms-transition: all linear 0.2s;
+  transition: all linear 0.2s;
+  color: #373737;
+}
+@media (max-width: 991px) {
+  .tparrows {
+    width: 80px;
+    height: 80px;
+  }
+  .tparrows:before {
+    line-height: 80px;
+  }
+}
+.tparrows.tp-leftarrow:before {
+  content: '\f104';
+}
+.tparrows.tp-rightarrow:before {
+  content: '\f105';
+}
+.tp-bullets {
+  margin: 0 15px;
+}
+.page-container-border-enabled .tp-bullets {
+  margin: 0 30px;
+}
+.slider-revolution-wrapper.one-slide .tp-bullets {
+  display: none;
+}
+.tp-bullets .tp-bullet {
+  background-image: none;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  width: 15px;
+  height: 15px;
+  -webkit-transition: all linear 0.2s;
+  -moz-transition: all linear 0.2s;
+  -o-transition: all linear 0.2s;
+  -ms-transition: all linear 0.2s;
+  transition: all linear 0.2s;
+  background-color: rgba(255, 255, 255, 0.5)
+}
+.tp-bannertimer {
+  background-image: none;
+}
+.tp-tabs {
+  height: 95px !important;
+}
+.tp-tabs .tp-tab-mask,
+.tp-tabs .tp-tabs-inner-wrapper {
+  height: 95px !important;
+}
+.tp-tabs .tp-tab {
+  -webkit-transition: all linear 0.2s;
+  -moz-transition: all linear 0.2s;
+  -o-transition: all linear 0.2s;
+  -ms-transition: all linear 0.2s;
+  transition: all linear 0.2s;
+  height: 95px !important;
+}
+.tp-tabs .tp-tab .tp-tab-title {
+  font-size: 16px;
+  color: #ffffff;
+  display: block;
+  margin-top: 35px;
+}
+.headings-wide-spacing-enabled .tp-tabs .tp-tab .tp-tab-title {
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}

@@ -1,0 +1,37 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s more links.
+ */
+.more-link a {
+  margin: 0 0 10px 0px;
+  display: block;
+  padding: 0;
+  font-size: 12px;
+  text-transform: uppercase;
+  text-align: left;
+  text-decoration: none;
+}
+.more-link a:hover {
+  text-decoration: underline;
+}
+.more-link a:after {
+  content: "\f105";
+  font-family: 'FontAwesome';
+  font-size: 10px;
+  margin-left: 10px;
+  display: inline-block;
+  line-height: 1;
+}
+.region--light-typography .more-link a {
+  color: #ffffff;
+}
+.region--light-typography.region--black-background .more-link a:hover {
+  text-decoration: none;
+}
+@media (max-width:767px) {
+  .footer__section .more-link a,
+  .footer-bottom__section .more-link a,
+  .subfooter__section .more-link a {
+    text-align: center;
+  }
+}

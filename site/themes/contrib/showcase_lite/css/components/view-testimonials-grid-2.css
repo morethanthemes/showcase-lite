@@ -1,0 +1,55 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s testimonials grid 2 views.
+ */
+.view-testimonials-grid-2 .views-row {
+  margin: 0 0 35px 0;
+}
+.view-testimonials-grid-2 .views-field-field-mt-testimonial-image {
+  text-align: center;
+}
+.view-testimonials-grid-2 .views-field-field-mt-testimonial-image .views-field-field-image {
+  display: inline-block;
+}
+.view-testimonials-grid-2 .views-field-body {
+  padding: 55px 0 10px;
+  margin-bottom: 15px;
+  border-radius: 3px;
+  position: relative;
+  border-style: solid;
+  border-color: #f0f0f0;
+  border-width: 0 0 1px 0;
+}
+.view-testimonials-grid-2 .views-field-body p {
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 0 0 10px;
+  position: relative;
+}
+.view-testimonials-grid-2 .views-field-body p:first-child:after {
+  position: absolute;
+  content: "“";
+  left: -5px;
+  top: -65px;
+  font-size: 100px;
+  font-style: normal;
+  line-height: 1;
+  color: #eceff3;
+  letter-spacing: -0.25em;
+}
+.view-testimonials-grid-2 .views-field-title {
+  font-size: 12px;
+}
+.headings-wide-spacing-enabled .view-testimonials-grid-2 .views-field-title {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.view-testimonials-grid-2 .views-field-field-mt-subtitle {
+  font-size: 13px;
+}
+
+/*Testimonials @colored regions*/
+.region--light-typography .view-testimonials-grid-2 .views-field-body {
+  border-color: rgba(255, 255, 255, 0.1);
+}

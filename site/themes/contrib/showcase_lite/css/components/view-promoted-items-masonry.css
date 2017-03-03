@@ -1,0 +1,12 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s promoted items masonry views.
+ */
+.view-promoted-items-masonry ul {
+  list-style: none;
+  margin-bottom: 0;
+}
+.view-promoted-items-masonry .views-row {
+  margin-top: 30px;
+  max-width: 100%;
+}

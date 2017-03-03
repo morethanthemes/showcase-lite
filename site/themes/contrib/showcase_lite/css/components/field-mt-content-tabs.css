@@ -1,0 +1,35 @@
+/**
+ * @file
+ * Visual styles for mt-tab field in Showcase+.
+ */
+.field--name-field-mt-content-tabs {
+  margin: 40px 0 30px;
+}
+.field--name-field-mt-content-tabs .nav-tabs {
+  border-bottom: 1px solid #e5e5e5;
+}
+.field--name-field-mt-content-tabs .nav-tabs > li > a {
+  font-size: 14px;
+  margin: 0;
+  padding: 10px 0;
+  text-transform: uppercase;
+  background-color: transparent;
+  margin-right: 30px;
+  border-width: 0 0 1px 0;
+  border-color: transparent;
+}
+.field--name-field-mt-content-tabs .nav-tabs > li > a:hover {
+  background-color: transparent;
+}
+.field--name-field-mt-content-tabs .nav-tabs > li > a:focus,
+.field--name-field-mt-content-tabs .nav-tabs > li.active > a,
+.field--name-field-mt-content-tabs .nav-tabs > li.active > a:focus,
+.field--name-field-mt-content-tabs .nav-tabs > li.active > a:hover {
+  background-color: transparent;
+  border-width: 0 0 1px 0;
+}
+.field--name-field-mt-content-tabs .nav-tabs ~ .tab-content {
+  padding: 30px 0 10px;
+  border-width: 0;
+  background-color: transparent;
+}

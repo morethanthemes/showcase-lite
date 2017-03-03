@@ -1,0 +1,66 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s fa icons list.
+ */
+.list--fa-star,
+.list--fa-caret-right,
+.list--fa-plus,
+.list--fa-square,
+.list--fa-check,
+.list--fa-check-circle,
+.list--fa-custom {
+  margin-bottom: 15px;
+  padding-left: 0;
+  list-style: none;
+}
+.list--fa-star li,
+.list--fa-plus li,
+.list--fa-square li,
+.list--fa-caret-right li,
+.list--fa-check li,
+.list--fa-check-circle li {
+  padding: 0 0 5px 20px;
+  position: relative;
+}
+.list--fa-star li:before,
+.list--fa-caret-right li:before,
+.list--fa-plus li:before,
+.list--fa-square li:before,
+.list--fa-check li:before,
+.list--fa-check-circle li:before {
+  content: "";
+  font-family: "FontAwesome";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  font-size: 10px;
+}
+.list--fa-star li:before {
+  content: "\f005";
+}
+.list--fa-caret-right li:before {
+  content: "\f0da";
+  font-size: 12px;
+}
+.list--fa-plus li:before {
+  content: "\f067";
+}
+.list--fa-square li:before {
+  content: "\f0c8";
+  font-size: 5px;
+  top: 10px;
+}
+.list--fa-check li:before {
+  content: "\f00c";
+}
+.list--fa-check-circle li:before {
+  content: "\f058";
+}
+.list--fa-custom li {
+  padding: 0 0 5px 0;
+}
+.list--fa-custom li i {
+  margin-right: 5px;
+  width: 15px;
+  font-size: 10px;
+}

@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Theme override for a breadcrumb trail.
+ *
+ * Available variables:
+ * - breadcrumb: Breadcrumb trail items.
+ */
+#}
+{{ attach_library('showcase_lite/breadcrumb') }}
+{% if breadcrumb %}
+  <nav class="breadcrumb" role="navigation" aria-labelledby="system-breadcrumb">
+    <h2 id="system-breadcrumb" class="visually-hidden">{{ 'Breadcrumb'|t }}</h2>
+    <ol class="breadcrumb__items">
+    {% for key, item in breadcrumb %}
+      <li class="breadcrumb__item">
+        <span class="breadcrumb__item-separator fa {{ mt_setting.breadcrumb_separator }}"></span>
+        {% if item.url %}
+          <a href="{{ item.url }}">
+            <span>{{ item.text }}</span>
+          </a>
+        {% else %}
+          <span>{{ item.text }}</span>
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ol>
+  </nav>
+{% endif %}

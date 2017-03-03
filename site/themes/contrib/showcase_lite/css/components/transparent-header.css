@@ -1,0 +1,45 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s transparent header.
+ */
+/*Layout*/
+.js-transparent-header .region--dark-background .header-top__container {
+  border-color: rgba(255,255,255,0.1);
+}
+@media (min-width: 768px) {
+  .js-transparent-header {
+    position: absolute;
+    width: 100%;
+    z-index: 22;
+  }
+}
+
+/*Site Branding*/
+.js-transparent-header .region--light-typography .site-name a {
+  color: #ffffff;
+}
+
+/*Menus*/
+@media (min-width: 768px) {
+  .js-transparent-header .region--light-typography ul.menu li a {
+    color: #ffffff;
+  }
+  .js-transparent-header .region--light-typography ul.menu ul li a {
+    color: #232323;
+  }
+}
+
+/*Navigation Search*/
+@media (min-width: 768px) {
+  .js-transparent-header .region--light-typography .block-search .form-actions:after {
+    color: #ffffff;
+  }
+}
+
+/*Drupal Resets*/
+.js-transparent-header + .banner .block:first-child .contextual {
+  top: 120px;
+}
+.js-transparent-header + .banner .block:first-child .view .contextual {
+  top: 150px !important;
+}

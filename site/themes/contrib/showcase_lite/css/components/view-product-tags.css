@@ -1,0 +1,45 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s product tags views block.
+ */
+.view-product-tags {
+  padding: 0;
+  margin: 0 -15px;
+  list-style: none;
+}
+.view-product-tags .view-header,
+.view-product-tags .view-content {
+  display: inline-block;
+  padding: 0 15px;
+}
+.view-product-tags .views-row {
+  display: inline-block;
+  margin: 0 5px 5px 0;
+}
+.view-product-tags .views-field-name a {
+  text-decoration: none;
+  color: #ffffff;
+  padding: 10px 25px;
+  border-radius: 50px;
+}
+.view-product-tags .views-field-name a:hover {
+  color: #ffffff;
+}
+.region--colored-background .view-product-tags .views-field-name a,
+.region--dark-background .view-product-tags .views-field-name a,
+.region--black-background .view-product-tags .views-field-name a {
+  background-color: transparent;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ffffff;
+}
+.region--colored-background .view-product-tags .views-field-name a:hover {
+  background-color: #ffffff;
+}
+.region--dark-background .view-product-tags .views-field-name a:hover {
+  background-color: #ffffff;
+}
+.region--black-background .view-product-tags .views-field-name a:hover {
+  background-color: #ffffff;
+  color: #232323;
+}

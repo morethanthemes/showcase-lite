@@ -1,0 +1,21 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s isotope filters.
+ */
+.isotope-container {
+  display: none;
+}
+.filters {
+  display: none;
+}
+.isotope-container ul {
+  padding: 0;
+}
+.isotope-item {
+  list-style: none;
+}
+@media (max-width:767px) {
+  .isotope-item {
+    max-width: 100%;
+  }
+}

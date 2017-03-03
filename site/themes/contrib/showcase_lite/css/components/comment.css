@@ -1,0 +1,125 @@
+/**
+ * @file
+ * Visual styles for comment in Showcase+.
+ */
+
+/*Comment*/
+.comment {
+  margin: 0 0 30px 0;
+  position: relative;
+}
+.comment header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 70px;
+  height: 70px;
+}
+.comment .field--name-user-picture a {
+  display: block;
+}
+.comment header + .comment__content-container {
+  padding-left: 100px;
+}
+.comment__content {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #f4f4f4;
+  padding-bottom: 10px;
+}
+.comment h3.title {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.comment__meta {
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.comment__meta .username {
+  text-transform: capitalize;
+  font-size: 15px;
+  padding-right: 10px;
+}
+.node .comment ul.links.inline {
+  margin-right: -5px;
+  margin-left: -5px;
+  display: inline-block;
+  padding: 0;
+}
+.node .comment ul.links li {
+  font-size: 12px;
+}
+.node .comment ul.links li a {
+  background: transparent;
+  font-size: 12px;
+  padding: 0 5px;
+  margin: 0;
+  font-weight: 500;
+  display: inline;
+  min-width: 0;
+  text-align: left;
+  border: none;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: none;
+}
+.user-logged-in .node .comment ul.links li a {
+  padding: 0 10px;
+}
+.node .comment ul.links li a:hover {
+  background: transparent;
+}
+.node .comment ul.links li a:before {
+  position: relative;
+  font-family: "FontAwesome";
+  padding: 0 5px 0 0;
+}
+.node .comment ul.links li.comment-delete a:before {
+  content: "\f1f8";
+  top: -1px;
+}
+.node .comment ul.links li.comment-edit a:before {
+  content: "\f040";
+}
+.node .comment ul.links li.comment-reply a:before {
+  content: "\f122";
+}
+.new-indicator {
+  position: absolute;
+  top: -25px;
+}
+.indented {
+  margin-left: 105px;
+}
+@media (min-width: 768px) {
+  .comment__links {
+    text-align: right;
+    display: inline-block;
+    float: right;
+  }
+}
+@media (max-width:767px) {
+  .indented {
+    margin-left: 65px;
+  }
+  .comment header {
+    position: static;
+    margin-bottom: 10px;
+  }
+  .comment header + .comment__content-container {
+    padding-left: 0;
+  }
+  .comment__links {
+    padding: 10px 0;
+  }
+  .comment__meta {
+    margin-bottom: 10px;
+  }
+}
+@media (max-width:480px) {
+  .indented {
+    margin-left: 30px;
+  }
+}

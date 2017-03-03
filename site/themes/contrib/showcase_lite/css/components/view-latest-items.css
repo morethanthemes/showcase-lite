@@ -1,0 +1,84 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s latest items views.
+ */
+.view-latest-items .views-row {
+  padding: 0 0 25px 0;
+  -webkit-transition: all linear 0.2s;
+  -moz-transition: all linear 0.2s;
+  -o-transition: all linear 0.2s;
+  -ms-transition: all linear 0.2s;
+  transition: all linear 0.2s;
+  clear: both;
+  text-align: left;
+}
+.view-latest-items .views-row:last-child {
+  padding-bottom: 0;
+}
+.view-latest-items .views-field-field-image {
+  width: 70px;
+  margin-right: 20px;
+  float: left;
+}
+.view-latest-items .views-field-field-image ~ .views-field-title,
+.view-latest-items .views-field-field-image ~ .views-field-field-mt-price,
+.view-latest-items .views-field-field-image ~ .views-field-created {
+  margin-left: 90px;
+}
+.view-latest-items .views-field-title a {
+  font-size: 12px;
+  display: block;
+}
+.headings-wide-spacing-enabled .view-latest-items .views-field-title a {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.view-latest-items .views-field-title a:hover {
+  text-decoration: none;
+}
+.view-latest-items .views-field-field-mt-price {
+  font-size: 15px;
+}
+.view-latest-items .views-field-created {
+  font-size: 13px;
+}
+.view-latest-items .comments-count {
+  margin-left: 10px;
+  padding-left: 10px;
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-left-color: #d7d7d7;
+}
+.region--light-typography .view-latest-items .comments-count {
+  border-left-color: #9c9c9c;
+}
+.view-latest-items > .more-link {
+  padding-top: 15px;
+  clear: both;
+}
+@media (min-width:992px) {
+  .layout-two-sidebars .sidebar .view-latest-items .views-field-field-image {
+    display: none;
+  }
+  .layout-two-sidebars .sidebar .view-latest-items .views-field-field-image ~ .views-field-title,
+  .layout-two-sidebars .sidebar .view-latest-items .views-field-field-image ~ .views-field-field-mt-price,
+  .layout-two-sidebars .sidebar .view-latest-items .views-field-field-image ~ .views-field-created {
+    margin-left: 0;
+  }
+}
+@media (min-width:768px) and (max-width:991px) {
+  .view-latest-items .views-row {
+    clear: none;
+  }
+}
+@media (max-width:480px) {
+  .view-latest-items .col-xs-6.col-md-12 {
+    width: 100%;
+    float: none;
+  }
+}
+.view-latest-items .views-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

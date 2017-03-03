@@ -1,0 +1,107 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s contact info block.
+ */
+.contact-info .icon {
+  width: 70px;
+  height: 70px;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  margin: 9px auto 30px;
+  text-align: center;
+  display: block;
+  color: #ffffff;
+}
+.contact-info .icon i {
+  font-size: 24px;
+  width: 100%;
+  height: 100%;
+  line-height: 70px;
+}
+.contact-info ul,
+ul.contact-info {
+  list-style: none;
+  margin: 10px 0;
+  padding: 0;
+}
+.contact-info li {
+  padding: 0 0 10px 40px;
+  position: relative;
+  overflow-wrap: break-word;
+}
+.contact-info li > i {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  display: block;
+  font-size: 15px;
+  line-height: 1;
+  color: #2d2d2d;
+}
+.slideout__section .contact-info li {
+  padding: 0 0 25px 25px;
+  min-height: 0;
+  position: relative;
+}
+.slideout__section .contact-info li > i {
+  top: 5px;
+  font-size: 15px;
+  line-height: 1;
+  width: 20px;
+  height: auto;
+  text-align: left;
+  color: #707070;
+  background-color: transparent;
+}
+
+/*colored regions*/
+.region--light-typography .contact-info .icon {
+  background-color: #ffffff;
+  color: #2d2d2d;
+}
+.region--light-typography .contact-info li i {
+  color: #ffffff;
+}
+.region--light-typography .slideout__section .contact-info li i {
+  background-color: transparent;
+}
+.region--light-typography.region--dark-background .slideout__section .contact-info li i,
+.region--light-typography.region--black-background .slideout__section .contact-info li i,
+.region--light-typography.region--colored-background .slideout__section .contact-info li i {
+  color: #ffffff;
+}
+
+/*contact info items grid*/
+.block + .block .contact-info-items-grid {
+  border-top-style: solid;
+  border-width: 2px;
+  border-color: #f2f4f6;
+  margin-top: 45px;
+  padding-top: 50px;
+}
+.contact-info-items-grid .contact-info-item {
+  min-height: 160px;
+  padding-top: 30px;
+}
+.contact-info-items-grid .contact-info-item.contact-info-item--bordered {
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #f2f4f6;
+}
+.contact-info-items-grid .contact-info-item__icon {
+  font-size: 50px;
+  margin-bottom: 15px;
+  line-height: 1;
+}
+.contact-info-items-grid .contact-info-item__text {
+  font-size: 20px;
+  line-height: 1.2;
+}
+.region--dark-typography .contact-info-items-grid .contact-info-item__icon {
+  color: #e6e6e6;
+}
+.region--light-typography .contact-info-items-grid .contact-info-item.contact-info-item--bordered,
+.region--light-typography .block + .block .contact-info-items-grid {
+  border-color: rgba(255, 255, 255, 0.15);
+}

@@ -1,0 +1,17 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s article content type.
+ */
+.node--type-article .node__meta {
+  margin-bottom: 0;
+}
+.node--type-article .node__header {
+  margin-bottom: 1.5em;
+}
+.node--type-article .node__meta .inline-list {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.node--type-article .node__title {
+  margin-bottom: 20px;
+}

@@ -1,0 +1,40 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s slideout region.
+ */
+.slideout {
+  padding: 45px 30px;
+  display: none;
+}
+.slideout-toggle {
+  font-size: 19px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  padding: 15px;
+  line-height: 1;
+  color: #ffffff;
+  border-width: 0;
+  outline: none;
+  display: none;
+}
+.slideout-side-right .slideout-menu {
+  left: auto;
+}
+.slideout-side-right .slideout-toggle {
+  left: auto;
+  right: 0;
+}
+.slideout-toggle--fixed {
+  backface-visibility: hidden;
+  position: fixed;
+  z-index:2;
+  transition: transform 300ms ease;
+}
+.js-slideout-toggle--fixed-open {
+  transform: translate3d(300px, 0px, 0px);
+}
+.slideout-side-right .js-slideout-toggle--fixed-open {
+  transform: translate3d(-300px, 0px, 0px);
+}

@@ -1,0 +1,32 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s fancy block 2.
+ */
+.fancy-block-2-container {
+  position: relative;
+}
+.fancy-image-top-left {
+  top: 0;
+  left: 0;
+  padding-right: 35%;
+  padding-bottom: 25%;
+  margin-top: 10px;
+}
+.fancy-image-bottom-right {
+  bottom: 0;
+  right: 0;
+  padding-left: 35%;
+  padding-top: 30%;
+}
+.fancy-image--position-absolute {
+  position: absolute;
+  max-width: 65%;
+  padding: 0;
+}
+.fancy-image--box-shadow {
+  -webkit-box-shadow: 0 0 35px 10px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 35px 10px rgba(0, 0, 0, 0.1);
+  -ms-box-shadow: 0 0 35px 10px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: 0 0 35px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 35px 10px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,10 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s team members grid views.
+ */
+ .view-team-members-grid ul.icons-list {
+  margin: 10px -9px 0;
+}
+.view-team-members-grid .views-field-title h5 {
+  font-size: 18px;
+}

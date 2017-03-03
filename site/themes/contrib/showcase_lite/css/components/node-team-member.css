@@ -1,0 +1,14 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s team member content type.
+ */
+.photo-container {
+  position: relative;
+  margin: 0 0 20px 0;
+}
+.photo-container img {
+  border-radius: 100%;
+  border-width: 4px;
+  border-style: solid;
+  border-color: #ececec;
+}

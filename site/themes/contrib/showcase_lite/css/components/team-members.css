@@ -1,0 +1,38 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s team members.
+ */
+.team-member {
+  margin-bottom: 60px;
+  border-bottom: 2px solid #f2f4f6;
+}
+.team-member h3 {
+  margin-bottom: 5px;
+}
+.team-member .subtitle {
+  padding-bottom: 20px;
+}
+.email a,
+.email {
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: pre;
+  white-space: pre-wrap;
+}
+.email i,
+.phone i {
+  padding-right: 10px;
+}
+.team-member ul.icons-list {
+  margin: 20px 0;
+}
+.team-member ul.icons-list li {
+  margin: 5px;
+}
+.team-member ul.icons-list li a {
+  width: 45px;
+  height: 45px;
+}
+.team-member ul.icons-list li i {
+  line-height: 43px;
+}

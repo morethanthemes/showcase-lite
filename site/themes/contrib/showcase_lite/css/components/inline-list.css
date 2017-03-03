@@ -1,0 +1,29 @@
+/**
+ * @file
+ * Visual styles for inline list in Showcase+.
+ */
+.inline-list {
+  padding: 0;
+  margin: 10px -15px;
+  list-style: none;
+}
+.inline-list ul {
+  margin: 0 -15px;
+  padding: 0;
+}
+.inline-list ul.icons-list {
+  margin: 0 -10px;
+}
+.header-top-highlighted__section .inline-list {
+  margin: 8px -15px;
+}
+.header-top__section .inline-list {
+  margin: 0 -15px;
+}
+.inline-list__item {
+  display: inline-block;
+  padding: 0 15px;
+}
+.inline-list__icon {
+  padding-right: 5px;
+}

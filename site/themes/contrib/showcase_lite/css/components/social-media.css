@@ -1,0 +1,7 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s social media.
+ */
+.social-media img {
+  border-radius: 0;
+}

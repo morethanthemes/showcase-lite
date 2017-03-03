@@ -1,0 +1,49 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s sticky header.
+ */
+.onscroll.transparent-header-active .header-container.js-transparent-header .sticky-wrapper {
+  height: 0 !important;
+}
+.onscroll .header.js-fixed {
+  position: fixed;
+  z-index: 499;
+  top: 0;
+  width: 100%;
+  -webkit-box-shadow: 0 2px 14px rgba(100, 100, 100, 0.1), 0 2px 2px rgba(100, 100, 100, 0.1);
+  box-shadow: 0 2px 14px rgba(100, 100, 100, 0.1), 0 2px 2px rgba(100, 100, 100, 0.1);
+}
+.onscroll .header.js-fixed.region--white-background {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+.onscroll .header.js-fixed.region--black-background {
+  background-color: rgba(29, 29, 29, 0.95);
+}
+.onscroll .header.js-fixed.region--gray-background {
+  background-color: rgba(244, 244, 244, 0.95);
+}
+.fixed-header-enabled.onscroll .header__container,
+.fixed-header-enabled.onscroll .header-second,
+.fixed-header-enabled.onscroll .header-third,
+.fixed-header-enabled.onscroll .header-first,
+.fixed-header-enabled.onscroll .header-container ul.menu {
+  -webkit-transition: ease-in-out 0.2s;
+  -o-transition: ease-in-out 0.2s;
+  transition: ease-in-out 0.2s;
+}
+@media (max-width: 991px) {
+  .onscroll .header__container > .row > div {
+    display: none;
+  }
+  .onscroll .header__container > .row > div:last-of-type {
+    display: block;
+  }
+  .onscroll .header-container .content > ul.menu {
+    padding-top: 10px;
+  }
+}
+@media (max-width: 767px) {
+  .onscroll .header.js-fixed {
+    display: none;
+  }
+}

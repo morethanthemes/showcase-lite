@@ -1,0 +1,65 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s flexsliders.
+ */
+.flexslider {
+  border: none;
+  margin: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -o-box-shadow: none;
+  display: none;
+  background-color: transparent;
+}
+
+/*Slider direction Nav */
+.flexslider .flex-direction-nav a {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  width: 50px;
+  height: 100%;
+  top: 0;
+  margin: 0;
+  text-shadow: none;
+}
+.flexslider .flex-direction-nav a:before {
+  font-size: 60px;
+  width: 100%;
+  text-align: center;
+  font-family: 'FontAwesome';
+  display: inline-block;
+  content: '\f104';
+  color: #515151;
+  text-shadow: none;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -30px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.flexslider .flex-direction-nav a.flex-next:before {
+  content: '\f105';
+}
+.flexslider .flex-prev:hover:before,
+.flexslider .flex-next:hover:before {
+  text-decoration: none;
+}
+.flexslider .flex-prev,
+.flexslider:hover .flex-direction-nav .flex-prev {
+  left: 0;
+}
+.flexslider .flex-next,
+.flexslider:hover .flex-direction-nav .flex-next {
+  right: 0;
+  text-align: center;
+}

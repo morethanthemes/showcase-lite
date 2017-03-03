@@ -1,0 +1,173 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s tabs.
+ */
+.nav-tabs {
+  border-bottom: none;
+  margin-bottom: 1px;
+}
+.nav-tabs > li > a {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0 5px;
+  border: 1px solid #eaeaea;
+  border-bottom-color: transparent;
+  padding: 14px 25px 10px;
+  display: block;
+  text-decoration: none;
+  border-radius: 5px 5px 0 0;
+  background-color: #ffffff;
+  color: #2d2d2d;
+}
+.headings-wide-spacing-enabled .nav-tabs > li > a {
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.nav-tabs li a i {
+  padding-right: 10px;
+  font-size: 20px;
+}
+.nav-tabs > li > a:hover {
+  text-decoration: none;
+  color: #fff;
+}
+.nav-tabs > li > a:focus,
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover {
+  cursor: default;
+  color: #ffffff;
+}
+.nav-tabs ~ .tab-content {
+  padding: 25px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #eaeaea;
+  border-radius: 5px;
+}
+@media (max-width: 767px) {
+  .nav-tabs > li > a {
+    font-size: 12px;
+    padding: 12px 15px 6px;
+    margin: 0 2px;
+  }
+  .nav-tabs ~ .tab-content {
+    padding: 15px;
+  }
+}
+@media (min-width: 992px) {
+  .col-md-3 .nav-tabs > li > a {
+    font-size: 13px;
+    padding: 14px 10px 8px;
+  }
+  .col-md-3 .nav-tabs ~ .tab-content {
+    padding: 20px 10px;
+  }
+}
+@media (min-width: 1200px) {
+  .col-md-3 .nav-tabs > li > a {
+    padding: 14px 15px 8px;
+  }
+  .col-md-3 .nav-tabs ~ .tab-content {
+    padding: 20px;
+  }
+}
+
+/*primary tabs*/
+ul.tabs.primary {
+  margin-bottom: 20px;
+}
+
+/*Vertical Tabs*/
+.nav-tabs.nav-tabs--vertical {
+  display: table-cell;
+  min-width: 20%;
+  border-right-color: transparent;
+}
+.nav-tabs.nav-tabs--vertical + .tab-content {
+  display: table-cell;
+  max-width: 80%;
+}
+.nav-tabs.nav-tabs--vertical > li {
+  float: none;
+}
+.nav-tabs.nav-tabs--vertical > li > a {
+  min-width: 70px;
+  margin: 10px 0px;
+  text-align: center;
+}
+.nav-tabs.nav-tabs--vertical > li > a {
+  border-right-color: transparent;
+  border-bottom-color: #eaeaea;
+  border-radius: 5px 0 0 5px;
+}
+
+/*Tabs @colored-regions*/
+.region--dark-background .nav-tabs ~ .tab-content,
+.region--black-background .nav-tabs ~ .tab-content {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+.region--colored-background .nav-tabs ~ .tab-content {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/*Fancy Tabs*/
+.nav-tab__title {
+  font-size: 40px;
+  text-transform: none;
+  font-weight: 300;
+}
+.headings-wide-spacing-enabled .nav-tab__title {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.nav-tab__subtitle {
+  display: block;
+  font-size: 16px;
+  text-transform: none;
+}
+.nav-tabs.nav-tabs--fancy > li > a {
+  padding: 35px 25px 40px;
+  background-color: transparent;
+  border-color: transparent;
+  border-width: 2px;
+  border-radius: 0;
+  margin: 0;
+  color: #2d2d2d;
+}
+.nav-tabs.nav-tabs--fancy > .active > a,
+.nav-tabs.nav-tabs--fancy > .active > a:focus,
+.nav-tabs.nav-tabs--fancy > .active > a:hover,
+.nav-tabs.nav-tabs--fancy > li > a:focus,
+.nav-tabs.nav-tabs--fancy > li > a:hover {
+  border-width: 2px;
+  background-color: transparent;
+}
+.nav-tabs.nav-tabs--fancy > li > a:hover {
+  background-color: transparent;
+  border-color: transparent;
+}
+.nav-tabs.nav-tabs--fancy + .tab-content {
+  padding: 0;
+  border-width: 0px;
+  border-style: none;
+  border-radius: 0px;
+  background-color: transparent;
+}
+
+/*Fancy Tabs @colored-regions*/
+.region--light-typography .nav-tabs.nav-tabs--fancy > li > a {
+  color: #ffffff;
+}
+.region--light-typography .nav-tabs.nav-tabs--fancy > .active > a,
+.region--light-typography .nav-tabs.nav-tabs--fancy > .active > a:focus,
+.region--light-typography .nav-tabs.nav-tabs--fancy > .active > a:hover,
+.region--light-typography .nav-tabs.nav-tabs--fancy > li > a:focus,
+.region--light-typography .nav-tabs.nav-tabs--fancy > li > a:hover {
+  border-color: #ffffff;
+  color: #ffffff;
+  background-color: transparent;
+}
+.region--light-typography.region--colored-background .nav-tab__subtitle {
+  color: #ffffff;
+}

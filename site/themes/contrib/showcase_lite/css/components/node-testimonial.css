@@ -1,0 +1,50 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s testimonial content type.
+ */
+.node--type-mt-testimonial .field--name-field-mt-testimonial-image {
+  margin: 0 0 20px;
+}
+.node--type-mt-testimonial .field--name-field-mt-testimonial-image img {
+  border-radius: 100%;
+}
+.node--type-mt-testimonial .field--name-field-mt-subtitle {
+  padding-bottom: 5px;
+}
+.node--type-mt-testimonial .field--name-body {
+  padding: 55px 50px 40px;
+  background-color: #f4f4f4;
+  margin-bottom: 40px;
+  border-radius: 3px;
+  position: relative;
+  color: #2d2d2d;
+}
+.node--type-mt-testimonial .field--name-body:after {
+  position: absolute;
+  content: "";
+  bottom: -25px;
+  left: 30px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 25px 45px 0 4px;
+  border-color: #f4f4f4 transparent transparent transparent;
+}
+.node--type-mt-testimonial .field--name-body p {
+  font-style: italic;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 0 0 10px;
+  position: relative;
+  z-index: 1;
+}
+.node--type-mt-testimonial .field--name-body p:first-child:after {
+  position: absolute;
+  content: "“";
+  left: -40px;
+  top: -45px;
+  font-size: 130px;
+  line-height: 1;
+  letter-spacing: -0.25em;
+  z-index: -1;
+}

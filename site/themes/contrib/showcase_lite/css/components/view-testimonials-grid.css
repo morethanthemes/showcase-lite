@@ -1,0 +1,69 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s testimonials grid views.
+ */
+.view-testimonials-grid .views-row {
+  margin: 0 0 35px 0;
+}
+.view-testimonials-grid .views-field-body {
+  padding: 55px 50px 40px;
+  background-color: #f4f4f4;
+  margin-bottom: 40px;
+  border-radius: 3px;
+  position: relative;
+  color: #2d2d2d;
+  min-height: 300px;
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .view-testimonials-grid .views-field-body {
+    min-height: 360px;
+  }
+}
+.view-testimonials-grid .views-field-body:after {
+  position: absolute;
+  content: "";
+  bottom: -25px;
+  left: 30px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 25px 45px 0 4px;
+  border-color: #f4f4f4 transparent transparent transparent;
+}
+.view-testimonials-grid .views-field-body p {
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 0 0 10px;
+  position: relative;
+  z-index: 1;
+}
+.view-testimonials-grid .views-field-body p:first-child:before {
+  position: absolute;
+  content: "“";
+  left: -40px;
+  top: -45px;
+  font-size: 130px;
+  line-height: 1;
+  color: #eceff3;
+  letter-spacing: -0.25em;
+  z-index: -1;
+}
+.view-testimonials-grid .views-field-title {
+  font-size: 12px;
+}
+.headings-wide-spacing-enabled .view-testimonials-grid .views-field-title {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.view-testimonials-grid .views-field-field-mt-subtitle {
+  font-size: 13px;
+}
+
+/*Testimonials @colored regions*/
+.region--gray-background .view-testimonials-grid .views-field-body {
+  background-color: #ffffff;
+}
+.region--gray-background .view-testimonials-grid .views-field-body:after {
+  border-color: #ffffff transparent transparent transparent;
+}

@@ -1,0 +1,39 @@
+/**
+ * @file
+ * Font Families.
+ */
+
+/*body*/
+body.pff-06 {
+  font-family: 'Open Sans', Helvetica Neue, Arial, Sans-serif;
+}
+
+/*headings*/
+.hff-08 h1,
+.hff-08 h2,
+.hff-08 h3,
+.hff-08 h4,
+.hff-08 h5,
+.hff-08 h6,
+.hff-08 .tp-caption__title,
+.hff-08 .tp-caption__subtitle,
+.sff-08 .site-name,
+.slff-08 .site-slogan,
+.hff-08 .nav-tab__title {
+  font-family: 'Roboto Condensed', Arial Narrow, Arial, Sans-serif;
+}
+
+/*maintenance page*/
+body.maintenance-page {
+  font-family: 'Open Sans', Helvetica Neue, Arial, Sans-serif;
+}
+.maintenance-page h1,
+.maintenance-page h2,
+.maintenance-page h3,
+.maintenance-page h4,
+.maintenance-page h5,
+.maintenance-page h6,
+.maintenance-page .site-name,
+.maintenance-page .site-slogan {
+  font-family: 'Roboto Condensed', Arial Narrow, Arial, Sans-serif;
+}

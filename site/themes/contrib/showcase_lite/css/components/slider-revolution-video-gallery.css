@@ -1,0 +1,32 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s slider revolution video gallery.
+ */
+/* Video player reset border */
+.slider-revolution embed,
+.slider-revolution iframe,
+.slider-revolution video {
+  border: 0;
+}
+
+/* Video thumbs z-index fix */
+.field--name-field-mt-video-gallery-slides .tp-thumbs {
+  z-index: 480;
+}
+.field--name-field-mt-video-gallery-slides {
+  background-color: #232323;
+}
+
+/* Thumbnails styling */
+.field--name-field-mt-video-gallery-slides .erinyen .tp-thumb-title {
+  font-family: inherit;
+}
+.field--name-field-mt-video-gallery-slides .erinyen .tp-thumb.selected .tp-thumb-over,
+.field--name-field-mt-video-gallery-slides .erinyen .tp-thumb:hover .tp-thumb-over {
+  background: rgba(0,0,0,0.65);
+}
+.field--name-field-mt-video-gallery-slides .erinyen .tp-thumb.selected .tp-thumb-more,
+.field--name-field-mt-video-gallery-slides .erinyen .tp-thumb.selected .tp-thumb-title,
+.field--name-field-mt-video-gallery-slides .erinyen .tp-thumb:hover .tp-thumb-title {
+  color: #fff;
+}

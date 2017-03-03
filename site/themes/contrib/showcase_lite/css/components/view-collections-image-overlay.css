@@ -1,0 +1,56 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s collections views image overlays.
+ */
+.view-collections-grid .overlay-target-link a,
+.view-collections-carousel .overlay-target-link a,
+.view-collection-masonry .overlay-target-link a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: block;
+  font-size: 0;
+}
+.view-collections-grid .overlay-inner .overlay-animated,
+.view-collections-carousel .overlay-inner .overlay-animated,
+.view-collection-masonry .overlay-inner .overlay-animated {
+  display: inline-block;
+  line-height: 1;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  text-align: center;
+}
+.view-collections-grid .overlay-inner a,
+.view-collections-carousel .overlay-inner a,
+.view-collection-masonry .overlay-inner a {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 15px 30px;
+  font-size: 14px;
+  font-weight: 400;
+  display: block;
+  border-radius: 5px;
+
+}
+.headings-wide-spacing-enabled .view-collections-grid .overlay-inner a,
+.headings-wide-spacing-enabled .view-collections-carousel .overlay-inner a,
+.headings-wide-spacing-enabled .view-collection-masonry .overlay-inner a {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.view-collections-grid .overlay-inner a:hover,
+.view-collections-carousel .overlay-inner a:hover,
+.view-collection-masonry .overlay-inner a:hover {
+  color: #ffffff;
+  -webkit-box-shadow: rgba(28, 56, 72, 0.1) 0px 2px 2px, rgba(28, 56, 72, 0.1) 0px 4px 4px, rgba(28, 56, 72, 0.1) 0px 8px 8px, rgba(28, 56, 72, 0.1) 0px 16px 16px, rgba(28, 56, 72, 0.1) 0px 32px 32px, rgba(28, 56, 72, 0.1) 0px 64px 64px;
+  -moz-box-shadow: rgba(28, 56, 72, 0.1) 0px 2px 2px, rgba(28, 56, 72, 0.1) 0px 4px 4px, rgba(28, 56, 72, 0.1) 0px 8px 8px, rgba(28, 56, 72, 0.1) 0px 16px 16px, rgba(28, 56, 72, 0.1) 0px 32px 32px, rgba(28, 56, 72, 0.1) 0px 64px 64px;
+  -ms-box-shadow:rgba(28, 56, 72, 0.1) 0px 2px 2px, rgba(28, 56, 72, 0.1) 0px 4px 4px, rgba(28, 56, 72, 0.1) 0px 8px 8px, rgba(28, 56, 72, 0.1) 0px 16px 16px, rgba(28, 56, 72, 0.1) 0px 32px 32px, rgba(28, 56, 72, 0.1) 0px 64px 64px;
+  box-shadow: rgba(28, 56, 72, 0.1) 0px 2px 2px, rgba(28, 56, 72, 0.1) 0px 4px 4px, rgba(28, 56, 72, 0.1) 0px 8px 8px, rgba(28, 56, 72, 0.1) 0px 16px 16px, rgba(28, 56, 72, 0.1) 0px 32px 32px, rgba(28, 56, 72, 0.1) 0px 64px 64px;
+}

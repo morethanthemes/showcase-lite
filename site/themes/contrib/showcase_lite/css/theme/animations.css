@@ -1,0 +1,6 @@
+/*Animations*/
+/*fix for admin pages*/
+.path-admin .fade {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}

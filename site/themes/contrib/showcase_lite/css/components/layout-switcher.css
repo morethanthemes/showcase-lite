@@ -1,0 +1,19 @@
+/**
+ * @file
+ * Styles for Showcase+'s layout switcher.
+ */
+.layout-switcher ul.inline-list {
+  margin: 0 -7px;
+}
+.layout-switcher ul li.inline-list__item {
+  padding: 0 7px;
+}
+.region--dark-typography.region--gray-background .layout-switcher li a {
+  color: #c5c5c5;
+}
+.region--light-typography.region--colored-background .layout-switcher li.active a {
+  color: #ffffff;
+}
+.layout-switcher li a {
+  color: #bbbbbb;
+}

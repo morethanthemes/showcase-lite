@@ -1,0 +1,10 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s video background.
+ */
+.video-bg-active .media-background {
+  overflow: hidden;
+}
+.video-container {
+  z-index: 1!important;
+}

@@ -1,0 +1,37 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s popular tags views.
+ */
+.view-mt-popular-tags .views-row {
+  display: inline-block;
+  margin: 0 7px 10px 0;
+}
+.view-mt-popular-tags .views-row a {
+  display: block;
+  text-decoration: none;
+  padding: 7px 20px;
+  border-radius: 5px;
+  font-size: 13px;
+  background-color: #f4f4f4;
+  color: #2d2d2d;
+}
+.view-mt-popular-tags .views-row a:hover {
+  color: #ffffff;
+}
+.region--gray-background .view-mt-popular-tags .views-row a {
+  background-color: #ffffff;
+}
+.region--colored-background .view-mt-popular-tags .views-row a,
+.region--dark-background .view-mt-popular-tags .views-row a,
+.region--black-background .view-mt-popular-tags .views-row a {
+  background-color: transparent;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ffffff;
+  color: #ffffff;
+}
+.region--colored-background .view-mt-popular-tags .views-row a:hover,
+.region--dark-background .view-mt-popular-tags .views-row a:hover,
+.region--black-background .view-mt-popular-tags .views-row a:hover {
+  background-color: #ffffff;
+}

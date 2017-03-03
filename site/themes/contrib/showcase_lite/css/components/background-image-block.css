@@ -1,0 +1,61 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s background image block.
+ */
+.container-fluid .field--mt-background-image-block {
+  margin: 0 -15px;
+}
+.field--mt-background-image-block .block {
+  padding-bottom: 25px;
+  position: relative;
+}
+.region--no-paddings .field--mt-background-image-block .block {
+  padding-bottom: 0;
+}
+.container .container {
+  padding-left: 0;
+  padding-right: 0;
+  width: auto;
+}
+.container .container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+}
+.background-image-block__section {
+  position: relative;
+  padding: 90px 0;
+  overflow: hidden;
+}
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+.background-image.background-image--attachment-fixed {
+  background-attachment: fixed;
+}
+.background-image.background-image--attachment-scroll {
+  background-attachment: scroll;
+}
+@media (min-height: 1080px) , (min-width: 1920px) {
+  .background-image {
+    background-size: cover;
+  }
+}
+.background-image-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.background-image-block__section .background-image-overlay + .container,
+.background-image-block__section .background-image-overlay + .container-fluid {
+  background-color: transparent;
+}

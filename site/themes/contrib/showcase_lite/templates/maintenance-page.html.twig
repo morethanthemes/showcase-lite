@@ -1,0 +1,138 @@
+{#
+/**
+ * @file
+ * Showcase+'s theme implementation to display a single Drupal page while offline.
+ *
+ * All available variables are mirrored in page.html.twig.
+ *
+ * @see template_preprocess_maintenance_page()
+ */
+ #}
+
+{{ attach_library('showcase_lite/maintenance-page') }}
+
+{# page-container #}
+<div class="page-container">
+
+  {# header-container #}
+  <div class="header-container">
+
+    {# header #}
+    <header role="banner" class="clearfix header region--dark-typography region--gray-background full-width two-columns">
+      <div class="container-fluid">
+        {# header__container #}
+        <div class="clearfix header__container">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="clearfix header__section header-first">
+                <div class="logo-and-site-name-wrapper clearfix">
+                  {% if logo %}
+                    <div class="logo">
+                      <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="site-branding__logo">
+                        <img src="{{ logo }}" alt="{{ 'Home'|t }}" />
+                      </a>
+                    </div>
+                  {% endif %}
+                  {% if site_name %}
+                    <div class="site-name site-branding__name">
+                      <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">{{ site_name }}</a>
+                    </div>
+                  {% endif %}
+                  {% if site_slogan %}
+                    <div class="site-slogan site-branding__slogan">{{ site_slogan }}</div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {# EOF: header-inside #}
+      </div>
+    </header>
+    {# EOF: header #}
+
+  </div>
+  {# EOF: header-container #}
+
+  <div class="system-messages">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          {{ page.system_messages }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# main-content #}
+  <div class="clearfix main-content region--dark-typography region--white-background">
+    <div class="container">
+      <div class="clearfix main-content__container">
+        <div class="row">
+          <section class="col-md-8">
+            {# main #}
+            <div class="clearfix main-content__section">
+              {% if title %}
+                <h1 class="title page-title">{{ title }}</h1>
+              {% endif %}
+              {{ page.content }}
+            </div>
+            {# EOF:main #}
+          </section>
+          <aside class="col-md-4">
+            {# sidebar #}
+            <section class="sidebar__section sidebar-second clearfix">
+            </section>
+            {# EOF:sidebar #}
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+  {# EOF:main-content #}
+
+  {# footer #}
+  <footer class="clearfix footer region--light-typography region--dark-background">
+    <div class="container">
+      <div class="clearfix footer__container">
+        <div class="row">
+          <div class="col-sm-4 col-lg-2">
+            {# footer-first #}
+            <div class="clearfix footer__section footer-first">
+            </div>
+            {# EOF:footer-first #}
+          </div>
+          <div class="col-sm-4 col-lg-2">
+            {# footer-second #}
+            <div class="clearfix footer__section footer-second">
+            </div>
+            {# EOF:footer-second #}
+          </div>
+          <div class="clearfix visible-xs-block"></div>
+          <div class="col-sm-4 col-lg-2">
+            {# footer-third #}
+            <div class="clearfix footer__section footer-third">
+            </div>
+            {# EOF:footer-third #}
+          </div>
+          <div class="clearfix visible-xs-block visible-sm-block visible-md-block"></div>
+          <div class="col-sm-6 col-lg-3">
+            {# footer-fourth #}
+            <div class="clearfix footer__section footer-fourth">
+            </div>
+            {# EOF:footer-fourth #}
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            {# footer-fifth #}
+            <div class="clearfix footer__section footer-fifth">
+            </div>
+            {# EOF:footer-fifth #}
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  {# EOF footer #}
+
+</div>
+{# EOF: page-container #}

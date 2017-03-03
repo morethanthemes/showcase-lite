@@ -1,0 +1,8 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s collections grid views.
+ */
+.view-collections-grid .views-row {
+  margin-top: 30px;
+  text-align: center;
+}

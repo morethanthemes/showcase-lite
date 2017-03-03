@@ -1,0 +1,16 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s media tabs.
+ */
+.field--mt-media-tabs-block .nav-pills {
+  margin-bottom: 45px;
+}
+.mt-media-title {
+  margin-bottom: 25px;
+}
+.mt-media-title h3 {
+  font-size: 50px;
+}
+.mt-media-body {
+  margin-bottom: 15px;
+}

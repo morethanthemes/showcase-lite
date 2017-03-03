@@ -1,0 +1,15 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s testimonials masonry views.
+ */
+.view-testimonials-masonry ul {
+  list-style: none;
+  margin-bottom: 0;
+}
+.view-testimonials-masonry .views-row {
+  margin-top: 30px;
+  max-width: 100%;
+}
+.view-testimonials-masonry .views-row .views-field-body {
+  min-height: 0;
+}

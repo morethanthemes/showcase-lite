@@ -1,0 +1,38 @@
+/**
+ * @file
+ * Visual styles for taxonomy terms in Showcase+.
+ */
+.field--entity-reference-target-type-taxonomy-term,
+.field--entity-reference-target-type-taxonomy-term.field__item {
+  margin: 40px 0;
+}
+.field--entity-reference-target-type-taxonomy-term + .field--entity-reference-target-type-taxonomy-term {
+  margin-top: 0;
+}
+.field--entity-reference-target-type-taxonomy-term.field__item {
+  display: inline-block;
+}
+.field--entity-reference-target-type-taxonomy-term .field__item {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 7px 10px 0;
+}
+.field--entity-reference-target-type-taxonomy-term .field__item a,
+.field--entity-reference-target-type-taxonomy-term.field__item a {
+  display: block;
+  text-decoration: none;
+  padding: 7px 20px;
+  border-radius: 5px;
+  font-size: 13px;
+  background-color: #f4f4f4;
+}
+.field--entity-reference-target-type-taxonomy-term .field__item a:hover,
+.field--entity-reference-target-type-taxonomy-term.field__item a:hover {
+  color: #ffffff;
+}
+.field--name-field-mt-brand-image {
+  margin-bottom: 30px;
+}
+.field--name-field-mt-collection-image {
+  margin-bottom: 30px;
+}

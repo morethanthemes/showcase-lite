@@ -1,0 +1,35 @@
+/**
+ * @file
+ * Styles for Showcase+'s detailed pager.
+ */
+
+/* Using .pager selector on the first one to override .region-content ul. */
+.detailed-pager--top {
+  border-bottom: 1px solid #e9e9e9;
+  margin-bottom: 40px;
+}
+.detailed-pager--bottom {
+  border-top: 1px solid #e9e9e9;
+  margin-top: 60px;
+}
+.detailed-pager .total-items {
+  font-size: 14px;
+  font-weight: 700;
+  padding: 1em 0;
+}
+.detailed-pager .pager__items {
+  margin: 0;
+  padding: 0;
+  border: none;
+  text-align: right;
+}
+li.pager__item > a {
+  margin: 0 0.4em;
+}
+
+/*detailed pager @colored regions*/
+.region--colored-background .detailed-pager,
+.region--dark-background .detailed-pager,
+.region--black-background .detailed-pager {
+  border-color: rgba(255, 255, 255, 0.4);
+}

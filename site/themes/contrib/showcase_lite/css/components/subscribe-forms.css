@@ -1,0 +1,23 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s subscribe forms.
+ */
+/*subscribe full width*/
+.subscribe-full-width h4 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.subscribe-full-width h4 i {
+  padding-right: 10px;
+}
+@media (min-width: 768px) {
+  .subscribe-full-width input[type="submit"] {
+    margin: 0;
+  }
+}
+@media (min-width: 992px) {
+  .subscribe-full-width h4 {
+    text-align: left;
+    margin: 7px;
+  }
+}

@@ -1,0 +1,85 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s social links.
+ */
+.social-links {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: block;
+  font-size: 0;
+}
+.social-links.social-links--inline li {
+  display: inline-block;
+}
+.social-links li a {
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 10px 20px;
+  line-height: 1;
+  display: inline-block;
+  border-radius: 4px;
+}
+.social-links li a:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.headings-wide-spacing-enabled .social-links li a {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.text-color-facebook,
+.region--light-typography .text-color-facebook,
+a.hover-color-facebook:hover,
+.region--light-typography a.hover-color-facebook:hover {
+  color: #3b5998;
+}
+.text-color-twitter,
+.region--light-typography .text-color-twitter,
+a.hover-color-twitter:hover,
+.region--light-typography a.hover-color-twitter:hover {
+  color: #1da1f3
+}
+.text-color-behance,
+.region--light-typography .text-color-behance,
+a.hover-color-behance:hover,
+.region--light-typography a.hover-color-behance:hover {
+  color: #1769ff;
+}
+.text-color-dribbble,
+.region--light-typography .text-color-dribbble,
+a.hover-color-dribbble:hover,
+.region--light-typography a.hover-color-dribbble:hover {
+  color: #ea4c89;
+}
+.text-color-instagram,
+.region--light-typography .text-color-instagram,
+a.hover-color-instagram:hover,
+.region--light-typography a.hover-color-instagram:hover {
+  color: #f56040;
+}
+.text-color-vimeo,
+.region--light-typography .text-color-vimeo,
+a.hover-color-vimeo:hover,
+.region--light-typography a.hover-color-vimeo:hover {
+  color: #1ab7ea;
+}
+.text-color-youtube,
+.region--light-typography .text-color-youtube,
+a.hover-color-youtube:hover,
+.region--light-typography a.hover-color-youtube:hover {
+  color: #cd201f;
+}
+.text-color-googleplus,
+.region--light-typography .text-color-googleplus,
+a.hover-color-googleplus:hover,
+.region--light-typography a.hover-color-googleplus:hover {
+  color: #d34836;
+}
+@media (max-width:767px) {
+  .footer-bottom__section ul.social-links li,
+  .footer__section ul.social-links li,
+  .subfooter__section ul.social-links li {
+    display: block;
+  }
+}

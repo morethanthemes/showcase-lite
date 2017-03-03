@@ -1,0 +1,69 @@
+/**
+ * @file
+ * Visual styles for Showcase+'s node component.
+ */
+
+/*Node*/
+.node--view-mode-teaser {
+  padding: 0 0 30px 0;
+  margin-bottom: 40px;
+}
+.node__header {
+  padding: 0 0 5px;
+}
+.node__header .field--name-user-picture {
+  padding: 0 0 5px 0;
+  max-width: 55px;
+}
+.node__title {
+  font-size: 26px;
+  margin-top: 0px;
+}
+.node__header h2 {
+  margin: 0 0 5px;
+}
+.node__links {
+  margin-top: 35px;
+}
+.node__container {
+  position: relative;
+}
+.feed-icon {
+  display: block;
+  margin: 0px 0 60px;
+}
+.field--name-user-picture img {
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+}
+
+/*Post submitted info*/
+.node__header .profile {
+  display: inline-block;
+  margin-right: 40px;
+}
+.node__header .profile img {
+  max-width: 40px;
+}
+.node__meta {
+  font-size: 14px;
+  margin: 0 0 10px;
+  display: inline-block;
+}
+.node__submitted-info ~ .comments-count__counter:before {
+  content: "-";
+}
+
+/*Subheader*/
+.field--name-field-mt-subheader-body {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/*subtitle*/
+.field--name-field-mt-subtitle {
+  font-size: 12px;
+  text-transform: uppercase;
+  padding-bottom: 15px;
+}
