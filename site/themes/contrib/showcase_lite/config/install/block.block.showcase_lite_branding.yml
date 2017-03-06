@@ -10,7 +10,7 @@ _core:
   default_config_hash: NDwadleLD3YVSbDUaakxyYZyINYtkFtOVGShfq4kWy8
 id: showcase_lite_branding
 theme: showcase_lite
-region: header
+region: header_first
 weight: 0
 provider: null
 plugin: system_branding_block

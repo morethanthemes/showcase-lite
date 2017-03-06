@@ -12,7 +12,7 @@ _core:
   default_config_hash: rx9IrdDv7Ldc4kpalZAxdhIPZfYIeOMh1N-qKoQZwHo
 id: showcase_lite_main_menu
 theme: showcase_lite
-region: header_third
+region: header
 weight: -6
 provider: null
 plugin: 'system_menu_block:main'
