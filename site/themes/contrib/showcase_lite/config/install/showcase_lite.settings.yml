@@ -2,6 +2,7 @@ breadcrumb_separator: 'fa-angle-right'
 scroll_to_top_display: true
 scroll_to_top_icon: 'fa-angle-up'
 scroll_to_top_region: 'footer-to-top-enabled'
+bootstrap_remote_type: 'cdn'
 color_scheme: 'gray'
 page_container_border: true
 animations_state: false

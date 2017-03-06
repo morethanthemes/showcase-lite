@@ -18,6 +18,14 @@ use Drupal\Core\Url;
  * Adds body classes if certain regions have content.
  */
 function showcase_lite_preprocess_html(&$variables) {
+
+  $bootstrap_remote_type = theme_get_setting('bootstrap_remote_type');
+  if ($bootstrap_remote_type == 'local') {
+    $variables['#attached']['library'][] = 'showcase_lite/bootstrap';
+  } else {
+    $variables['#attached']['library'][] = 'showcase_lite/bootstrap-cdn';
+  }
+
   // Add information about the number of sidebars.
   if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
     $variables['attributes']['class'][] = 'layout-two-sidebars';

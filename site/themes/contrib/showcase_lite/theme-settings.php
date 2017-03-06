@@ -70,6 +70,25 @@ function showcase_lite_form_system_theme_settings_alter(&$form, &$form_state) {
     ),
   );
 
+  $form['mtt_settings']['bootstrap_tab']['bootstrap'] = array(
+    '#type' => 'details',
+    '#title' => t('Bootstrap'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#group' => 'tabs',
+  );
+
+  $form['mtt_settings']['bootstrap_tab']['bootstrap']['bootstrap_remote_type'] = array(
+    '#type' => 'select',
+    '#title' => t('Select the remote type'),
+    '#description'   => t('From the drop down select box, select how to load the Bootstrap library. If you select "Local" make sure that you download and place Bootstrap folder into the root theme folder (showcase_lite/bootstrap).'),
+    '#default_value' => theme_get_setting('bootstrap_remote_type', 'showcase_lite'),
+    '#options' => array(
+    'local' => t('Local / No remote'),
+    'cdn' => t('CDN'),
+    ),
+  );
+
   $form['mtt_settings']['looknfeel_tab']['looknfeel'] = array(
     '#type' => 'details',
     '#title' => t('Look\'n\'Feel'),
