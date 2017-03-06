@@ -33,6 +33,22 @@ function showcase_lite_form_system_theme_settings_alter(&$form, &$form_state) {
     '#maxlength'     => 100,
   );
 
+  $form['mtt_settings']['basic_tab']['basic_settings']['header'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Header positioning'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+
+  $form['mtt_settings']['basic_tab']['basic_settings']['header']['fixed_header'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Fixed Header'),
+    '#description'   => t('Use the checkbox to apply fixed position to the header regions.'),
+    '#default_value' => theme_get_setting('fixed_header', 'showcase_lite'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+
   $form['mtt_settings']['basic_tab']['basic_settings']['scrolltop'] = array(
     '#type' => 'fieldset',
     '#title' => t('Scroll to top'),
