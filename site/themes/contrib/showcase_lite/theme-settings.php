@@ -33,6 +33,22 @@ function showcase_lite_form_system_theme_settings_alter(&$form, &$form_state) {
     '#maxlength'     => 100,
   );
 
+  $form['mtt_settings']['basic_tab']['basic_settings']['page_container'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Full Page border'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+
+  $form['mtt_settings']['basic_tab']['basic_settings']['page_container']['page_container_border'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Enable full-page body border'),
+    '#description'   => t('Adds a body border around your page, right inside the browser window.'),
+    '#default_value' => theme_get_setting('page_container_border', 'showcase_lite'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+
   $form['mtt_settings']['basic_tab']['basic_settings']['header'] = array(
     '#type' => 'fieldset',
     '#title' => t('Header positioning'),
