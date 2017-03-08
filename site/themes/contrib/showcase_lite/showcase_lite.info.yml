@@ -8,9 +8,11 @@ libraries:
   - showcase_lite/bootstrap
   - showcase_lite/fontawesome
   - showcase_lite/global-styling
+  - showcase_lite/background-image-block
   - showcase_lite/messages
   - showcase_lite/smooth-scroll
   - showcase_lite/local-stylesheets
+
 libraries-override:
   classy/base:
     css:
