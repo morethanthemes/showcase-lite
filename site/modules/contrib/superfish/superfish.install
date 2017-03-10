@@ -1,0 +1,47 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Superfish module.
+ */
+
+use Drupal\Core\Language\Language;
+
+/**
+ * Implements hook_enable().
+ */
+function superfish_install() {
+  if (superfish_library_check()){
+    drupal_set_message(t('In order to use Superfish, go to the <a href="@block">Block layout</a> page and use any of the "Place block" buttons to create a Superfish block.', array('@block' => 'structure/block')));
+  } else {
+    drupal_set_message(t('Superfish library is missing. Please refer to the <a href="@documentation">plugin documentation</a> for how you can fix this issue; Once done, go to the <a href="@block">Block layout</a> page and use any of the "Place block" buttons to create a Superfish block.', array('@documentation' => 'http://drupal.org/node/1125896', '@block' => 'structure/block')), 'warning');
+  }
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function superfish_requirements($phase) {
+  $requirements = array();
+  if ($phase == 'runtime') {
+    $requirements['superfish']['title'] = t('Superfish library');
+
+    if (superfish_library_check()) {
+      $requirements['superfish']['value'] = t('Installed at @location', array('@location' => superfish_library_path()));
+      $requirements['superfish']['severity'] = REQUIREMENT_OK;
+    }
+    else {
+      $requirements['superfish']['value'] = t('Not installed');
+      $requirements['superfish']['severity'] = REQUIREMENT_ERROR;
+      $requirements['superfish']['description'] = t('Please download the Superfish library from :url.', array(':url' => 'http://drupal.org/project/superfish'));
+    }
+
+    // Check the uploaded Superfish library version.
+    if (($version = superfish_library_version()) && $version != '2.0') {
+      $requirements['superfish']['value'] = t('Not supported');
+      $requirements['superfish']['severity'] = REQUIREMENT_ERROR;
+      $requirements['superfish']['description'] = t('The Superfish library requires an update. You can find the update instructions on :url.', array(':url' => 'http://drupal.org/project/superfish'));
+    }
+  }
+  return $requirements;
+}
