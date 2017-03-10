@@ -132,7 +132,7 @@ function showcase_lite_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['mtt_settings']['looknfeel_tab']['looknfeel']['premium_description'] = array(
    '#type' => 'item',
    '#markup' =>
-   '<div class="theme-settings-title">'.t("Get the premium version of this theme").'</div>
+   '<div class="theme-settings-title">'.t("Available in the Premium version of this theme").'</div>
    <div class="theme-settings-image-wrapper">
    <a href="http://morethanthemes.com/themes/showcaseplus?utm_source=showcase-lite-demo&utm_medium=theme-settings&utm_campaign=free-themes" target="_blank">
    <img src="' . base_path() . drupal_get_path('theme', 'showcase_lite') . '/images/premium-01-looknfeel.jpg" />
@@ -150,7 +150,7 @@ function showcase_lite_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['mtt_settings']['regions_tab']['regions']['premium_description'] = array(
    '#type' => 'item',
    '#markup' =>
-   '<div class="theme-settings-title">'.t("Get the premium version of this theme").'</div>
+   '<div class="theme-settings-title">'.t("Available in the Premium version of this theme").'</div>
    <div class="theme-settings-image-wrapper">
    <a href="http://morethanthemes.com/themes/showcaseplus?utm_source=showcase-lite-demo&utm_medium=theme-settings&utm_campaign=free-themes" target="_blank">
    <img src="' . base_path() . drupal_get_path('theme', 'showcase_lite') . '/images/premium-02-region.jpg" />
@@ -168,7 +168,7 @@ function showcase_lite_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['mtt_settings']['post_tab']['post']['premium_description'] = array(
    '#type' => 'item',
    '#markup' =>
-   '<div class="theme-settings-title">'.t("Get the premium version of this theme").'</div>
+   '<div class="theme-settings-title">'.t("Available in the Premium version of this theme").'</div>
    <div class="theme-settings-image-wrapper">
    <a href="http://morethanthemes.com/themes/showcaseplus?utm_source=showcase-lite-demo&utm_medium=theme-settings&utm_campaign=free-themes" target="_blank">
    <img src="' . base_path() . drupal_get_path('theme', 'showcase_lite') . '/images/premium-03-article.jpg" />
@@ -186,7 +186,7 @@ function showcase_lite_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['mtt_settings']['layout_tab']['layout_modes']['premium_description'] = array(
    '#type' => 'item',
    '#markup' =>
-   '<div class="theme-settings-title">'.t("Get the premium version of this theme").'</div>
+   '<div class="theme-settings-title">'.t("Available in the Premium version of this theme").'</div>
    <div class="theme-settings-image-wrapper">
    <a href="http://morethanthemes.com/themes/showcaseplus?utm_source=showcase-lite-demo&utm_medium=theme-settings&utm_campaign=free-themes" target="_blank">
    <img src="' . base_path() . drupal_get_path('theme', 'showcase_lite') . '/images/premium-04-layout.jpg" />
@@ -204,7 +204,7 @@ function showcase_lite_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['mtt_settings']['font_tab']['font']['premium_description'] = array(
    '#type' => 'item',
    '#markup' =>
-   '<div class="theme-settings-title">'.t("Get the premium version of this theme").'</div>
+   '<div class="theme-settings-title">'.t("Available in the Premium version of this theme").'</div>
    <div class="theme-settings-image-wrapper">
    <a href="http://morethanthemes.com/themes/showcaseplus?utm_source=showcase-lite-demo&utm_medium=theme-settings&utm_campaign=free-themes" target="_blank">
    <img src="' . base_path() . drupal_get_path('theme', 'showcase_lite') . '/images/premium-05-fonts.jpg" />
@@ -222,7 +222,7 @@ function showcase_lite_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['mtt_settings']['slideshows_tab']['slideshow']['premium_description'] = array(
    '#type' => 'item',
    '#markup' =>
-   '<div class="theme-settings-title">'.t("Get the premium version of this theme").'</div>
+   '<div class="theme-settings-title">'.t("Available in the Premium version of this theme").'</div>
    <div class="theme-settings-image-wrapper">
    <a href="http://morethanthemes.com/themes/showcaseplus?utm_source=showcase-lite-demo&utm_medium=theme-settings&utm_campaign=free-themes" target="_blank">
    <img src="' . base_path() . drupal_get_path('theme', 'showcase_lite') . '/images/premium-06-slideshow.jpg" />
@@ -240,7 +240,7 @@ function showcase_lite_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['mtt_settings']['video_bg_tab']['video_bg']['premium_description'] = array(
    '#type' => 'item',
    '#markup' =>
-   '<div class="theme-settings-title">'.t("Get the premium version of this theme").'</div>
+   '<div class="theme-settings-title">'.t("Available in the Premium version of this theme").'</div>
    <div class="theme-settings-image-wrapper">
    <a href="http://morethanthemes.com/themes/showcaseplus?utm_source=showcase-lite-demo&utm_medium=theme-settings&utm_campaign=free-themes" target="_blank">
    <img src="' . base_path() . drupal_get_path('theme', 'showcase_lite') . '/images/premium-07-videobackground.jpg" />
@@ -258,7 +258,7 @@ function showcase_lite_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['mtt_settings']['isotope_tab']['premium_description'] = array(
    '#type' => 'item',
    '#markup' =>
-   '<div class="theme-settings-title">'.t("Get the premium version of this theme").'</div>
+   '<div class="theme-settings-title">'.t("Available in the Premium version of this theme").'</div>
    <div class="theme-settings-image-wrapper">
    <a href="http://morethanthemes.com/themes/showcaseplus?utm_source=showcase-lite-demo&utm_medium=theme-settings&utm_campaign=free-themes" target="_blank">
    <img src="' . base_path() . drupal_get_path('theme', 'showcase_lite') . '/images/premium-08-isotope.jpg" />
@@ -276,7 +276,7 @@ function showcase_lite_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['mtt_settings']['google_maps_tab']['premium_description'] = array(
    '#type' => 'item',
    '#markup' =>
-   '<div class="theme-settings-title">'.t("Get the premium version of this theme").'</div>
+   '<div class="theme-settings-title">'.t("Available in the Premium version of this theme").'</div>
    <div class="theme-settings-image-wrapper">
    <a href="http://morethanthemes.com/themes/showcaseplus?utm_source=showcase-lite-demo&utm_medium=theme-settings&utm_campaign=free-themes" target="_blank">
    <img src="' . base_path() . drupal_get_path('theme', 'showcase_lite') . '/images/premium-09-googlemaps.jpg" />
@@ -294,7 +294,7 @@ function showcase_lite_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['mtt_settings']['premium_tab']['premium_description'] = array(
    '#type' => 'item',
    '#markup' =>
-   '<div class="theme-settings-title">'.t("Get the premium version of this theme").'</div>
+   '<div class="theme-settings-title">'.t("Premium version of this theme").'</div>
    <div class="theme-settings-image-wrapper">
    <a href="http://morethanthemes.com/themes/showcaseplus?utm_source=showcase-lite-demo&utm_medium=theme-settings&utm_campaign=free-themes" target="_blank">
    <img src="' . base_path() . drupal_get_path('theme', 'showcase_lite') . '/images/premium.jpg" />
