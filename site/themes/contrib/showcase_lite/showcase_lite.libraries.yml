@@ -244,18 +244,6 @@ smooth-scroll:
   dependencies:
     - core/jquery
 
-google-maps-init:
-  version: VERSION
-  css:
-    component:
-      css/components/google-map.css: {}
-  js:
-    js/init/google-map-init.js: {}
-  dependencies:
-    - showcase_lite/google-maps-dynamic
-    - core/jquery
-    - core/drupalSettings
-
 imagesloaded:
   version: 3.2.0
   js:
@@ -301,96 +289,11 @@ node-article:
     component:
       css/components/node-article.css: {}
 
-node-product:
-  version: VERSION
-  css:
-    component:
-      css/components/node-product.css: {}
-
-node-view-mode-slide-view:
-  version: VERSION
-  css:
-    component:
-      css/components/node-view-mode-slide-view.css: {}
-
-node-service:
-  version: VERSION
-  css:
-    component:
-      css/components/node-service.css: {}
-
-node-showcase:
-  version: VERSION
-  css:
-    component:
-      css/components/node-showcase.css: {}
-
-node-team-member:
-  version: VERSION
-  css:
-    component:
-      css/components/node-team-member.css: {}
-
-post-progress:
-  version: VERSION
-  css:
-    component:
-      css/components/post-progress.css: {}
-  js:
-    js/custom/post-progress.js: {}
-  dependencies:
-    - core/jquery
-
-reading-time:
-  version: VERSION
-  css:
-    component:
-      css/components/reading-time.css: {}
-
 node-images:
   version: VERSION
   css:
     component:
       css/components/node-images.css: {}
-
-field-mt-video:
-  version: VERSION
-  css:
-    component:
-      css/components/field-mt-video.css: {}
-
-field-mt-content-tabs:
-  version: VERSION
-  css:
-    component:
-      css/components/field-mt-content-tabs.css: {}
-
-field-mt-content-collapses:
-  version: VERSION
-  css:
-    component:
-      css/components/field-mt-content-collapses.css: {}
-
-media-tabs:
-  version: VERSION
-  css:
-    component:
-      css/components/media-tabs.css: {}
-
-fancy-linked-images-block:
-  version: VERSION
-  css:
-    component:
-      css/components/fancy-linked-images-block.css: {}
-  js:
-    js/custom/fancy-linked-images-block.js: {}
-    js/custom/clip-path-test.js: {}
-
-featured-linked-text-tiles-block:
-  version: VERSION
-  css:
-    component:
-      css/components/featured-linked-text-tiles-block.css: {}
 
 background-image-block:
   version: VERSION
