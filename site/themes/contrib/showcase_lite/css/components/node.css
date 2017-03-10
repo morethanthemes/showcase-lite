@@ -14,6 +14,7 @@
 .node__header .field--name-user-picture {
   padding: 0 0 5px 0;
   max-width: 55px;
+  margin-right: 40px;
 }
 .node__title {
   font-size: 26px;
@@ -49,9 +50,6 @@
   font-size: 14px;
   margin: 0 0 10px;
   display: inline-block;
-}
-.profile + .node__meta {
-  margin-left: 40px;
 }
 .node__submitted-info ~ .comments-count__counter:before {
   content: "-";
