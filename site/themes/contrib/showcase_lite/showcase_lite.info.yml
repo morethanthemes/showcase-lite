@@ -5,7 +5,6 @@ description: 'A flexible, recolorable theme with many regions and a responsive, 
 version: @VERSION@
 core: 8.x
 libraries:
-  - showcase_lite/bootstrap
   - showcase_lite/fontawesome
   - showcase_lite/global-styling
   - showcase_lite/background-image-block
