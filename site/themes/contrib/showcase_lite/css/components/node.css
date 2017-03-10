@@ -41,7 +41,6 @@
 /*Post submitted info*/
 .node__header .profile {
   display: inline-block;
-  margin-right: 40px;
 }
 .node__header .profile img {
   max-width: 40px;
@@ -50,6 +49,9 @@
   font-size: 14px;
   margin: 0 0 10px;
   display: inline-block;
+}
+.profile + .node__meta {
+  margin-left: 40px;
 }
 .node__submitted-info ~ .comments-count__counter:before {
   content: "-";
