@@ -1,6 +1,6 @@
 /**
  * @file
- * Visual styles for Showcase+'s sticky header.
+ * Visual styles for Showcase Lite's sticky header.
  */
 .onscroll.transparent-header-active .header-container.js-transparent-header .sticky-wrapper {
   height: 0 !important;

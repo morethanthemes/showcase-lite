@@ -1,6 +1,6 @@
 /**
  * @file
- * Visual styles for Showcase+'s product content type.
+ * Visual styles for Showcase Lite's product content type.
  */
 @media (min-width: 992px) {
   .node--type-mt-product .col-md-4 + .col-md-8 .node__main-content {

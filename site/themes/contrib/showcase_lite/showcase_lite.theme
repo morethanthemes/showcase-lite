@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Functions to support theming in the Showcase+ theme.
+ * Functions to support theming in the Showcase Lite theme.
  */
 
 use Drupal\Core\Theme\ThemeSettings;
