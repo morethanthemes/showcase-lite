@@ -33,7 +33,7 @@ jQuery(document).ready(function($) {
     });
     $(".in-page-images-slider").flexslider({
       useCSS: false,
-      animation: drupalSettings.showcaseplus.flexsliderInPageInit.inPageSliderEffect,
+      animation: drupalSettings.showcase_lite.flexsliderInPageInit.inPageSliderEffect,
       controlNav: false,
       directionNav: true,
       prevText: "",

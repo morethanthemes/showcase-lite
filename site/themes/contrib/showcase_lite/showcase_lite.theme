@@ -669,6 +669,25 @@ function showcase_lite_preprocess_page(&$variables) {
   }
 }
 
+
+function showcase_lite_page_attachments_alter(&$page) {
+
+  //In page slider
+  $in_page_slider_effect = theme_get_setting('in_page_slider_effect');
+
+  $page['#attached']['drupalSettings']['showcase_lite']['flexsliderInPageInit']['inPageSliderEffect'] = $in_page_slider_effect;
+
+  // Slideout
+  $slideout_side = theme_get_setting('slideout_side');
+  $slideout_touch_swipe = theme_get_setting('slideout_touch_swipe');
+  $page['#attached']['drupalSettings']['showcase_lite']['slideoutInit']['slideoutSide'] = $slideout_side;
+  if ($slideout_touch_swipe) {
+    $page['#attached']['drupalSettings']['showcase_lite']['slideoutInit']['slideoutTouchSwipe'] = true;
+  } else {
+    $page['#attached']['drupalSettings']['showcase_lite']['slideoutInit']['slideoutTouchSwipe'] = false;
+  }
+}
+
 /**
  * Implements hook_preprocess_HOOK() for node.html.twig.
  */

@@ -4,8 +4,8 @@ jQuery(document).ready(function($) {
     'menu': document.querySelector('.slideout'),
     'padding': 300,
     'tolerance': 70,
-    'side': drupalSettings.showcaseplus.slideoutInit.slideoutSide,
-    'touch': drupalSettings.showcaseplus.slideoutInit.slideoutTouchSwipe
+    'side': drupalSettings.showcase_lite.slideoutInit.slideoutSide,
+    'touch': drupalSettings.showcase_lite.slideoutInit.slideoutTouchSwipe
   });
 
   $(window).load(function() {
