@@ -15,5 +15,7 @@
     "source": "https://cgit.drupalcode.org/superfish"
   },
   "license": "GPL-2.0+",
-  "minimum-stability": "dev"
+  "require": {
+    "mehrpadin/superfish": "~2.0"
+  }
 }

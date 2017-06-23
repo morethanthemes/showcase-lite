@@ -2,13 +2,16 @@
 
 namespace Drupal\migrate\Plugin\migrate\source;
 
+use Drupal\Core\Database\ConnectionNotDefinedException;
 use Drupal\Core\Database\Database;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\State\StateInterface;
+use Drupal\migrate\Exception\RequirementsException;
 use Drupal\migrate\MigrateException;
 use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\Plugin\migrate\id_map\Sql;
 use Drupal\migrate\Plugin\MigrateIdMapInterface;
+use Drupal\migrate\Plugin\RequirementsInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -20,7 +23,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * is present, it is used as a database connection information array to define
  * the connection.
  */
-abstract class SqlBase extends SourcePluginBase implements ContainerFactoryPluginInterface {
+abstract class SqlBase extends SourcePluginBase implements ContainerFactoryPluginInterface, RequirementsInterface {
 
   /**
    * The query string.
@@ -127,12 +130,17 @@ abstract class SqlBase extends SourcePluginBase implements ContainerFactoryPlugi
    *
    * @return \Drupal\Core\Database\Connection
    *   The connection to use for this plugin's queries.
+   *
+   * @throws \Drupal\migrate\Exception\RequirementsException
+   *   Thrown if no source database connection is configured.
    */
   protected function setUpDatabase(array $database_info) {
     if (isset($database_info['key'])) {
       $key = $database_info['key'];
     }
     else {
+      // If there is no explicit database configuration at all, fall back to a
+      // connection named 'migrate'.
       $key = 'migrate';
     }
     if (isset($database_info['target'])) {
@@ -144,13 +152,35 @@ abstract class SqlBase extends SourcePluginBase implements ContainerFactoryPlugi
     if (isset($database_info['database'])) {
       Database::addConnectionInfo($key, $target, $database_info['database']);
     }
-    return Database::getConnection($target, $key);
+    try {
+      $connection = Database::getConnection($target, $key);
+    }
+    catch (ConnectionNotDefinedException $e) {
+      // If we fell back to the magic 'migrate' connection and it doesn't exist,
+      // treat the lack of the connection as a RequirementsException.
+      if ($key == 'migrate') {
+        throw new RequirementsException("No database connection configured for source plugin " . $this->pluginId, [], 0, $e);
+      }
+      else {
+        throw $e;
+      }
+    }
+    return $connection;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function checkRequirements() {
+    if ($this->pluginDefinition['requirements_met'] === TRUE) {
+      $this->getDatabase();
+    }
   }
 
   /**
    * Wrapper for database select.
    */
-  protected function select($table, $alias = NULL, array $options = array()) {
+  protected function select($table, $alias = NULL, array $options = []) {
     $options['fetch'] = \PDO::FETCH_ASSOC;
     return $this->getDatabase()->select($table, $alias, $options);
   }
@@ -171,10 +201,7 @@ abstract class SqlBase extends SourcePluginBase implements ContainerFactoryPlugi
   }
 
   /**
-   * Implementation of MigrateSource::performRewind().
-   *
-   * We could simply execute the query and be functionally correct, but
-   * we will take advantage of the PDO-based API to optimize the query up-front.
+   * {@inheritdoc}
    */
   protected function initializeIterator() {
     // Initialize the batch size.
@@ -193,7 +220,7 @@ abstract class SqlBase extends SourcePluginBase implements ContainerFactoryPlugi
       $this->prepareQuery();
 
       // Get the key values, for potential use in joining to the map table.
-      $keys = array();
+      $keys = [];
 
       // The rules for determining what conditions to add to the query are as
       // follows (applying first applicable rule):
@@ -207,6 +234,7 @@ abstract class SqlBase extends SourcePluginBase implements ContainerFactoryPlugi
       //      OR above high water).
       $conditions = $this->query->orConditionGroup();
       $condition_added = FALSE;
+      $added_fields = [];
       if (empty($this->configuration['ignore_map']) && $this->mapJoinable()) {
         // Build the join to the map table. Because the source key could have
         // multiple fields, we need to build things up.
@@ -232,24 +260,37 @@ abstract class SqlBase extends SourcePluginBase implements ContainerFactoryPlugi
         for ($count = 1; $count <= $n; $count++) {
           $map_key = 'sourceid' . $count;
           $this->query->addField($alias, $map_key, "migrate_map_$map_key");
+          $added_fields[] = "$alias.$map_key";
         }
         if ($n = count($this->migration->getDestinationIds())) {
           for ($count = 1; $count <= $n; $count++) {
             $map_key = 'destid' . $count++;
             $this->query->addField($alias, $map_key, "migrate_map_$map_key");
+            $added_fields[] = "$alias.$map_key";
           }
         }
         $this->query->addField($alias, 'source_row_status', 'migrate_map_source_row_status');
+        $added_fields[] = "$alias.source_row_status";
       }
       // 2. If we are using high water marks, also include rows above the mark.
       //    But, include all rows if the high water mark is not set.
-      if ($this->getHighWaterProperty() && ($high_water = $this->getHighWater()) !== '') {
+      if ($this->getHighWaterProperty() && ($high_water = $this->getHighWater())) {
         $high_water_field = $this->getHighWaterField();
         $conditions->condition($high_water_field, $high_water, '>');
         $this->query->orderBy($high_water_field);
+        $condition_added = TRUE;
       }
       if ($condition_added) {
         $this->query->condition($conditions);
+      }
+      // If the query has a group by, our added fields need it too, to keep the
+      // query valid.
+      // @see https://dev.mysql.com/doc/refman/5.7/en/group-by-handling.html
+      $group_by = $this->query->getGroupBy();
+      if ($group_by && $added_fields) {
+        foreach ($added_fields as $added_field) {
+          $this->query->groupBy($added_field);
+        }
       }
     }
 
@@ -329,7 +370,15 @@ abstract class SqlBase extends SourcePluginBase implements ContainerFactoryPlugi
       return FALSE;
     }
 
-    foreach (array('username', 'password', 'host', 'port', 'namespace', 'driver') as $key) {
+    // FALSE if driver is PostgreSQL and database doesn't match.
+    if ($id_map_database_options['driver'] === 'pgsql' &&
+      $source_database_options['driver'] === 'pgsql' &&
+      $id_map_database_options['database'] != $source_database_options['database']
+      ) {
+      return FALSE;
+    }
+
+    foreach (['username', 'password', 'host', 'port', 'namespace', 'driver'] as $key) {
       if (isset($source_database_options[$key])) {
         if ($id_map_database_options[$key] != $source_database_options[$key]) {
           return FALSE;

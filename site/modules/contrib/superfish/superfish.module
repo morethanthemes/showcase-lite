@@ -2,12 +2,10 @@
 
 /**
  * @file
- * jQuery Superfish plugin for Drupal menus.
+ * The jQuery Superfish plugin for Drupal menus.
  */
 
-use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Block\BlockPluginInterface;
-use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
@@ -15,39 +13,39 @@ use Drupal\Core\Routing\RouteMatchInterface;
  */
 function superfish_block_view_superfish_alter(array &$build, BlockPluginInterface $block) {
   $menu_name = $block->getDerivativeId();
-  $build['#contextual_links']['menu'] = array(
-    'route_parameters' => array('menu' => $menu_name),
-  );
+  $build['#contextual_links']['menu'] = [
+    'route_parameters' => ['menu' => $menu_name],
+  ];
 }
 
 /**
  * Implements hook_libraries_info().
  */
 function superfish_libraries_info() {
-  $libraries['superfish'] = array(
+  $libraries['superfish'] = [
     'name' => 'superfish',
     'vendor url' => 'http://github.com/mehrpadin/Superfish-for-Drupal',
     'download url' => 'https://github.com/mehrpadin/Superfish-for-Drupal/zipball/2.x',
     'version callback' => 'superfish_library_version',
-    'files' => array(
-      'js' => array(
+    'files' => [
+      'js' => [
         'superfish.js',
         'jquery.hoverIntent.minified.js',
         'sfsmallscreen.js',
         'sftouchscreen.js',
         'supersubs.js',
-        'supposition.js'
-      ),
-      'css' => array(
+        'supposition.js',
+      ],
+      'css' => [
         'css/superfish.css',
         'style/black/black.css',
         'style/blue/blue.css',
         'style/coffee/coffee.css',
         'style/default/default.css',
-        'style/white/white.css'
-      )
-    )
-  );
+        'style/white/white.css',
+      ],
+    ],
+  ];
   return $libraries;
 }
 
@@ -59,135 +57,135 @@ function superfish_library_info_build() {
   if ($superfish_library_path = superfish_library_path()) {
     $superfish_library_path = '/' . $superfish_library_path;
     $libraries = [
-			'superfish' => [
-				'remote' => 'http://github.com/mehrpadin/Superfish-for-Drupal',
-				'version' => '2.0',
-				'license' => [
-					'name' => 'MIT',
-					'gpl-compatible' => false,
-				],
-				'js' => [
-					'js/superfish.js' => [],
-				],
-				'dependencies' => [
-					'core/jquery',
-					'core/drupal',
-					'core/drupalSettings',
-					'core/jquery.once',
-				],
-			],
-			'init' => [
-				'js' => [
-					$superfish_library_path . '/superfish.js' => [],
-				],
-				'css' => [
-					'base' => [
-						$superfish_library_path . '/css/superfish.css' => [],
-					]
-				],
-			],
-			'superfish_hoverintent' => [
-				'js' => [
-					$superfish_library_path . '/jquery.hoverIntent.minified.js' => [
-						'minified' => true
-					],
-				],
-				'dependencies' => [
-					'superfish/init',
-				],
-			],
-			'superfish_smallscreen' => [
-				'js' => [
-					$superfish_library_path . '/sfsmallscreen.js' => [],
-				],
-				'dependencies' => [
-					'superfish/init',
-				],
-			],
-			'superfish_touchscreen' => [
-				'js' => [
-					$superfish_library_path . '/sftouchscreen.js' => [],
-				],
-				'dependencies' => [
-					'superfish/init',
-				],
-			],
-			'superfish_supersubs' => [
-				'js' => [
-					$superfish_library_path . '/supersubs.js' => [],
-				],
-				'dependencies' => [
-					'superfish/init',
-				],
-			],
-			'superfish_supposition' => [
-				'js' => [
-					$superfish_library_path . '/supposition.js' => [],
-				],
-				'dependencies' => [
-					'superfish/init',
-				]
-			],
-			'superfish_style_black' => [
-				'css' => [
-					'theme' => [
-						$superfish_library_path . '/style/black/black.css' => [],
-					]
-				],
-				'dependencies' => [
-					'superfish/init',
-				],
-			],
-			'superfish_style_blue' => [
-				'css' => [
-					'theme' => [
-						$superfish_library_path . '/style/blue/blue.css' => [],
-					],
-				],
-				'dependencies' => [
-					'superfish/init',
-				]
-			],
-			'superfish_style_coffee' => [
-				'css' => [
-					'theme' => [
-						$superfish_library_path . '/style/coffee/coffee.css' => [],
-					],
-				],
-				'dependencies' => [
-					'superfish/init',
-				],
-			],
-			'superfish_style_default' => [
-				'css' => [
-					'theme' => [
-						$superfish_library_path . '/style/default/default.css' => [],
-					],
-				],
-				'dependencies' => [
-					'superfish/init',
-				],
-			],
-			'superfish_style_white' => [
-				'css' => [
-					'theme' => [
-						$superfish_library_path . '/style/white/white.css' => []
-					],
-				],
-				'dependencies' => [
-					'superfish/init',
-				],
-			],
+      'superfish' => [
+        'remote' => 'http://github.com/mehrpadin/Superfish-for-Drupal',
+        'version' => '2.0',
+        'license' => [
+          'name' => 'MIT',
+          'gpl-compatible' => FALSE,
+        ],
+        'js' => [
+          'js/superfish.js' => [],
+        ],
+        'dependencies' => [
+          'core/jquery',
+          'core/drupal',
+          'core/drupalSettings',
+          'core/jquery.once',
+        ],
+      ],
+      'init' => [
+        'js' => [
+          $superfish_library_path . '/superfish.js' => [],
+        ],
+        'css' => [
+          'base' => [
+            $superfish_library_path . '/css/superfish.css' => [],
+          ],
+        ],
+      ],
+      'superfish_hoverintent' => [
+        'js' => [
+          $superfish_library_path . '/jquery.hoverIntent.minified.js' => [
+            'minified' => TRUE,
+          ],
+        ],
+        'dependencies' => [
+          'superfish/init',
+        ],
+      ],
+      'superfish_smallscreen' => [
+        'js' => [
+          $superfish_library_path . '/sfsmallscreen.js' => [],
+        ],
+        'dependencies' => [
+          'superfish/init',
+        ],
+      ],
+      'superfish_touchscreen' => [
+        'js' => [
+          $superfish_library_path . '/sftouchscreen.js' => [],
+        ],
+        'dependencies' => [
+          'superfish/init',
+        ],
+      ],
+      'superfish_supersubs' => [
+        'js' => [
+          $superfish_library_path . '/supersubs.js' => [],
+        ],
+        'dependencies' => [
+          'superfish/init',
+        ],
+      ],
+      'superfish_supposition' => [
+        'js' => [
+          $superfish_library_path . '/supposition.js' => [],
+        ],
+        'dependencies' => [
+          'superfish/init',
+        ],
+      ],
+      'superfish_style_black' => [
+        'css' => [
+          'theme' => [
+            $superfish_library_path . '/style/black/black.css' => [],
+          ],
+        ],
+        'dependencies' => [
+          'superfish/init',
+        ],
+      ],
+      'superfish_style_blue' => [
+        'css' => [
+          'theme' => [
+            $superfish_library_path . '/style/blue/blue.css' => [],
+          ],
+        ],
+        'dependencies' => [
+          'superfish/init',
+        ],
+      ],
+      'superfish_style_coffee' => [
+        'css' => [
+          'theme' => [
+            $superfish_library_path . '/style/coffee/coffee.css' => [],
+          ],
+        ],
+        'dependencies' => [
+          'superfish/init',
+        ],
+      ],
+      'superfish_style_default' => [
+        'css' => [
+          'theme' => [
+            $superfish_library_path . '/style/default/default.css' => [],
+          ],
+        ],
+        'dependencies' => [
+          'superfish/init',
+        ],
+      ],
+      'superfish_style_white' => [
+        'css' => [
+          'theme' => [
+            $superfish_library_path . '/style/white/white.css' => [],
+          ],
+        ],
+        'dependencies' => [
+          'superfish/init',
+        ],
+      ],
     ];
     if ($easing_library_path = superfish_library_path('easing')) {
       $easing_library_path = '/' . $easing_library_path;
       $libraries += [
-				'superfish_easing' => [
-					'js' => [
-						$easing_library_path . '/jquery.easing.js' => [],
-					],
-				],
-			];
+        'superfish_easing' => [
+          'js' => [
+            $easing_library_path . '/jquery.easing.js' => [],
+          ],
+        ],
+      ];
     }
   }
   return $libraries;
@@ -197,7 +195,7 @@ function superfish_library_info_build() {
  * Returns the Superfish library folder location.
  */
 function superfish_library_path($library = 'superfish') {
-  $directory = false;
+  $directory = FALSE;
   // Ensure the Libraries API module is installed and working.
   if (function_exists('libraries_get_path') && ($directory = libraries_get_path($library))) {
     return $directory;
@@ -211,6 +209,9 @@ function superfish_library_path($library = 'superfish') {
   }
   elseif (file_exists('sites/all/libraries/' . $library)) {
     $directory = 'sites/all/libraries/' . $library;
+  }
+  elseif (file_exists('sites/default/libraries/' . $library)) {
+    $directory = 'sites/default/libraries/' . $library;
   }
   return $directory;
 }
@@ -252,15 +253,15 @@ function superfish_library_version() {
  * Generate a list of available slide-in effects.
  */
 function superfish_effects() {
-  $output = array(
+  $output = [
     'none' => '- ' . t('None') . ' -',
     'vertical' => t('Vertical'),
     'horizontal' => t('Horizontal'),
-    'diagonal' => t('Diagonal')
-  );
+    'diagonal' => t('Diagonal'),
+  ];
 
   if (superfish_library_path('easing')) {
-    $easing_types = array(
+    $easing_types = [
       'easeInSine_vertical' => 'easeInSine (' . t('Vertical') . ')',
       'easeInSine_horizontal' => 'easeInSine (' . t('Horizontal') . ')',
       'easeInSine_diagonal' => 'easeInSine (' . t('Diagonal') . ')',
@@ -290,8 +291,8 @@ function superfish_effects() {
       'easeInBounce_diagonal' => 'easeInBounce (' . t('Diagonal') . ')',
       'easeInBack_vertical' => 'easeInBack (' . t('Vertical') . ')',
       'easeInBack_horizontal' => 'easeInBack (' . t('Horizontal') . ')',
-      'easeInBack_diagonal' => 'easeInBack (' . t('Diagonal') . ')'
-    );
+      'easeInBack_diagonal' => 'easeInBack (' . t('Diagonal') . ')',
+    ];
     $output = array_merge($output, $easing_types);
   }
   return $output;
@@ -300,10 +301,10 @@ function superfish_effects() {
 /**
  * Helper function to clean up arrays.
  */
-function superfish_array_remove_empty($haystack) {
+function sf_array_filter($haystack) {
   foreach ($haystack as $key => $value) {
     if (is_array($value)) {
-      $haystack[$key] = superfish_array_remove_empty($haystack[$key]);
+      $haystack[$key] = sf_array_filter($haystack[$key]);
     }
     elseif (empty($value) && is_bool($value) !== TRUE) {
       if ($haystack[$key] != '0') {
@@ -318,23 +319,23 @@ function superfish_array_remove_empty($haystack) {
  * Implements hook_theme().
  */
 function superfish_theme($existing, $type, $theme, $path) {
-  return array(
-    'superfish' => array(
+  return [
+    'superfish' => [
       'render element' => 'element',
       'file' => 'superfish.theme.inc',
-    ),
-    'superfish_menu_items' => array(
+    ],
+    'superfish_menu_items' => [
       'render element' => 'element',
       'file' => 'superfish.theme.inc',
-    ),
-    'superfish_help' => array(
-      'variables' => array(
+    ],
+    'superfish_help' => [
+      'variables' => [
         'title' => NULL,
         'content' => NULL,
-      ),
+      ],
       'template' => 'superfish--help',
-    ),
-  );
+    ],
+  ];
 }
 
 /**
@@ -343,17 +344,17 @@ function superfish_theme($existing, $type, $theme, $path) {
 function superfish_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
     case 'help.page.superfish':
-      $output = array(
+      $output = [
         '#theme' => 'superfish_help',
         '#title' => t('About Superfish'),
         '#content' => t('<a href="@url_module">Superfish module</a> integrates <a href="@url_library">jQuery Superfish</a> plugin to your Drupal menu blocks. Please refer to the module <a href="@url_documentation">documentation</a> for more information.',
-			array(
-				'@url_library' => 'https://github.com/mehrpadin/Superfish-for-Drupal',
-				'@url_module' => 'https://www.drupal.org/project/superfish',
-				'@url_documentation' => 'https://www.drupal.org/node/1125896'
-			)
-		),
-      );
+      [
+        '@url_library' => 'https://github.com/mehrpadin/Superfish-for-Drupal',
+        '@url_module' => 'https://www.drupal.org/project/superfish',
+        '@url_documentation' => 'https://www.drupal.org/node/1125896',
+      ]
+        ),
+      ];
       return $output;
   }
 }

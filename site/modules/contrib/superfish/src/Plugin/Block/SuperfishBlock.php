@@ -3,7 +3,6 @@
 namespace Drupal\superfish\Plugin\Block;
 
 use Drupal\system\Plugin\Block\SystemMenuBlock;
-use Drupal\Core\Menu\InaccessibleMenuLink;
 use Drupal\Core\Menu\MenuTreeParameters;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Utility\Html;
@@ -27,449 +26,694 @@ class SuperfishBlock extends SystemMenuBlock {
   public function blockForm($form, FormStateInterface $form_state) {
     $form = parent::blockForm($form, $form_state);
     $defaults = $this->defaultConfiguration();
-    $form['sf'] = array(
+    $form['sf'] = [
       '#type' => 'details',
       '#title' => $this->t('Block settings'),
       '#open' => TRUE,
+    ];
+    $description = sprintf('<em>(%s: %s)</em>',
+      $this->t('Default'),
+      $this->t('Horizontal (single row)')
     );
-    $form['sf']['superfish_type'] = array(
+    $form['sf']['superfish_type'] = [
       '#type' => 'radios',
       '#title' => $this->t('Menu type'),
-      '#description' => '<em>(' . $this->t('Default') . ': ' . $this->t('Horizontal (single row)') . ')</em>',
+      '#description' => $description,
       '#default_value' => $this->configuration['menu_type'],
-      '#options' => array(
+      '#options' => [
         'horizontal' => $this->t('Horizontal (single row)'),
         'navbar' => $this->t('Horizontal (double row)'),
-        'vertical' => $this->t('Vertical (stack)')
-      ),
+        'vertical' => $this->t('Vertical (stack)'),
+      ],
+    ];
+    $description = sprintf('<em>(%s: %s)</em>',
+      $this->t('Default'),
+      $this->t('None')
     );
-    $form['sf']['superfish_style'] = array(
+    $form['sf']['superfish_style'] = [
       '#type' => 'select',
       '#title' => $this->t('Style'),
-      '#description' => '<em>(' . $this->t('Default') . ': ' . $this->t('None') . ')</em>',
+      '#description' => $description,
       '#default_value' => $this->configuration['style'],
-      '#options' => array(
+      '#options' => [
         'none' => $this->t('None'),
         'default' => $this->t('Default'),
         'black' => $this->t('Black'),
         'blue' => $this->t('Blue'),
         'coffee' => $this->t('Coffee'),
-        'white' => $this->t('White')
-      )
-    );
-    $form['sf']['superfish_arrow'] = array(
+        'white' => $this->t('White'),
+      ],
+    ];
+    $form['sf']['superfish_arrow'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Add arrows to parent menus'),
       '#default_value' => $this->configuration['arrow'],
-    );
-    $form['sf']['superfish_shadow'] = array(
+    ];
+    $form['sf']['superfish_shadow'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Drop shadows'),
       '#default_value' => $this->configuration['shadow'],
+    ];
+    if (count(superfish_effects()) == 4) {
+      $easing_instructions = $this->t('jQuery Easing plugin is not installed.');
+    }
+    else {
+      $easing_instructions = $this->t("The plugin provides a handful number of animation effects, they can be used by uploading the 'jquery.easing.js' file to the libraries directory within the 'easing' directory (for example: libraries/easing/jquery.easing.js). Refresh this page after the plugin is uploaded, this will make more effects available in the above list.");
+    }
+    $description = sprintf('<em>(%s: %s)</em><br>%s<br>',
+      $this->t('Default'),
+      $this->t('Vertical'),
+      $easing_instructions
     );
-    $form['sf']['superfish_slide'] = array(
+    $form['sf']['superfish_slide'] = [
       '#type' => 'select',
       '#title' => $this->t('Slide-in effect'),
-      '#description' => '<em>(' . $this->t('Default') . ': ' . $this->t('Vertical') . ')</em><br />' . ((count(superfish_effects()) == 4) ? $this->t('jQuery Easing plugin is not installed.') . '<br />' . $this->t('The plugin provides a handful number of animation effects, they can be used by uploading the \'jquery.easing.js\' file to the libraries directory within the \'easing\' directory (for example: sites/all/libraries/easing/jquery.easing.js). Refresh this page after the plugin is uploaded, this will make more effects available in the above list.') . '<br />' : ''),
+      '#description' => $description,
       '#default_value' => $this->configuration['slide'],
       '#options' => superfish_effects(),
-    );
-    $form['sf-plugins'] = array(
+    ];
+    $form['sf-plugins'] = [
       '#type' => 'details',
       '#title' => $this->t('Superfish plugins'),
       '#open' => TRUE,
+    ];
+    $description = sprintf('%s <em>(%s: %s)</em>',
+      $this->t('Relocates sub-menus when they would otherwise appear outside the browser window area.'),
+      $this->t('Default'),
+      $this->t('enabled')
     );
-    $form['sf-plugins']['superfish_supposition'] = array(
+    $form['sf-plugins']['superfish_supposition'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('jQuery Supposition'),
-      '#description' => $this->t('Relocates sub-menus when they would otherwise appear outside the browser window area.') . ' <em>(' . $this->t('Default') . ': ' . $this->t('enabled') . ')</em>',
+      '#description' => $description,
       '#default_value' => $this->configuration['supposition'],
+    ];
+    $description = sprintf('%s <em>(%s: %s)</em>',
+      $this->t("Prevents accidental firing of animations by waiting until the user's mouse slows down enough, hence determinig user's <em>intent</em>."),
+      $this->t('Default'),
+      $this->t('enabled')
     );
-    $form['sf-plugins']['superfish_hoverintent'] = array(
+    $form['sf-plugins']['superfish_hoverintent'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('jQuery hoverIntent'),
-      '#description' => $this->t('Prevents accidental firing of animations by waiting until the user\'s mouse slows down enough, hence determinig user\'s <em>intent</em>.') . ' <em>(' . $this->t('Default') . ': ' . $this->t('enabled') . ')</em>',
+      '#description' => $description,
       '#default_value' => $this->configuration['hoverintent'],
+    ];
+    $description = sprintf('%s <em>(%s)</em>',
+      $this->t('<strong>sf-Touchscreen</strong> provides touchscreen compatibility.'),
+      $this->t('The first click on a parent hyperlink shows its children and the second click opens the hyperlink.')
     );
-    $form['sf-plugins']['sf-touchscreen'] = array(
+    $form['sf-plugins']['sf-touchscreen'] = [
       '#type' => 'details',
       '#title' => $this->t('sf-Touchscreen'),
-      '#description' => $this->t('<strong>sf-Touchscreen</strong> provides touchscreen compatibility.') . ' <sup>(' . $this->t('The first click on a parent hyperlink shows its children and the second click opens the hyperlink.') . ')</sup>',
+      '#description' => $description,
       '#open' => FALSE,
+    ];
+    $default = sprintf('%s <em>(%s)</em>',
+      $this->t('Disable'),
+      $this->t('Default')
     );
-    $form['sf-plugins']['sf-touchscreen']['superfish_touch'] = array(
+    $form['sf-plugins']['sf-touchscreen']['superfish_touch'] = [
       '#type' => 'radios',
       '#default_value' => $this->configuration['touch'],
-      '#options' => array(
-        0 => $this->t('Disable') . '. <sup>(' . $this->t('Default') . ')</sup>',
+      '#options' => [
+        0 => $default,
         1 => $this->t('Enable jQuery sf-Touchscreen plugin for this menu.'),
-        2 => $this->t('Enable jQuery sf-Touchscreen plugin for this menu depending on the user\'s Web browser <strong>window width</strong>.'),
-        3 => $this->t('Enable jQuery sf-Touchscreen plugin for this menu depending on the user\'s Web browser <strong>user agent</strong>.'),
-      ),
+        2 => $this->t("Enable jQuery sf-Touchscreen plugin for this menu depending on the user's Web browser <strong>window width</strong>."),
+        3 => $this->t("Enable jQuery sf-Touchscreen plugin for this menu depending on the user's Web browser <strong>user agent</strong>."),
+      ],
+    ];
+    $default = sprintf('%s <em>(%s)</em>',
+      $this->t('Hiding the sub-menu on the second tap, adding cloned parent links to the top of sub-menus as well.'),
+      $this->t('Default')
     );
-    $form['sf-plugins']['sf-touchscreen']['superfish_touchbh'] = array(
+    $form['sf-plugins']['sf-touchscreen']['superfish_touchbh'] = [
       '#type' => 'radios',
       '#title' => 'Select a behaviour',
       '#description' => $this->t('Using this plugin, the first click or tap will expand the sub-menu, here you can choose what a second click or tap should do.'),
       '#default_value' => $this->configuration['touchbh'],
-      '#options' => array(
+      '#options' => [
         0 => $this->t('Opening the parent menu item link on the second tap.'),
         1 => $this->t('Hiding the sub-menu on the second tap.'),
-        2 => $this->t('Hiding the sub-menu on the second tap, adding cloned parent links to the top of sub-menus as well.') . ' <sup>(' . $this->t('Default') . ')</sup>',
-      ),
+        2 => $default,
+      ],
+    ];
+    $description = sprintf('%s<br><br>%s<br><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;</code>',
+      $this->t("sf-Touchscreen will be enabled only if the width of user's Web browser window is smaller than the below value."),
+      $this->t('Please note that in most cases such a meta tag is necessary for this feature to work properly:')
     );
-    $form['sf-plugins']['sf-touchscreen']['sf-touchscreen-windowwidth'] = array(
+    $form['sf-plugins']['sf-touchscreen']['sf-touchscreen-windowwidth'] = [
       '#type' => 'details',
       '#title' => $this->t('Window width settings'),
-      '#description' => $this->t('sf-Touchscreen will be enabled only if the width of user\'s Web browser window is smaller than the below value.') . '<br /><br />' . $this->t('Please note that in most cases such a meta tag is necessary for this feature to work properly:') . '<br /><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;</code>',
+      '#description' => $description,
       '#open' => TRUE,
+    ];
+    $description = sprintf('%s <em>(%s: 768)</em>',
+      $this->t('Also known as "Breakpoint".'),
+      $this->t('Default')
     );
-    $form['sf-plugins']['sf-touchscreen']['sf-touchscreen-windowwidth']['superfish_touchbp'] = array(
-      '#type' => 'textfield',
-      '#description' => $this->t('Also known as "Breakpoint".') . ' <em>(' . $this->t('Default') . ': 768)</em>',
+    $form['sf-plugins']['sf-touchscreen']['sf-touchscreen-windowwidth']['superfish_touchbp'] = [
+      '#type' => 'number',
+      '#description' => $description,
       '#default_value' => $this->configuration['touchbp'],
       '#field_suffix' => $this->t('pixels'),
       '#size' => 10,
-    );
-    $form['sf-plugins']['sf-touchscreen']['sf-touchscreen-useragent'] = array(
+    ];
+    $form['sf-plugins']['sf-touchscreen']['sf-touchscreen-useragent'] = [
       '#type' => 'details',
       '#title' => $this->t('User agent settings'),
       '#open' => TRUE,
+    ];
+    $default = sprintf('%s <em>(%s) (%s)</em>',
+      $this->t('Use the pre-defined list of the <strong>user agents</strong>.'),
+      $this->t('Default'),
+      $this->t('Recommended')
     );
-    $form['sf-plugins']['sf-touchscreen']['sf-touchscreen-useragent']['superfish_touchua'] = array(
+    $form['sf-plugins']['sf-touchscreen']['sf-touchscreen-useragent']['superfish_touchua'] = [
       '#type' => 'radios',
       '#default_value' => $this->configuration['touchua'],
-      '#options' => array(
-        0 => $this->t('Use the pre-defined list of the <strong>user agents</strong>.') . '<sup>(' . $this->t('Default') . ') (' . $this->t('Recommended') . ')</sup>',
+      '#options' => [
+        0 => $default,
         1 => $this->t('Use the custom list of the <strong>user agents</strong>.'),
-      ),
+      ],
+    ];
+    if (isset($_SERVER['HTTP_USER_AGENT'])) {
+      $user_agent = sprintf('<br><strong>%s</strong> %s',
+        $this->t('UA string of the current Web browser:'),
+        $_SERVER['HTTP_USER_AGENT']
+      );
+    }
+    else {
+      $user_agent = '';
+    }
+    $description = sprintf('%s <em>(%s: %s)</em><br>%s:<ul>
+    <li>iPhone*Android*iPad <em><sup>(%s)</sup></em></li>
+    <li>Mozilla/5.0 (webOS/1.4.0; U; en-US) AppleWebKit/532.2
+    (KHTML, like Gecko) Version/1.0 Safari/532.2 Pre/1.0 * Mozilla/5.0
+    (iPad; U; CPU OS 3_2_1 like Mac OS X; en-us) AppleWebKit/531.21.10
+    (KHTML, like Gecko) Mobile/7B405</li>
+    </ul>%s',
+      $this->t('Could be partial or complete. (Asterisk separated)'),
+      $this->t('Default'),
+      $this->t('empty'),
+      $this->t('Examples'),
+      $this->t('Recommended'),
+      $user_agent
     );
-    $form['sf-plugins']['sf-touchscreen']['sf-touchscreen-useragent']['superfish_touchual'] = array(
+    $form['sf-plugins']['sf-touchscreen']['sf-touchscreen-useragent']['superfish_touchual'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Custom list of the user agents'),
-      '#description' => $this->t('Could be partial or complete. (Asterisk separated)') . ' <em>(' . $this->t('Default') . ': ' . $this->t('empty') . ')</em><br />' . $this->t('Examples') . ':<ul><li>iPhone*Android*iPad <sup>(' . $this->t('Recommended') . ')</sup></li><li>Mozilla/5.0 (webOS/1.4.0; U; en-US) AppleWebKit/532.2 (KHTML, like Gecko) Version/1.0 Safari/532.2 Pre/1.0 * Mozilla/5.0 (iPad; U; CPU OS 3_2_1 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Mobile/7B405</li></ul>' . ((isset($_SERVER['HTTP_USER_AGENT'])) ? '<br />' . $this->t('<strong>UA string of the current Web browser:</strong>') . ' ' . $_SERVER['HTTP_USER_AGENT'] : ''),
+      '#description' => $description,
       '#default_value' => $this->configuration['touchual'],
       '#size' => 100,
       '#maxlength' => 2000,
+    ];
+    $description = sprintf('<em>(%s: %s)</em>',
+      $this->t('Default'),
+      $this->t('Client-side (JavaScript)')
     );
-    $form['sf-plugins']['sf-touchscreen']['sf-touchscreen-useragent']['superfish_touchuam'] = array(
+    $form['sf-plugins']['sf-touchscreen']['sf-touchscreen-useragent']['superfish_touchuam'] = [
       '#type' => 'select',
       '#title' => $this->t('<strong>User agent</strong> detection method'),
-      '#description' => '<em>(' . $this->t('Default') . ': ' . $this->t('Client-side (JavaScript)') . ')</em>',
+      '#description' => $description,
       '#default_value' => $this->configuration['touchuam'],
-      '#options' => array(
+      '#options' => [
         0 => $this->t('Client-side (JavaScript)'),
-        1 => $this->t('Server-side (PHP)')
-      ),
-    );
-    $form['sf-plugins']['sf-smallscreen'] = array(
+        1 => $this->t('Server-side (PHP)'),
+      ],
+    ];
+    $form['sf-plugins']['sf-smallscreen'] = [
       '#type' => 'details',
       '#title' => $this->t('sf-Smallscreen'),
-      '#description' => $this->t('<strong>sf-Smallscreen</strong> provides small-screen compatibility for your menus.') . ' <sup>(' . $this->t('Converts the dropdown into a &lt;select&gt; element.') . ')</sup>',
+      '#description' => $this->t('<strong>sf-Smallscreen</strong> provides small-screen compatibility for your menus.'),
       '#open' => FALSE,
+    ];
+    $default = sprintf('%s <em>(%s)</em>',
+      $this->t("Enable jQuery sf-Smallscreen plugin for this menu depending on the user's Web browser <strong>window width</strong>."),
+      $this->t('Default')
     );
-    $form['sf-plugins']['sf-smallscreen']['superfish_small'] = array(
+    $form['sf-plugins']['sf-smallscreen']['superfish_small'] = [
       '#type' => 'radios',
       '#default_value' => $this->configuration['small'],
-      '#options' => array(
-        0 => $this->t('Disable') . '.',
+      '#options' => [
+        0 => sprintf('%s.', $this->t('Disable')),
         1 => $this->t('Enable jQuery sf-Smallscreen plugin for this menu.'),
-        2 => $this->t('Enable jQuery sf-Smallscreen plugin for this menu depending on the user\'s Web browser <strong>window width</strong>.') . ' <sup>(' . $this->t('Default') . ')</sup>',
-        3 => $this->t('Enable jQuery sf-Smallscreen plugin for this menu depending on the user\'s Web browser <strong>user agent</strong>.'),
-      ),
+        2 => $default,
+        3 => $this->t("Enable jQuery sf-Smallscreen plugin for this menu depending on the user's Web browser <strong>user agent</strong>."),
+      ],
+    ];
+    $description = sprintf('%s<br><br>%s<br><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;</code>',
+      $this->t("sf-Smallscreen will be enabled only if the width of user's Web browser window is smaller than the below value."),
+      $this->t('Please note that in most cases such a meta tag is necessary for this feature to work properly:')
     );
-    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-windowwidth'] = array(
+    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-windowwidth'] = [
       '#type' => 'details',
       '#title' => $this->t('Window width settings'),
-      '#description' => $this->t('sf-Smallscreen will be enabled only if the width of user\'s Web browser window is smaller than the below value.') . '<br /><br />' . $this->t('Please note that in most cases such a meta tag is necessary for this feature to work properly:') . '<br /><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;</code>',
+      '#description' => $description,
       '#open' => TRUE,
+    ];
+    $description = sprintf('%s <em>(%s: 768)</em>',
+      $this->t('Also known as "Breakpoint".'),
+      $this->t('Default')
     );
-    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-windowwidth']['superfish_smallbp'] = array(
-      '#type' => 'textfield',
-      '#description' => $this->t('Also known as "Breakpoint".') . ' <em>(' . $this->t('Default') . ': 768)</em>',
+    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-windowwidth']['superfish_smallbp'] = [
+      '#type' => 'number',
+      '#description' => $description,
       '#default_value' => $this->configuration['smallbp'],
       '#field_suffix' => $this->t('pixels'),
       '#size' => 10,
-    );
-    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-useragent'] = array(
+    ];
+    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-useragent'] = [
       '#type' => 'details',
       '#title' => $this->t('User agent settings'),
       '#open' => TRUE,
+    ];
+    $default = sprintf('%s <em>(%s) (%s)</em>',
+      $this->t('Use the pre-defined list of the <strong>user agents</strong>.'),
+      $this->t('Default'),
+      $this->t('Recommended')
     );
-    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-useragent']['superfish_smallua'] = array(
+    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-useragent']['superfish_smallua'] = [
       '#type' => 'radios',
       '#default_value' => $this->configuration['smallua'],
-      '#options' => array(
-        0 => $this->t('Use the pre-defined list of the <strong>user agents</strong>.') . '<sup>(' . $this->t('Default') . ') (' . $this->t('Recommended') . ')</sup>',
+      '#options' => [
+        0 => $default,
         1 => $this->t('Use the custom list of the <strong>user agents</strong>.'),
-      ),
+      ],
+    ];
+    if (isset($_SERVER['HTTP_USER_AGENT'])) {
+      $user_agent = sprintf('<br><strong>%s</strong> %s',
+        $this->t('UA string of the current Web browser:'),
+        $_SERVER['HTTP_USER_AGENT']
+      );
+    }
+    else {
+      $user_agent = '';
+    }
+    $description = sprintf('%s <em>(%s: %s)</em><br>%s:<ul>
+    <li>iPhone*Android*iPad <em><sup>(%s)</sup></em></li>
+    <li>Mozilla/5.0 (webOS/1.4.0; U; en-US) AppleWebKit/532.2
+    (KHTML, like Gecko) Version/1.0 Safari/532.2 Pre/1.0 * Mozilla/5.0
+    (iPad; U; CPU OS 3_2_1 like Mac OS X; en-us) AppleWebKit/531.21.10
+    (KHTML, like Gecko) Mobile/7B405</li>
+    </ul>%s',
+      $this->t('Could be partial or complete. (Asterisk separated)'),
+      $this->t('Default'),
+      $this->t('empty'),
+      $this->t('Examples'),
+      $this->t('Recommended'),
+      $user_agent
     );
-    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-useragent']['superfish_smallual'] = array(
+    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-useragent']['superfish_smallual'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Custom list of the user agents'),
-      '#description' => $this->t('Could be partial or complete. (Asterisk separated)') . ' <em>(' . $this->t('Default') . ': ' . $this->t('empty') . ')</em><br />' . $this->t('Examples') . ':<ul><li>iPhone*Android*iPad <sup>(' . $this->t('Recommended') . ')</sup></li><li>Mozilla/5.0 (webOS/1.4.0; U; en-US) AppleWebKit/532.2 (KHTML, like Gecko) Version/1.0 Safari/532.2 Pre/1.0 * Mozilla/5.0 (iPad; U; CPU OS 3_2_1 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Mobile/7B405</li></ul>' . ((isset($_SERVER['HTTP_USER_AGENT'])) ? '<br />' . $this->t('<strong>UA string of the current Web browser:</strong>') . ' ' . $_SERVER['HTTP_USER_AGENT'] : ''),
+      '#description' => $description,
       '#default_value' => $this->configuration['smallual'],
       '#size' => 100,
       '#maxlength' => 2000,
+    ];
+    $description = sprintf('<em>(%s: %s)</em>',
+      $this->t('Default'),
+      $this->t('Client-side (JavaScript)')
     );
-    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-useragent']['superfish_smalluam'] = array(
+    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-useragent']['superfish_smalluam'] = [
       '#type' => 'select',
       '#title' => $this->t('<strong>User agent</strong> detection method'),
-      '#description' => '<em>(' . $this->t('Default') . ': ' . $this->t('Client-side (JavaScript)') . ')</em>',
+      '#description' => $description,
       '#default_value' => $this->configuration['smalluam'],
-      '#options' => array(
+      '#options' => [
         0 => $this->t('Client-side (JavaScript)'),
-        1 => $this->t('Server-side (PHP)')
-      ),
+        1 => $this->t('Server-side (PHP)'),
+      ],
+    ];
+    $default = sprintf('%s <em>(%s)</em>',
+      $this->t('Convert the menu to an accordion menu.'),
+      $this->t('Default')
     );
-    $form['sf-plugins']['sf-smallscreen']['superfish_smallact'] = array(
+    $form['sf-plugins']['sf-smallscreen']['superfish_smallact'] = [
       '#type' => 'radios',
       '#title' => $this->t('Select a type'),
       '#default_value' => $this->configuration['smallact'],
-      '#options' => array(
+      '#options' => [
+        1 => $default,
         0 => $this->t('Convert the menu to a &lt;select&gt; element.'),
-        1 => $this->t('Convert the menu to an accordion menu.') . ' <sup>(' . $this->t('Default') . ')</sup>',
-      ),
-    );
-    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-select'] = array(
+      ],
+    ];
+    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-select'] = [
       '#type' => 'details',
       '#title' => $this->t('&lt;select&gt; settings'),
-      '#open' => TRUE,
+      '#open' => FALSE,
+    ];
+    $description = sprintf('%s <em>(%s: %s)</em><br>%s: <em> - %s - </em>',
+      $this->t('By default the first item in the &lt;select&gt; element will be the name of the parent menu or the title of this block, you can change this by setting a custom title.'),
+      $this->t('Default'),
+      $this->t('empty'),
+      $this->t('Example'),
+      $this->t('Main Menu')
     );
-    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-select']['superfish_smallset'] = array(
+    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-select']['superfish_smallset'] = [
       '#type' => 'textfield',
       '#title' => $this->t('&lt;select&gt; title'),
-      '#description' => $this->t('By default the first item in the &lt;select&gt; element will be the name of the parent menu or the title of this block, you can change this by setting a custom title.') . ' <em>(' . $this->t('Default') . ': ' . $this->t('empty') . ')</em><br />' . $this->t('Example') . ': <em> - ' . $this->t('Main Menu') . ' - </em>.',
+      '#description' => $description,
       '#default_value' => $this->configuration['smallset'],
       '#size' => 50,
       '#maxlength' => 500,
-    );
-    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-select']['superfish_smallasa'] = array(
+    ];
+    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-select']['superfish_smallasa'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Add <em>selected</em> attribute to the &lt;option&gt; element with the class <strong>active</strong> .'),
       '#description' => $this->t('Makes pre-selected the item linked to the active page when the page loads.'),
       '#default_value' => $this->configuration['smallasa'],
-    );
-    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-select']['sf-smallscreen-select-more'] = array(
+    ];
+    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-select']['sf-smallscreen-select-more'] = [
       '#type' => 'details',
       '#title' => $this->t('More'),
       '#open' => FALSE,
+    ];
+    $title = sprintf('%s <em>(%s: %s)</em>',
+      $this->t('Copy the main &lt;ul&gt; classes to the &lt;select&gt;.'),
+      $this->t('Default'),
+      $this->t('disabled')
     );
-    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-select']['sf-smallscreen-select-more']['superfish_smallcmc'] = array(
+    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-select']['sf-smallscreen-select-more']['superfish_smallcmc'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Copy the main &lt;ul&gt; classes to the &lt;select&gt;.') . ' <sup><em>(' . $this->t('Default') . ': ' . $this->t('disabled') . ')</em></sup>',
+      '#title' => $title,
       '#default_value' => $this->configuration['smallcmc'],
+    ];
+    $description = sprintf('%s <em>(%s: %s)</em>',
+      $this->t('Comma separated'),
+      $this->t('Default'),
+      $this->t('empty')
     );
-    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-select']['sf-smallscreen-select-more']['superfish_smallecm'] = array(
+    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-select']['sf-smallscreen-select-more']['superfish_smallecm'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Exclude these classes from the &lt;select&gt; element'),
-      '#description' => $this->t('Comma separated') . ' <em>(' . $this->t('Default') . ': ' . $this->t('empty') . ')</em>',
+      '#description' => $description,
       '#default_value' => $this->configuration['smallecm'],
       '#size' => 100,
       '#maxlength' => 1000,
-      '#states' => array(
-        'enabled' => array(
-         ':input[name="superfish_smallcmc' . '"]' => array('checked' => TRUE),
-        ),
-      ),
+      '#states' => [
+        'enabled' => [
+          ':input[name="superfish_smallcmc"]' => [
+            'checked' => TRUE,
+          ],
+        ],
+      ],
+    ];
+
+    $title = sprintf('%s <em>(%s: %s)</em>',
+      $this->t('Copy the hyperlink classes to the &lt;option&gt; elements of the &lt;select&gt;.'),
+      $this->t('Default'),
+      $this->t('disabled')
     );
-    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-select']['sf-smallscreen-select-more']['superfish_smallchc'] = array(
+    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-select']['sf-smallscreen-select-more']['superfish_smallchc'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Copy the hyperlink classes to the &lt;option&gt; elements of the &lt;select&gt;.') . ' <sup><em>(' . $this->t('Default') . ': ' . $this->t('disabled') . ')</em></sup>',
+      '#title' => $title,
       '#default_value' => $this->configuration['smallchc'],
+    ];
+    $description = sprintf('%s <em>(%s: %s)</em>',
+      $this->t('Comma separated'),
+      $this->t('Default'),
+      $this->t('empty')
     );
-    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-select']['sf-smallscreen-select-more']['superfish_smallech'] = array(
+    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-select']['sf-smallscreen-select-more']['superfish_smallech'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Exclude these classes from the &lt;option&gt; elements of the &lt;select&gt;'),
-      '#description' => $this->t('Comma separated') . ' <em>(' . $this->t('Default') . ': ' . $this->t('empty') . ')</em>',
+      '#description' => $description,
       '#default_value' => $this->configuration['smallech'],
       '#size' => 100,
       '#maxlength' => 1000,
-      '#states' => array(
-        'enabled' => array(
-         ':input[name="superfish_smallchc' . '"]' => array('checked' => TRUE),
-        ),
-      ),
-    );
-    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-select']['sf-smallscreen-select-more']['superfish_smallicm'] = array(
+      '#states' => [
+        'enabled' => [
+          ':input[name="superfish_smallchc"]' => [
+            'checked' => TRUE,
+          ],
+        ],
+      ],
+    ];
+    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-select']['sf-smallscreen-select-more']['superfish_smallicm'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Include these classes in the &lt;select&gt; element'),
-      '#description' => $this->t('Comma separated') . ' <em>(' . $this->t('Default') . ': ' . $this->t('empty') . ')</em>',
+      '#description' => $description,
       '#default_value' => $this->configuration['smallicm'],
       '#size' => 100,
       '#maxlength' => 1000,
-    );
-    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-select']['sf-smallscreen-select-more']['superfish_smallich'] = array(
+    ];
+    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-select']['sf-smallscreen-select-more']['superfish_smallich'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Include these classes in the &lt;option&gt; elements of the &lt;select&gt;'),
-      '#description' => $this->t('Comma separated') . ' <em>(' . $this->t('Default') . ': ' . $this->t('empty') . ')</em>',
+      '#description' => $description,
       '#default_value' => $this->configuration['smallich'],
       '#size' => 100,
       '#maxlength' => 1000,
-    );
-  $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-accordion'] = array(
+    ];
+    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-accordion'] = [
       '#type' => 'details',
       '#title' => $this->t('Accordion settings'),
-      '#open' => TRUE,
+      '#open' => FALSE,
+    ];
+    $description = sprintf('%s <em>(%s: %s)</em><br>%s: <em>%s</em>.',
+      $this->t('By default the caption of the accordion toggle switch will be the name of the parent menu or the title of this block, you can change this by setting a custom title.'),
+      $this->t('Default'),
+      $this->t('empty'),
+      $this->t('Example'),
+      $this->t('Menu')
     );
-    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-accordion']['superfish_smallamt'] = array(
+    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-accordion']['superfish_smallamt'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Accordion menu title'),
-      '#description' => $this->t('By default the caption of the accordion toggle switch will be the name of the parent menu or the title of this block, you can change this by setting a custom title.') . ' <em>(' . $this->t('Default') . ': ' . $this->t('empty') . ')</em><br />' . $this->t('Example') . ': <em>' . $this->t('Menu') . '</em>.',
+      '#description' => $description,
       '#default_value' => $this->configuration['smallamt'],
       '#size' => 50,
       '#maxlength' => 500,
+    ];
+    $default = sprintf('%s <em>(%s)</em>',
+      $this->t('Use parent menu items as buttons, add cloned parent links to sub-menus as well.'),
+      $this->t('Default')
     );
-    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-accordion']['superfish_smallabt'] = array(
+    $form['sf-plugins']['sf-smallscreen']['sf-smallscreen-accordion']['superfish_smallabt'] = [
       '#type' => 'radios',
       '#title' => $this->t('Accordion button type'),
       '#default_value' => $this->configuration['smallabt'],
-      '#options' => array(
+      '#options' => [
         0 => $this->t('Use parent menu items as buttons.'),
-        1 => $this->t('Use parent menu items as buttons, add cloned parent links to sub-menus as well.') . ' <sup>(' . $this->t('Default') . ')</sup>',
+        1 => $default,
         2 => $this->t('Create new links next to parent menu item links and use them as buttons.'),
-      ),
-    );
-    $form['sf-plugins']['sf-supersubs'] = array(
+      ],
+    ];
+    $form['sf-plugins']['sf-supersubs'] = [
       '#type' => 'details',
       '#title' => $this->t('Supersubs'),
       '#description' => $this->t('<strong>Supersubs</strong> makes it possible to define custom widths for your menus.'),
       '#open' => FALSE,
-    );
-    $form['sf-plugins']['sf-supersubs']['superfish_supersubs'] = array(
+    ];
+    $form['sf-plugins']['sf-supersubs']['superfish_supersubs'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Enable Supersubs for this menu.'),
       '#default_value' => $this->configuration['supersubs'],
+    ];
+    $description = sprintf('%s <em>(%s: 12)</em>',
+      $this->t('Minimum width for sub-menus, in <strong>em</strong> units.'),
+      $this->t('Default')
     );
-    $form['sf-plugins']['sf-supersubs']['superfish_minwidth'] = array(
-      '#type' => 'textfield',
+    $form['sf-plugins']['sf-supersubs']['superfish_minwidth'] = [
+      '#type' => 'number',
       '#title' => $this->t('Minimum width'),
-      '#description' => $this->t('Minimum width for sub-menus, in <strong>em</strong> units.') . ' <em>(' . $this->t('Default') . ': 12)</em>',
+      '#description' => $description,
       '#default_value' => $this->configuration['minwidth'],
       '#size' => 10,
+    ];
+    $description = sprintf('%s <em>(%s: 27)</em>',
+      $this->t('Maximum width for sub-menus, in <strong>em</strong> units.'),
+      $this->t('Default')
     );
-    $form['sf-plugins']['sf-supersubs']['superfish_maxwidth'] = array(
-      '#type' => 'textfield',
+    $form['sf-plugins']['sf-supersubs']['superfish_maxwidth'] = [
+      '#type' => 'number',
       '#title' => $this->t('Maximum width'),
-      '#description' => $this->t('Maximum width for sub-menus, in <strong>em</strong> units.') . ' <em>(' . $this->t('Default') . ': 27)</em>',
+      '#description' => $description,
       '#default_value' => $this->configuration['maxwidth'],
       '#size' => 10,
-    );
-    $form['sf-multicolumn'] = array(
+    ];
+    $form['sf-multicolumn'] = [
       '#type' => 'details',
+      '#description' => $this->t('Please refer to the Superfish module documentation for how you should setup multi-column sub-menus.'),
       '#title' => $this->t('Multi-column sub-menus'),
       '#open' => FALSE,
-    );
-    $form['sf-multicolumn']['superfish_multicolumn'] = array(
+    ];
+    $form['sf-multicolumn']['superfish_multicolumn'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Enable multi-column sub-menus.'),
       '#default_value' => $this->configuration['multicolumn'],
+    ];
+    $description = sprintf('%s <em>(%s: 1)</em>',
+      $this->t('The depth of the first instance of multi-column sub-menus.'),
+      $this->t('Default')
     );
-    $form['sf-multicolumn']['superfish_multicolumn_depth'] = array(
+    $form['sf-multicolumn']['superfish_multicolumn_depth'] = [
       '#type' => 'select',
       '#title' => $this->t('Start from depth'),
-      '#description' => $this->t('The depth of the first instance of multi-column sub-menus.') . ' <em>(' . $this->t('Default') . ': 1)</em>',
+      '#description' => $description,
       '#default_value' => $this->configuration['multicolumn_depth'],
-      '#options' => array_combine(range(1, 10),range(1, 10)),
+      '#options' => array_combine(range(1, 10), range(1, 10)),
+    ];
+    $description = sprintf('%s <em>(%s: 1)</em>',
+      $this->t('The amount of sub-menu levels that will be included in the multi-column sub-menu.'),
+      $this->t('Default')
     );
-    $form['sf-multicolumn']['superfish_multicolumn_levels'] = array(
+    $form['sf-multicolumn']['superfish_multicolumn_levels'] = [
       '#type' => 'select',
       '#title' => $this->t('Levels'),
-      '#description' => $this->t('The amount of sub-menu levels that will be included in the multi-column sub-menu.') . ' <em>(' . $this->t('Default') . ': 1)</em>',
+      '#description' => $description,
       '#default_value' => $this->configuration['multicolumn_levels'],
-      '#options' => array_combine(range(1, 10),range(1, 10)),
-    );
-    $form['sf-advanced'] = array(
+      '#options' => array_combine(range(1, 10), range(1, 10)),
+    ];
+    $form['sf-advanced'] = [
       '#type' => 'details',
       '#title' => $this->t('Advanced settings'),
       '#open' => FALSE,
-    );
-    $form['sf-advanced']['sf-settings'] = array(
+    ];
+    $form['sf-advanced']['sf-settings'] = [
       '#type' => 'details',
       '#title' => $this->t('Superfish'),
       '#open' => FALSE,
+    ];
+    $description = sprintf('%s <em>(%s: fast)</em>',
+      $this->t('The speed of the animation either in <strong>milliseconds</strong> or pre-defined values (<strong>slow, normal, fast</strong>).'),
+      $this->t('Default')
     );
-    $form['sf-advanced']['sf-settings']['superfish_speed'] = array(
+    $form['sf-advanced']['sf-settings']['superfish_speed'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Animation speed'),
-      '#description' => $this->t('The speed of the animation either in <strong>milliseconds</strong> or pre-defined values (<strong>slow, normal, fast</strong>).') . ' <em>(' . $this->t('Default') . ': fast)</em>',
+      '#description' => $description,
       '#default_value' => $this->configuration['speed'],
       '#size' => 15,
+    ];
+    $description = sprintf('%s <em>(%s: 800)</em>',
+      $this->t('The delay in <strong>milliseconds</strong> that the mouse can remain outside a sub-menu without it closing.'),
+      $this->t('Default')
     );
-    $form['sf-advanced']['sf-settings']['superfish_delay'] = array(
+    $form['sf-advanced']['sf-settings']['superfish_delay'] = [
       '#type' => 'number',
       '#title' => $this->t('Mouse delay'),
-      '#description' => $this->t('The delay in <strong>milliseconds</strong> that the mouse can remain outside a sub-menu without it closing.') . ' <em>(' . $this->t('Default') . ': 800)</em>',
+      '#description' => $description,
       '#default_value' => $this->configuration['delay'],
       '#size' => 15,
+    ];
+    $description = sprintf('%s <em>(%s: 1)</em><br>%s',
+      $this->t('The amount of sub-menu levels that remain open or are restored using the ".active-trail" class.'),
+      $this->t('Default'),
+      $this->t('Change this setting <strong>only and only</strong> if you are <strong>totally sure</strong> of what you are doing.')
     );
-    $form['sf-advanced']['sf-settings']['superfish_pathlevels'] = array(
+    $form['sf-advanced']['sf-settings']['superfish_pathlevels'] = [
       '#type' => 'select',
       '#title' => $this->t('Path levels'),
-      '#description' => $this->t('The amount of sub-menu levels that remain open or are restored using the ".active-trail" class.') . ' <em>(' . $this->t('Default') . ': 1)</em><br />' . $this->t('Change this setting <strong>only and only</strong> if you are <strong>totally sure</strong> of what you are doing.'),
+      '#description' => $description,
       '#default_value' => $this->configuration['pathlevels'],
-      '#options' => array_combine(range(0, 10),range(0, 10)),
-    );
-    $form['sf-advanced']['sf-hyperlinks'] = array(
+      '#options' => array_combine(range(0, 10), range(0, 10)),
+    ];
+    $form['sf-advanced']['sf-hyperlinks'] = [
       '#type' => 'details',
       '#title' => $this->t('Hyperlinks'),
       '#open' => TRUE,
+    ];
+    $description = sprintf('%s <em>(%s: %s)</em>',
+      $this->t('By enabling this option, only parent menu items with <em>Expanded</em> option enabled will have their submenus appear.'),
+      $this->t('Default'),
+      $this->t('disabled')
     );
-    $form['sf-advanced']['sf-hyperlinks']['superfish_expanded'] = array(
+    $form['sf-advanced']['sf-hyperlinks']['superfish_expanded'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Take "Expanded" option into effect.'),
-      '#description' => $this->t('By enabling this option, only parent menu items with <em>Expanded</em> option enabled will have their submenus appear.') . ' <em>(' . $this->t('Default') . ': ' . $this->t('disabled') . ')</em>',
+      '#description' => $description,
       '#default_value' => $this->configuration['expanded'],
+    ];
+    $description = sprintf('%s <em>(%s: %s)</em>',
+      $this->t('Add cloned parent links to the top of sub-menus.'),
+      $this->t('Default'),
+      $this->t('disabled')
     );
-    $form['sf-advanced']['sf-hyperlinks']['superfish_clone_parent'] = array(
+    $form['sf-advanced']['sf-hyperlinks']['superfish_clone_parent'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Add cloned parent links to the top of sub-menus.') . ' <em>(' . $this->t('Default') . ': ' . $this->t('disabled') . ')</em>',
+      '#title' => $description,
       '#default_value' => $this->configuration['clone_parent'],
+    ];
+    $description = sprintf('%s <em>(%s: %s)</em>',
+      $this->t('Disable hyperlink descriptions ("title" attribute)'),
+      $this->t('Default'),
+      $this->t('disabled')
     );
-    $form['sf-advanced']['sf-hyperlinks']['superfish_hide_linkdescription'] = array(
+    $form['sf-advanced']['sf-hyperlinks']['superfish_hide_linkdescription'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Disable hyperlink descriptions ("title" attribute)') . ' <em>(' . $this->t('Default') . ': ' . $this->t('disabled') . ')</em>',
+      '#title' => $description,
       '#default_value' => $this->configuration['hide_linkdescription'],
+    ];
+    $description = sprintf('%s <em>(%s: %s)</em>',
+      $this->t('Insert hyperlink descriptions ("title" attribute) into hyperlink texts.'),
+      $this->t('Default'),
+      $this->t('disabled')
     );
-    $form['sf-advanced']['sf-hyperlinks']['superfish_add_linkdescription'] = array(
+    $form['sf-advanced']['sf-hyperlinks']['superfish_add_linkdescription'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Insert hyperlink descriptions ("title" attribute) into hyperlink texts.') . ' <em>(' . $this->t('Default') . ': ' . $this->t('disabled') . ')</em>',
+      '#title' => $description,
       '#default_value' => $this->configuration['add_linkdescription'],
+    ];
+    $title = sprintf('%s <em>(sf-depth-1, sf-depth-2, sf-depth-3, ...)</em> <em>(%s: %s)</em>',
+      $this->t('Add item depth classes to menu items and their hyperlinks.'),
+      $this->t('Default'),
+      $this->t('enabled')
     );
-    $form['sf-advanced']['sf-hyperlinks']['superfish_itemdepth'] = array(
+    $form['sf-advanced']['sf-hyperlinks']['superfish_itemdepth'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Add <strong>item depth</strong> class to menu items and their hyperlinks.') . '<em>(sf-depth-1, sf-depth-2, sf-depth-3, ...)</em> <em>(' . $this->t('Default') . ': ' . $this->t('enabled') . ')</em>',
+      '#title' => $title,
       '#default_value' => $this->configuration['link_depth_class'],
-    );
-    $form['sf-advanced']['sf-custom-classes'] = array(
+    ];
+    $form['sf-advanced']['sf-custom-classes'] = [
       '#type' => 'details',
       '#title' => $this->t('Custom classes'),
       '#open' => TRUE,
+    ];
+    $description = sprintf('%s <em>(%s: %s)</em><br>%s: top-menu category-science',
+      $this->t('(Space separated, without dots)'),
+      $this->t('Default'),
+      $this->t('empty'),
+      $this->t('Example')
     );
-    $form['sf-advanced']['sf-custom-classes']['superfish_ulclass'] = array(
+    $form['sf-advanced']['sf-custom-classes']['superfish_ulclass'] = [
       '#type' => 'textfield',
       '#title' => $this->t('For the main UL'),
-      '#description' => $this->t('(Space separated, without dots)') . ' <em>(' . $this->t('Default') . ': ' . $this->t('empty') . ')</em><br />' . $this->t('Example') . ': top-menu category-science',
+      '#description' => $description,
       '#default_value' => $this->configuration['custom_list_class'],
       '#size' => 50,
       '#maxlength' => 1000,
+    ];
+    $description = sprintf('%s <em>(%s: %s)</em><br>%s: science-sub',
+      $this->t('(Space separated, without dots)'),
+      $this->t('Default'),
+      $this->t('empty'),
+      $this->t('Example')
     );
-    $form['sf-advanced']['sf-custom-classes']['superfish_liclass'] = array(
+    $form['sf-advanced']['sf-custom-classes']['superfish_liclass'] = [
       '#type' => 'textfield',
       '#title' => $this->t('For the list items'),
-      '#description' => $this->t('(Space separated, without dots)') . ' <em>(' . $this->t('Default') . ': ' . $this->t('empty') . ')</em><br />' . $this->t('Example') . ': science-sub',
+      '#description' => $description,
       '#default_value' => $this->configuration['custom_item_class'],
       '#size' => 50,
       '#maxlength' => 1000,
+    ];
+    $description = sprintf('%s <em>(%s: %s)</em><br>%s: science-link',
+      $this->t('(Space separated, without dots)'),
+      $this->t('Default'),
+      $this->t('empty'),
+      $this->t('Example')
     );
-    $form['sf-advanced']['sf-custom-classes']['superfish_hlclass'] = array(
+    $form['sf-advanced']['sf-custom-classes']['superfish_hlclass'] = [
       '#type' => 'textfield',
       '#title' => $this->t('For the hyperlinks'),
-      '#description' => $this->t('(Space separated, without dots)') . ' <em>(' . $this->t('Default') . ': ' . $this->t('empty') . ')</em><br />' . $this->t('Example') . ': science-link',
+      '#description' => $description,
       '#default_value' => $this->configuration['custom_link_class'],
       '#size' => 50,
       '#maxlength' => 1000,
-    );
+    ];
     return $form;
   }
 
@@ -477,23 +721,76 @@ class SuperfishBlock extends SystemMenuBlock {
    * Overrides \Drupal\block\BlockBase::blockValiate().
    */
   public function blockValidate($form, FormStateInterface $form_state) {
-    /**
-     // Commented out for now as I couldn't get validation to work, with RC4 at least.
+    $touch = $form_state->getValue([
+      'sf-plugins',
+      'sf-touchscreen',
+      'sf-touchscreen-useragent',
+      'superfish_touch',
+    ]);
+    $touchbp = $form_state->getValue([
+      'sf-plugins',
+      'sf-touchscreen',
+      'sf-touchscreen-windowwidth',
+      'superfish_touchbp',
+    ]);
+    $touchua = $form_state->getValue([
+      'sf-plugins',
+      'sf-touchscreen',
+      'sf-touchscreen-useragent',
+      'superfish_touchua',
+    ]);
+    $touchual = $form_state->getValue([
+      'sf-plugins',
+      'sf-touchscreen',
+      'sf-touchscreen-useragent',
+      'superfish_touchual',
+    ]);
+    $small = $form_state->getValue([
+      'sf-plugins',
+      'sf-smallscreen',
+      'sf-smallscreen-useragent',
+      'superfish_small',
+    ]);
+    $smallbp = $form_state->getValue([
+      'sf-plugins',
+      'sf-smallscreen',
+      'sf-smallscreen-windowwidth',
+      'superfish_smallbp',
+    ]);
+    $smallua = $form_state->getValue([
+      'sf-plugins',
+      'sf-smallscreen',
+      'sf-smallscreen-useragent',
+      'superfish_smallua',
+    ]);
+    $smallual = $form_state->getValue([
+      'sf-plugins',
+      'sf-smallscreen',
+      'sf-smallscreen-useragent',
+      'superfish_smallual',
+    ]);
+    $minwidth = $form_state->getValue([
+      'sf-plugins',
+      'sf-supersubs',
+      'superfish_minwidth',
+    ]);
+    $maxwidth = $form_state->getValue([
+      'sf-plugins',
+      'sf-supersubs',
+      'superfish_maxwidth',
+    ]);
+    $speed = $form_state->getValue([
+      'sf-advanced',
+      'sf-settings',
+      'superfish_speed',
+    ]);
+    $delay = $form_state->getValue([
+      'sf-advanced',
+      'sf-settings',
+      'superfish_delay',
+    ]);
 
-    $touch = $form_state->getValue(array('sf-plugins', 'sf-touchscreen', 'sf-touchscreen-useragent', 'superfish_touch'));
-    $touchbp = $form_state->getValue(array('sf-plugins', 'sf-touchscreen', 'sf-touchscreen-windowwidth', 'superfish_touchbp'));
-    $touchua = $form_state->getValue(array('sf-plugins', 'sf-touchscreen', 'sf-touchscreen-useragent', 'superfish_touchua'));
-    $touchual = $form_state->getValue(array('sf-plugins', 'sf-touchscreen', 'sf-touchscreen-useragent', 'superfish_touchual'));
-    $small = $form_state->getValue(array('sf-plugins', 'sf-smallscreen', 'sf-smallscreen-useragent', 'superfish_small'));
-    $smallbp = $form_state->getValue(array('sf-plugins', 'sf-smallscreen', 'sf-smallscreen-useragent', 'superfish_smallbp'));
-    $smallua = $form_state->getValue(array('sf-plugins', 'sf-smallscreen', 'sf-smallscreen-useragent', 'superfish_smallua'));
-    $smallual = $form_state->getValue(array('sf-plugins', 'sf-smallscreen', 'sf-smallscreen-useragent', 'superfish_smallual'));
-    $minwidth = $form_state->getValue(array('sf-plugins', 'sf-supersubs', 'superfish_minwidth'));
-    $maxwidth = $form_state->getValue(array('sf-plugins', 'sf-supersubs', 'superfish_maxwidth'));
-    $speed = $form_state->getValue(array('sf-advanced', 'sf-settings', 'superfish_speed'));
-    $delay = $form_state->getValue(array('sf-advanced', 'sf-settings', 'superfish_delay'));
-
-    if (!is_numeric($speed) && !in_array($speed, array('slow', 'normal', 'fast'))) {
+    if (!is_numeric($speed) && !in_array($speed, ['slow', 'normal', 'fast'])) {
       $form_state->setErrorByName('superfish_speed', t('Unacceptable value entered for the "Animation speed" option.'));
     }
     if (!is_numeric($delay)) {
@@ -530,9 +827,6 @@ class SuperfishBlock extends SystemMenuBlock {
     if ($supersubs_error !== TRUE && $minwidth > $maxwidth) {
       $form_state->setErrorByName('superfish_maxwidth', t('Supersubs "maximum width" has to be bigger than the "minimum width".'));
     }
-
-    parent::blockValidate($form, $form_state);
-    */
   }
 
   /**
@@ -542,58 +836,255 @@ class SuperfishBlock extends SystemMenuBlock {
 
     $this->configuration['level'] = $form_state->getValue('level');
     $this->configuration['depth'] = $form_state->getValue('depth');
-    $this->configuration['menu_type'] = $form_state->getValue(array('sf', 'superfish_type'));
-    $this->configuration['style'] = $form_state->getValue(array('sf', 'superfish_style'));
-    $this->configuration['arrow'] = $form_state->getValue(array('sf', 'superfish_arrow'));
-    $this->configuration['shadow'] = $form_state->getValue(array('sf', 'superfish_shadow'));
-    $this->configuration['slide'] = $form_state->getValue(array('sf', 'superfish_slide'));
+    $this->configuration['menu_type'] = $form_state->getValue([
+      'sf',
+      'superfish_type',
+    ]);
+    $this->configuration['style'] = $form_state->getValue([
+      'sf',
+      'superfish_style',
+    ]);
+    $this->configuration['arrow'] = $form_state->getValue([
+      'sf',
+      'superfish_arrow',
+    ]);
+    $this->configuration['shadow'] = $form_state->getValue([
+      'sf',
+      'superfish_shadow',
+    ]);
+    $this->configuration['slide'] = $form_state->getValue([
+      'sf',
+      'superfish_slide',
+    ]);
 
-    $this->configuration['supposition'] = $form_state->getValue(array('sf-plugins', 'superfish_supposition'));
-    $this->configuration['hoverintent'] = $form_state->getValue(array('sf-plugins', 'superfish_hoverintent'));
+    $this->configuration['supposition'] = $form_state->getValue([
+      'sf-plugins',
+      'superfish_supposition',
+    ]);
+    $this->configuration['hoverintent'] = $form_state->getValue([
+      'sf-plugins',
+      'superfish_hoverintent',
+    ]);
 
-    $this->configuration['touch'] = $form_state->getValue(array('sf-plugins', 'sf-touchscreen', 'superfish_touch'));
-    $this->configuration['touchbh'] = $form_state->getValue(array('sf-plugins', 'sf-touchscreen', 'superfish_touchbh'));
-    $this->configuration['touchbp'] = $form_state->getValue(array('sf-plugins', 'sf-touchscreen', 'sf-touchscreen-windowwidth', 'superfish_touchbp'));
-    $this->configuration['touchua'] = $form_state->getValue(array('sf-plugins', 'sf-touchscreen', 'sf-touchscreen-useragent', 'superfish_touchua'));
-    $this->configuration['touchual'] = $form_state->getValue(array('sf-plugins', 'sf-touchscreen', 'sf-touchscreen-useragent', 'superfish_touchual'));
-    $this->configuration['touchuam'] = $form_state->getValue(array('sf-plugins', 'sf-touchscreen', 'sf-touchscreen-useragent', 'superfish_touchuam'));
+    $this->configuration['touch'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-touchscreen',
+      'superfish_touch',
+    ]);
+    $this->configuration['touchbh'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-touchscreen',
+      'superfish_touchbh',
+    ]);
+    $this->configuration['touchbp'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-touchscreen',
+      'sf-touchscreen-windowwidth',
+      'superfish_touchbp',
+    ]);
+    $this->configuration['touchua'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-touchscreen',
+      'sf-touchscreen-useragent',
+      'superfish_touchua',
+    ]);
+    $this->configuration['touchual'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-touchscreen',
+      'sf-touchscreen-useragent',
+      'superfish_touchual',
+    ]);
+    $this->configuration['touchuam'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-touchscreen',
+      'sf-touchscreen-useragent',
+      'superfish_touchuam',
+    ]);
 
-    $this->configuration['small'] = $form_state->getValue(array('sf-plugins', 'sf-smallscreen', 'superfish_small'));
-    $this->configuration['smallact'] = $form_state->getValue(array('sf-plugins', 'sf-smallscreen', 'superfish_smallact'));
-    $this->configuration['smallbp'] = $form_state->getValue(array('sf-plugins', 'sf-smallscreen', 'sf-smallscreen-windowwidth', 'superfish_smallbp'));
-    $this->configuration['smallua'] = $form_state->getValue(array('sf-plugins', 'sf-smallscreen', 'sf-smallscreen-useragent', 'superfish_smallua'));
-    $this->configuration['smallual'] = $form_state->getValue(array('sf-plugins', 'sf-smallscreen', 'sf-smallscreen-useragent', 'superfish_smallual'));
-    $this->configuration['smalluam'] = $form_state->getValue(array('sf-plugins', 'sf-smallscreen', 'sf-smallscreen-useragent', 'superfish_smalluam'));
-    $this->configuration['smallset'] = $form_state->getValue(array('sf-plugins', 'sf-smallscreen', 'sf-smallscreen-select', 'superfish_smallset'));
-    $this->configuration['smallasa'] = $form_state->getValue(array('sf-plugins', 'sf-smallscreen', 'sf-smallscreen-select', 'superfish_smallasa'));
-    $this->configuration['smallcmc'] = $form_state->getValue(array('sf-plugins', 'sf-smallscreen', 'sf-smallscreen-select', 'sf-smallscreen-select-more', 'superfish_smallcmc'));
-    $this->configuration['smallecm'] = $form_state->getValue(array('sf-plugins', 'sf-smallscreen', 'sf-smallscreen-select', 'sf-smallscreen-select-more', 'superfish_smallecm'));
-    $this->configuration['smallchc'] = $form_state->getValue(array('sf-plugins', 'sf-smallscreen', 'sf-smallscreen-select', 'sf-smallscreen-select-more', 'superfish_smallchc'));
-    $this->configuration['smallech'] = $form_state->getValue(array('sf-plugins', 'sf-smallscreen', 'sf-smallscreen-select', 'sf-smallscreen-select-more', 'superfish_smallech'));
-    $this->configuration['smallicm'] = $form_state->getValue(array('sf-plugins', 'sf-smallscreen', 'sf-smallscreen-select', 'sf-smallscreen-select-more', 'superfish_smallicm'));
-    $this->configuration['smallich'] = $form_state->getValue(array('sf-plugins', 'sf-smallscreen', 'sf-smallscreen-select', 'sf-smallscreen-select-more', 'superfish_smallich'));
-    $this->configuration['smallamt'] = $form_state->getValue(array('sf-plugins', 'sf-smallscreen', 'sf-smallscreen-accordion', 'superfish_smallamt'));
-    $this->configuration['smallabt'] = $form_state->getValue(array('sf-plugins', 'sf-smallscreen', 'sf-smallscreen-accordion', 'superfish_smallabt'));
+    $this->configuration['small'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-smallscreen',
+      'superfish_small',
+    ]);
+    $this->configuration['smallact'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-smallscreen',
+      'superfish_smallact',
+    ]);
+    $this->configuration['smallbp'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-smallscreen',
+      'sf-smallscreen-windowwidth',
+      'superfish_smallbp',
+    ]);
+    $this->configuration['smallua'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-smallscreen',
+      'sf-smallscreen-useragent',
+      'superfish_smallua',
+    ]);
+    $this->configuration['smallual'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-smallscreen',
+      'sf-smallscreen-useragent',
+      'superfish_smallual',
+    ]);
+    $this->configuration['smalluam'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-smallscreen',
+      'sf-smallscreen-useragent',
+      'superfish_smalluam',
+    ]);
+    $this->configuration['smallset'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-smallscreen',
+      'sf-smallscreen-select',
+      'superfish_smallset',
+    ]);
+    $this->configuration['smallasa'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-smallscreen',
+      'sf-smallscreen-select',
+      'superfish_smallasa',
+    ]);
+    $this->configuration['smallcmc'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-smallscreen',
+      'sf-smallscreen-select',
+      'sf-smallscreen-select-more',
+      'superfish_smallcmc',
+    ]);
+    $this->configuration['smallecm'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-smallscreen',
+      'sf-smallscreen-select',
+      'sf-smallscreen-select-more',
+      'superfish_smallecm',
+    ]);
+    $this->configuration['smallchc'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-smallscreen',
+      'sf-smallscreen-select',
+      'sf-smallscreen-select-more',
+      'superfish_smallchc',
+    ]);
+    $this->configuration['smallech'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-smallscreen',
+      'sf-smallscreen-select',
+      'sf-smallscreen-select-more',
+      'superfish_smallech',
+    ]);
+    $this->configuration['smallicm'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-smallscreen',
+      'sf-smallscreen-select',
+      'sf-smallscreen-select-more',
+      'superfish_smallicm',
+    ]);
+    $this->configuration['smallich'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-smallscreen',
+      'sf-smallscreen-select',
+      'sf-smallscreen-select-more',
+      'superfish_smallich',
+    ]);
+    $this->configuration['smallamt'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-smallscreen',
+      'sf-smallscreen-accordion',
+      'superfish_smallamt',
+    ]);
+    $this->configuration['smallabt'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-smallscreen',
+      'sf-smallscreen-accordion',
+      'superfish_smallabt',
+    ]);
 
-    $this->configuration['supersubs'] = $form_state->getValue(array('sf-plugins', 'sf-supersubs', 'superfish_supersubs'));
-    $this->configuration['minwidth'] = $form_state->getValue(array('sf-plugins', 'sf-supersubs', 'superfish_minwidth'));
-    $this->configuration['maxwidth'] = $form_state->getValue(array('sf-plugins', 'sf-supersubs', 'superfish_maxwidth'));
+    $this->configuration['supersubs'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-supersubs',
+      'superfish_supersubs',
+    ]);
+    $this->configuration['minwidth'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-supersubs',
+      'superfish_minwidth',
+    ]);
+    $this->configuration['maxwidth'] = $form_state->getValue([
+      'sf-plugins',
+      'sf-supersubs',
+      'superfish_maxwidth',
+    ]);
+    $this->configuration['multicolumn'] = $form_state->getValue([
+      'sf-multicolumn',
+      'superfish_multicolumn',
+    ]);
+    $this->configuration['multicolumn_depth'] = $form_state->getValue([
+      'sf-multicolumn',
+      'superfish_multicolumn_depth',
+    ]);
+    $this->configuration['multicolumn_levels'] = $form_state->getValue([
+      'sf-multicolumn',
+      'superfish_multicolumn_levels',
+    ]);
 
-    $this->configuration['multicolumn'] = $form_state->getValue(array('sf-multicolumn', 'superfish_multicolumn'));
-    $this->configuration['multicolumn_depth'] = $form_state->getValue(array('sf-multicolumn', 'superfish_multicolumn_depth'));
-    $this->configuration['multicolumn_levels'] = $form_state->getValue(array('sf-multicolumn', 'superfish_multicolumn_levels'));
-
-    $this->configuration['speed'] = $form_state->getValue(array('sf-advanced', 'sf-settings', 'superfish_speed'));
-    $this->configuration['delay'] = $form_state->getValue(array('sf-advanced', 'sf-settings', 'superfish_delay'));
-    $this->configuration['pathlevels'] = $form_state->getValue(array('sf-advanced', 'sf-settings', 'superfish_pathlevels'));
-    $this->configuration['expanded'] = $form_state->getValue(array('sf-advanced', 'sf-hyperlinks', 'superfish_expanded'));
-    $this->configuration['clone_parent'] = $form_state->getValue(array('sf-advanced', 'sf-hyperlinks', 'superfish_clone_parent'));
-    $this->configuration['hide_linkdescription'] = $form_state->getValue(array('sf-advanced', 'sf-hyperlinks', 'superfish_hide_linkdescription'));
-    $this->configuration['add_linkdescription'] = $form_state->getValue(array('sf-advanced', 'sf-hyperlinks', 'superfish_add_linkdescription'));
-    $this->configuration['link_depth_class'] = $form_state->getValue(array('sf-advanced', 'sf-hyperlinks', 'superfish_itemdepth'));
-    $this->configuration['custom_list_class'] = $form_state->getValue(array('sf-advanced', 'sf-custom-classes', 'superfish_ulclass'));
-    $this->configuration['custom_item_class'] = $form_state->getValue(array('sf-advanced', 'sf-custom-classes', 'superfish_liclass'));
-    $this->configuration['custom_link_class'] = $form_state->getValue(array('sf-advanced', 'sf-custom-classes', 'superfish_hlclass'));
+    $this->configuration['speed'] = $form_state->getValue([
+      'sf-advanced',
+      'sf-settings',
+      'superfish_speed',
+    ]);
+    $this->configuration['delay'] = $form_state->getValue([
+      'sf-advanced',
+      'sf-settings',
+      'superfish_delay',
+    ]);
+    $this->configuration['pathlevels'] = $form_state->getValue([
+      'sf-advanced',
+      'sf-settings',
+      'superfish_pathlevels',
+    ]);
+    $this->configuration['expanded'] = $form_state->getValue([
+      'sf-advanced',
+      'sf-hyperlinks',
+      'superfish_expanded',
+    ]);
+    $this->configuration['clone_parent'] = $form_state->getValue([
+      'sf-advanced',
+      'sf-hyperlinks',
+      'superfish_clone_parent',
+    ]);
+    $this->configuration['hide_linkdescription'] = $form_state->getValue([
+      'sf-advanced',
+      'sf-hyperlinks',
+      'superfish_hide_linkdescription',
+    ]);
+    $this->configuration['add_linkdescription'] = $form_state->getValue([
+      'sf-advanced',
+      'sf-hyperlinks',
+      'superfish_add_linkdescription',
+    ]);
+    $this->configuration['link_depth_class'] = $form_state->getValue([
+      'sf-advanced',
+      'sf-hyperlinks',
+      'superfish_itemdepth',
+    ]);
+    $this->configuration['custom_list_class'] = $form_state->getValue([
+      'sf-advanced',
+      'sf-custom-classes',
+      'superfish_ulclass',
+    ]);
+    $this->configuration['custom_item_class'] = $form_state->getValue([
+      'sf-advanced',
+      'sf-custom-classes',
+      'superfish_liclass',
+    ]);
+    $this->configuration['custom_link_class'] = $form_state->getValue([
+      'sf-advanced',
+      'sf-custom-classes',
+      'superfish_hlclass',
+    ]);
   }
 
   /**
@@ -601,11 +1092,11 @@ class SuperfishBlock extends SystemMenuBlock {
    */
   public function build() {
 
-  $build = array();
+    $build = [];
 
     // Block settings which will be passed to the Superfish themes.
-    $sfsettings = array();
-    $sfsettings['level']               = $this->configuration['level'];
+    $sfsettings                         = [];
+    $sfsettings['level']                = $this->configuration['level'];
     $sfsettings['depth']                = $this->configuration['depth'];
     $sfsettings['menu_type']            = $this->configuration['menu_type'];
     $sfsettings['style']                = $this->configuration['style'];
@@ -622,7 +1113,7 @@ class SuperfishBlock extends SystemMenuBlock {
     $sfsettings['multicolumn_levels']   = $this->configuration['multicolumn_levels'] + $sfsettings['multicolumn_depth'];
 
     // jQuery plugin options which will be passed to the Drupal behavior.
-    $sfoptions = array();
+    $sfoptions = [];
     $sfoptions['pathClass'] = ($sfsettings['menu_type'] == 'navbar') ? 'active-trail' : '';
     $sfoptions['pathLevels'] = ($this->configuration['pathlevels'] != 1) ? $this->configuration['pathlevels'] : '';
     $sfoptions['delay'] = ($this->configuration['delay'] != 800) ? $this->configuration['delay'] : '';
@@ -632,15 +1123,18 @@ class SuperfishBlock extends SystemMenuBlock {
       $slide = explode('_', $slide);
       switch ($slide[1]) {
         case 'vertical':
-          $sfoptions['animation']['height'] = array('show', $slide[0]);
-        break;
+          $sfoptions['animation']['height'] = ['show', $slide[0]];
+          break;
+
         case 'horizontal':
-          $sfoptions['animation']['width'] = array('show', $slide[0]);
-        break;
+          $sfoptions['animation']['width'] = ['show', $slide[0]];
+          break;
+
         case 'diagonal':
-          $sfoptions['animation']['height'] = array('show', $slide[0]);
-          $sfoptions['animation']['width'] = array('show', $slide[0]);
-        break;
+          $sfoptions['animation']['height'] = ['show', $slide[0]];
+          $sfoptions['animation']['width'] = ['show', $slide[0]];
+          break;
+
       }
       $build['#attached']['library'][] = 'superfish/superfish_easing';
     }
@@ -648,22 +1142,34 @@ class SuperfishBlock extends SystemMenuBlock {
       switch ($slide) {
         case 'vertical':
           $sfoptions['animation']['height'] = 'show';
-        break;
+          break;
+
         case 'horizontal':
           $sfoptions['animation']['width'] = 'show';
-        break;
+          break;
+
         case 'diagonal':
           $sfoptions['animation']['height'] = 'show';
           $sfoptions['animation']['width'] = 'show';
-        break;
+          break;
+
       }
     }
     $speed = $this->configuration['speed'];
     if ($speed != 'normal') {
-      $sfoptions['speed'] = ((is_numeric($speed)) ? (int)$speed : (($speed == ('slow' || 'normal' || 'fast')) ? $speed : ''));
+      if (is_numeric($speed)) {
+        $sfoptions['speed'] = (int) $speed;
+      }
+      elseif (in_array($speed, ['slow', 'normal', 'fast'])) {
+        $sfoptions['speed'] = $speed;
+      }
     }
-    $sfoptions['autoArrows'] = ($this->configuration['arrow'] == 0) ? FALSE : '';
-    $sfoptions['dropShadows'] = ($this->configuration['shadow'] == 0) ? FALSE : '';
+    if ($this->configuration['arrow'] == 0) {
+      $sfoptions['autoArrows'] = FALSE;
+    }
+    if ($this->configuration['shadow'] == 0) {
+      $sfoptions['dropShadows'] = FALSE;
+    }
 
     if ($this->configuration['hoverintent']) {
       $build['#attached']['library'][] = 'superfish/superfish_hoverintent';
@@ -671,63 +1177,69 @@ class SuperfishBlock extends SystemMenuBlock {
     else {
       $sfoptions['disableHI'] = TRUE;
     }
-    $sfoptions = superfish_array_remove_empty($sfoptions);
+    $sfoptions = sf_array_filter($sfoptions);
 
     // Options for Superfish sub-plugins.
-    $sfplugins = array();
+    $sfplugins = [];
     $touchscreen = $this->configuration['touch'];
     if ($touchscreen) {
       $build['#attached']['library'][] = 'superfish/superfish_touchscreen';
       $behaviour = $this->configuration['touchbh'];
       $sfplugins['touchscreen']['behaviour'] = ($behaviour != 2) ? $behaviour : '';
       switch ($touchscreen) {
-        case 1 :
+        case 1:
           $sfplugins['touchscreen']['mode'] = 'always_active';
-        break;
-        case 2 :
+          break;
+
+        case 2:
           $sfplugins['touchscreen']['mode'] = 'window_width';
           $tsbp = $this->configuration['touchbp'];
-          $sfplugins['touchscreen']['breakpoint'] = ($tsbp != 768) ? (int)$tsbp : '';
-        break;
-        case 3 :
+          $sfplugins['touchscreen']['breakpoint'] = ($tsbp != 768) ? (int) $tsbp : '';
+          break;
+
+        case 3:
           // Which method to use for UA detection.
           $tsuam = $this->configuration['touchuam'];
           $tsua = $this->configuration['touchua'];
           switch ($tsuam) {
             // Client-side.
-            case 0 :
+            case 0:
               switch ($tsua) {
-                case 0 :
+                case 0:
                   $sfplugins['touchscreen']['mode'] = 'useragent_predefined';
-                break;
-                case 1 :
+                  break;
+
+                case 1:
                   $sfplugins['touchscreen']['mode'] = 'useragent_custom';
                   $tsual = drupal_strtolower($this->configuration['touchual']);
                   if (strpos($tsual, '*')) {
                     $tsual = str_replace('*', '|', $tsual);
                   }
                   $sfplugins['touchscreen']['useragent'] = $tsual;
-                break;
+                  break;
+
               }
-            break;
+              break;
+
             // Server-side.
-            case 1 :
+            case 1:
               if (isset($_SERVER['HTTP_USER_AGENT'])) {
                 $hua = drupal_strtolower($_SERVER['HTTP_USER_AGENT']);
                 switch ($tsua) {
                   // Use the pre-defined list of mobile UA strings.
-                  case 0 :
+                  case 0:
                     if (preg_match('/(android|bb\d+|meego)|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i', $hua)) {
                       $sfplugins['touchscreen']['mode'] = 'always_active';
                       if ($behaviour == 2) {
                         $sfsettings['clone_parent'] = 1;
                       }
                     }
-                  break;
+                    break;
+
                   // Use the custom list of UA strings.
-                  case 1 :
+                  case 1:
                     $tsual = drupal_strtolower($this->configuration['touchual']);
-                    $tsuac = array();
+                    $tsuac = [];
                     if (strpos($tsual, '*')) {
                       $tsual = explode('*', $tsual);
                       foreach ($tsual as $ua) {
@@ -743,12 +1255,15 @@ class SuperfishBlock extends SystemMenuBlock {
                         $sfsettings['clone_parent'] = 1;
                       }
                     }
-                  break;
+                    break;
+
                 }
               }
-            break;
+              break;
+
           }
-        break;
+          break;
+
       }
     }
 
@@ -756,51 +1271,62 @@ class SuperfishBlock extends SystemMenuBlock {
     if ($smallscreen) {
       $build['#attached']['library'][] = 'superfish/superfish_smallscreen';
       switch ($smallscreen) {
-        case 1 :
+        case 1:
           $sfplugins['smallscreen']['mode'] = 'always_active';
-        break;
-        case 2 :
+          break;
+
+        case 2:
           $sfplugins['smallscreen']['mode'] = 'window_width';
           $ssbp = $this->configuration['smallbp'];
-          $sfplugins['smallscreen']['breakpoint'] = ($ssbp != 768) ? (int)$ssbp : '';
-        break;
-        case 3 :
+          if ($ssbp != 768) {
+            $sfplugins['smallscreen']['breakpoint'] = (int) $ssbp;
+          }
+          else {
+            $sfplugins['smallscreen']['breakpoint'] = '';
+          }
+          break;
+
+        case 3:
           // Which method to use for UA detection.
           $ssuam = $this->configuration['smalluam'];
           $ssua = $this->configuration['smallua'];
           switch ($ssuam) {
             // Client-side.
-            case 0 :
+            case 0:
               switch ($ssua) {
-                case 0 :
+                case 0:
                   $sfplugins['smallscreen']['mode'] = 'useragent_predefined';
-                break;
-                case 1 :
+                  break;
+
+                case 1:
                   $sfplugins['smallscreen']['mode'] = 'useragent_custom';
                   $ssual = drupal_strtolower($this->configuration['smallual']);
                   if (strpos($ssual, '*')) {
                     $ssual = str_replace('*', '|', $ssual);
                   }
                   $sfplugins['smallscreen']['useragent'] = $ssual;
-                break;
-              }
+                  break;
 
-            break;
+              }
+              break;
+
             // Server-side.
-            case 1 :
+            case 1:
               if (isset($_SERVER['HTTP_USER_AGENT'])) {
                 $hua = drupal_strtolower($_SERVER['HTTP_USER_AGENT']);
                 switch ($ssua) {
                   // Use the pre-defined list of mobile UA strings.
-                  case 0 :
+                  case 0:
                     if (preg_match('/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i', $hua)) {
                       $sfplugins['smallscreen']['mode'] = 'always_active';
                     }
-                  break;
+                    break;
+
                   // Use the custom list of UA strings.
-                  case 1 :
-                    $ssual = drupal_strtolower($this->configuration['smallual']);
-                    $ssuac = array();
+                  case 1:
+                    $ssual = $this->configuration['smallual'];
+                    $ssual = drupal_strtolower($ssual);
+                    $ssuac = [];
                     if (strpos($ssual, '*')) {
                       $ssual = explode('*', $ssual);
                       foreach ($ssual as $ua) {
@@ -813,12 +1339,15 @@ class SuperfishBlock extends SystemMenuBlock {
                     if (in_array(1, $ssuac)) {
                       $sfplugins['smallscreen']['mode'] = 'always_active';
                     }
-                  break;
+                    break;
+
                 }
               }
-            break;
+              break;
+
           }
-        break;
+          break;
+
       }
       $type = $this->configuration['smallact'];
       switch ($type) {
@@ -834,18 +1363,34 @@ class SuperfishBlock extends SystemMenuBlock {
           $sfplugins['smallscreen']['type'] = 'select';
           $sfplugins['smallscreen']['addSelected'] = ($asa == 1) ? TRUE : '';
           $sfplugins['smallscreen']['menuClasses'] = ($cmc == 1) ? TRUE : '';
-          $sfplugins['smallscreen']['hyperlinkClasses'] = ($chc == 1) ? TRUE : '';
-          $sfplugins['smallscreen']['excludeClass_menu'] = ($cmc == 1 && !empty($ecm)) ? $ecm : '';
-          $sfplugins['smallscreen']['excludeClass_hyperlink'] = ($chc == 1 && !empty($ech)) ? $ech : '';
-          $sfplugins['smallscreen']['includeClass_menu'] = (!empty($icm)) ? $icm : '';
-          $sfplugins['smallscreen']['includeClass_hyperlink'] = (!empty($ich)) ? $ich : '';
-        break;
+          if ($chc == 1) {
+            $sfplugins['smallscreen']['hyperlinkClasses'] = TRUE;
+          }
+          if ($cmc == 1 && !empty($ecm)) {
+            $sfplugins['smallscreen']['excludeClass_menu'] = $ecm;
+          }
+          if ($chc == 1 && !empty($ech)) {
+            $sfplugins['smallscreen']['excludeClass_hyperlink'] = $ech;
+          }
+          if (!empty($icm)) {
+            $sfplugins['smallscreen']['includeClass_menu'] = $icm;
+          }
+          if (!empty($ich)) {
+            $sfplugins['smallscreen']['includeClass_hyperlink'] = $ich;
+          }
+          break;
+
         case 1:
           $ab = $this->configuration['smallabt'];
           $sfplugins['smallscreen']['accordionButton'] = ($ab != 1) ? $ab : '';
-          $sfplugins['smallscreen']['expandText'] = ($this->t('Expand') != 'Expand') ? $this->t('Expand') : '';
-          $sfplugins['smallscreen']['collapseText'] = ($this->t('Collapse') != 'Collapse') ? $this->t('Collapse') : '';
-        break;
+          if ($this->t('Expand') != 'Expand') {
+            $sfplugins['smallscreen']['expandText'] = $this->t('Expand');
+          }
+          if ($this->t('Collapse') != 'Collapse') {
+            $sfplugins['smallscreen']['collapseText'] = $this->t('Collapse');
+          }
+          break;
+
       }
     }
 
@@ -860,7 +1405,8 @@ class SuperfishBlock extends SystemMenuBlock {
       $maxwidth = $this->configuration['maxwidth'];
       $sfplugins['supersubs']['minWidth'] = ($minwidth != 12) ? $minwidth : '';
       $sfplugins['supersubs']['maxWidth'] = ($maxwidth != 27) ? $maxwidth : '';
-      if (empty($sfplugins['supersubs']['minWidth']) && empty($sfplugins['supersubs']['maxWidth'])) {
+      if (empty($sfplugins['supersubs']['minWidth']) &&
+          empty($sfplugins['supersubs']['maxWidth'])) {
         $sfplugins['supersubs'] = TRUE;
       }
     }
@@ -868,23 +1414,26 @@ class SuperfishBlock extends SystemMenuBlock {
     // Attaching the requires JavaScript and CSS files.
     $build['#attached']['library'][] = 'superfish/superfish';
     if ($sfsettings['style'] != 'none') {
-      $build['#attached']['library'][] = 'superfish/superfish_style_'. $sfsettings['style'];
+      $style = 'superfish/superfish_style_' . $sfsettings['style'];
+      $build['#attached']['library'][] = $style;
     }
 
     // Title for the small-screen menu.
     if ($smallscreen) {
       $title = '';
       switch ($type) {
-        case 0 :
+        case 0:
           $title = $this->configuration['smallset'];
-        break;
-        case 1 :
+          break;
+
+        case 1:
           $title = $this->configuration['smallamt'];
-        break;
+          break;
+
       }
       $sfplugins['smallscreen']['title'] = $title ? $title : $this->label();
     }
-    $sfplugins = superfish_array_remove_empty($sfplugins);
+    $sfplugins = sf_array_filter($sfplugins);
 
     // Menu block ID.
     $menu_name = $this->getDerivativeId();
@@ -894,40 +1443,55 @@ class SuperfishBlock extends SystemMenuBlock {
     // Menu display depth.
     $depth = $sfsettings['depth'];
 
-    // By not setting the any expanded parents we don't limit the loading of the subtrees.
-    // Calling MenuLinkTreeInterface::getCurrentRouteMenuTreeParameters we would be
-    // doing so. We don't actually need the parents expanded as we do different rendering.
+    /*
+     * By not setting the any expanded parents we don't limit the loading of the
+     * subtrees.
+     * Calling MenuLinkTreeInterface::getCurrentRouteMenuTreeParameters we
+     * would be doing so.
+     * We don't actually need the parents expanded as we do different rendering.
+     */
+    if ($depth) {
+      $maxdepth = min($level + ($depth - 1), $this->menuTree->maxDepth());
+    }
+    else {
+      $maxdepth = NULL;
+    }
     $parameters = (new MenuTreeParameters())
       ->setMinDepth($level)
-      ->setMaxDepth($depth ? min($level + ($depth - 1), $this->menuTree->maxDepth()) : NULL)
+      ->setMaxDepth($maxdepth)
       ->setActiveTrail($this->menuActiveTrail->getActiveTrailIds($menu_name))
       ->onlyEnabledLinks();
 
     $tree = $this->menuTree->load($menu_name, $parameters);
-    $manipulators = array(
+    $manipulators = [
       ['callable' => 'menu.default_tree_manipulators:checkAccess'],
-      ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort']
-    );
+      ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
+    ];
     $tree = $this->menuTree->transform($tree, $manipulators);
 
     // Unique HTML ID.
-    $html_id = Html::getUniqueId('superfish-' . $menu_name);
+    $id = Html::getUniqueId('superfish-' . $menu_name);
 
     // Preparing the Drupal behavior.
-    $build['#attached']['drupalSettings']['superfish'][$html_id]['id'] = $html_id;
-    $build['#attached']['drupalSettings']['superfish'][$html_id]['sf'] = isset($sfoptions) ? $sfoptions : array();
+    $build['#attached']['drupalSettings']['superfish'][$id]['id'] = $id;
+    if (isset($sfoptions)) {
+      $build['#attached']['drupalSettings']['superfish'][$id]['sf'] = $sfoptions;
+    }
+    else {
+      $build['#attached']['drupalSettings']['superfish'][$id]['sf'] = [];
+    }
     if (!empty($sfplugins)) {
-      $build['#attached']['drupalSettings']['superfish'][$html_id]['plugins'] = $sfplugins;
+      $build['#attached']['drupalSettings']['superfish'][$id]['plugins'] = $sfplugins;
     }
 
     // Calling the theme.
-    $build['content'] = array(
+    $build['content'] = [
       '#theme'  => 'superfish',
       '#menu_name' => $menu_name,
-      '#html_id' => $html_id,
+      '#html_id' => $id,
       '#tree' => $tree,
-      '#settings' => $sfsettings
-    );
+      '#settings' => $sfsettings,
+    ];
     // Build the original menu tree to calculate cache tags and contexts.
     $treeBuild = $this->menuTree->build($tree);
     $build['#cache'] = $treeBuild['#cache'];
@@ -987,7 +1551,7 @@ class SuperfishBlock extends SystemMenuBlock {
       'link_depth_class' => 1,
       'custom_list_class' => '',
       'custom_item_class' => '',
-      'custom_link_class' => ''
+      'custom_link_class' => '',
     ];
   }
 
