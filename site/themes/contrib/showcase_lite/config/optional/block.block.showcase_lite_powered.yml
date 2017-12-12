@@ -6,16 +6,16 @@ dependencies:
   theme:
     - showcase_lite
 _core:
-  default_config_hash: HewqczZRLp93kcLkmkxv6wMPQPyAPF_My9XIyqbeAvw
-id: showcase_lite_breadcrumbs
+  default_config_hash: gbD2-sPon8wyH_EhrCDOB-hhmjhWr1AoMxowKPzfcF0
+id: showcase_lite_powered
 theme: showcase_lite
-region: banner
+region: footer_first
 weight: -5
 provider: null
-plugin: system_breadcrumb_block
+plugin: system_powered_by_block
 settings:
-  id: system_breadcrumb_block
-  label: Breadcrumbs
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
   provider: system
   label_display: '0'
 visibility: {  }

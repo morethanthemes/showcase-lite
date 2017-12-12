@@ -1,4 +1,3 @@
-uuid: 14a7cdd2-fe33-40fc-b45b-4a0553e27e5d
 langcode: en
 status: true
 dependencies:
@@ -7,11 +6,11 @@ dependencies:
   theme:
     - showcase_lite
 _core:
-  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+  default_config_hash: P7miB5tclKrZpMXOcxQy-8v1PwOmRd-c_4Q9r-wEhSk
 id: showcase_lite_messages
 theme: showcase_lite
 region: system_messages
-weight: -6
+weight: -5
 provider: null
 plugin: system_messages_block
 settings:

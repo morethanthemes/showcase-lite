@@ -1,4 +1,3 @@
-uuid: f5979056-8cda-41bc-8eae-93ea78c55ac1
 langcode: en
 status: true
 dependencies:
@@ -7,7 +6,7 @@ dependencies:
   theme:
     - showcase_lite
 _core:
-  default_config_hash: za-39d5WDUg6XvbyqSnuVYEeq6QM4qKJxW8MnoAha5A
+  default_config_hash: VStO8y6zdIUsByV5ILgeKmduBF0Rlfe0IiJqZeDu7hA
 id: showcase_lite_search
 theme: showcase_lite
 region: sidebar_second

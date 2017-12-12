@@ -1,4 +1,3 @@
-uuid: e7c35c85-9a3a-456a-a933-6b9ffee5d93a
 langcode: en
 status: true
 dependencies:
@@ -7,7 +6,7 @@ dependencies:
   theme:
     - showcase_lite
 _core:
-  default_config_hash: NDwadleLD3YVSbDUaakxyYZyINYtkFtOVGShfq4kWy8
+  default_config_hash: mSM1HPxqcTV3eX1XbEgZdxS7s0glOCIO6h9yCRnW84Q
 id: showcase_lite_branding
 theme: showcase_lite
 region: header_first

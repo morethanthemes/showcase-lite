@@ -1,4 +1,3 @@
-uuid: 6b194e7d-e293-40c7-847a-8add7b888a62
 langcode: en
 status: true
 dependencies:
@@ -9,11 +8,11 @@ dependencies:
   theme:
     - showcase_lite
 _core:
-  default_config_hash: rx9IrdDv7Ldc4kpalZAxdhIPZfYIeOMh1N-qKoQZwHo
+  default_config_hash: I1lBF0Zs41cIx-MuqJheiHFNBJIQlPQc5e2lO8Tz5hw
 id: showcase_lite_main_menu
 theme: showcase_lite
 region: header
-weight: -6
+weight: -5
 provider: null
 plugin: 'system_menu_block:main'
 settings:
