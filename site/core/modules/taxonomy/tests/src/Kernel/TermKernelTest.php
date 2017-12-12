@@ -4,7 +4,7 @@ namespace Drupal\Tests\taxonomy\Kernel;
 
 use Drupal\taxonomy\Entity\Term;
 use Drupal\KernelTests\KernelTestBase;
-use Drupal\taxonomy\Tests\TaxonomyTestTrait;
+use Drupal\Tests\taxonomy\Functional\TaxonomyTestTrait;
 
 /**
  * Kernel tests for taxonomy term functions.
@@ -18,7 +18,7 @@ class TermKernelTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [ 'filter', 'taxonomy', 'text', 'user' ];
+  public static $modules = ['filter', 'taxonomy', 'text', 'user'];
 
   /**
    * {@inheritdoc}

@@ -57,6 +57,7 @@ use Drupal\user\UserInterface;
  *     "canonical" = "/comment/{comment}",
  *     "delete-form" = "/comment/{comment}/delete",
  *     "edit-form" = "/comment/{comment}/edit",
+ *     "create" = "/comment",
  *   },
  *   bundle_entity_type = "comment_type",
  *   field_ui_base_route  = "entity.comment_type.edit_form",
@@ -72,6 +73,8 @@ class Comment extends ContentEntityBase implements CommentInterface {
 
   /**
    * The thread for which a lock was acquired.
+   *
+   * @var string
    */
   protected $threadLock = '';
 
@@ -81,14 +84,6 @@ class Comment extends ContentEntityBase implements CommentInterface {
   public function preSave(EntityStorageInterface $storage) {
     parent::preSave($storage);
 
-    if (is_null($this->get('status')->value)) {
-      if (\Drupal::currentUser()->hasPermission('skip comment approval')) {
-        $this->setPublished();
-      }
-      else {
-        $this->setUnpublished();
-      }
-    }
     if ($this->isNew()) {
       // Add the comment to database. This next section builds the thread field.
       // @see \Drupal\comment\CommentViewBuilder::buildComponents()
@@ -146,16 +141,19 @@ class Comment extends ContentEntityBase implements CommentInterface {
         } while (!\Drupal::lock()->acquire($lock_name));
         $this->threadLock = $lock_name;
       }
-      // We test the value with '===' because we need to modify anonymous
-      // users as well.
-      if ($this->getOwnerId() === \Drupal::currentUser()->id() && \Drupal::currentUser()->isAuthenticated()) {
-        $this->setAuthorName(\Drupal::currentUser()->getUsername());
-      }
       $this->setThread($thread);
       if (!$this->getHostname()) {
         // Ensure a client host from the current request.
         $this->setHostname(\Drupal::request()->getClientIP());
       }
+    }
+    // The entity fields for name and mail have no meaning if the user is not
+    // Anonymous. Set them to NULL to make it clearer that they are not used.
+    // For anonymous users see \Drupal\comment\CommentForm::form() for mail,
+    // and \Drupal\comment\CommentForm::buildEntity() for name setting.
+    if (!$this->getOwner()->isAnonymous()) {
+      $this->set('name', NULL);
+      $this->set('mail', NULL);
     }
   }
 
@@ -236,6 +234,9 @@ class Comment extends ContentEntityBase implements CommentInterface {
       ->setDescription(t('The comment type.'));
 
     $fields['langcode']->setDescription(t('The comment language code.'));
+
+    // Set the default value callback for the status field.
+    $fields['status']->setDefaultValueCallback('Drupal\comment\Entity\Comment::getDefaultStatus');
 
     $fields['pid'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Parent ID'))
@@ -556,6 +557,18 @@ class Comment extends ContentEntityBase implements CommentInterface {
    */
   public function getTypeId() {
     return $this->bundle();
+  }
+
+  /**
+   * Default value callback for 'status' base field definition.
+   *
+   * @see ::baseFieldDefinitions()
+   *
+   * @return bool
+   *   TRUE if the comment should be published, FALSE otherwise.
+   */
+  public static function getDefaultStatus() {
+    return \Drupal::currentUser()->hasPermission('skip comment approval') ? CommentInterface::PUBLISHED : CommentInterface::NOT_PUBLISHED;
   }
 
 }

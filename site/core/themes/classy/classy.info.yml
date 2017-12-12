@@ -8,6 +8,7 @@ hidden: true
 
 libraries:
   - classy/base
+  - classy/messages
   - core/normalize
 
 libraries-extend:
@@ -22,8 +23,8 @@ libraries-extend:
   core/drupal.progress:
     - classy/progress
 
-# Information added by Drupal.org packaging script on 2017-06-21
-version: '8.3.4'
+# Information added by Drupal.org packaging script on 2017-12-06
+version: '8.4.3'
 core: '8.x'
 project: 'drupal'
-datestamp: 1498069701
+datestamp: 1512600826

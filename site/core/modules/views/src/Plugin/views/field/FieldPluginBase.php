@@ -68,6 +68,9 @@ abstract class FieldPluginBase extends HandlerBase implements FieldHandlerInterf
    */
   const RENDER_TEXT_PHASE_EMPTY = 2;
 
+  /**
+   * @var string
+   */
   public $field_alias = 'unknown';
   public $aliases = [];
 
@@ -321,9 +324,9 @@ abstract class FieldPluginBase extends HandlerBase implements FieldHandlerInterf
    * {@inheritdoc}
    */
   public function elementClasses($row_index = NULL) {
-    $classes = explode(' ', $this->options['element_class']);
+    $classes = $this->tokenizeValue($this->options['element_class'], $row_index);
+    $classes = explode(' ', $classes);
     foreach ($classes as &$class) {
-      $class = $this->tokenizeValue($class, $row_index);
       $class = Html::cleanCssIdentifier($class);
     }
     return implode(' ', $classes);
@@ -368,9 +371,9 @@ abstract class FieldPluginBase extends HandlerBase implements FieldHandlerInterf
    * {@inheritdoc}
    */
   public function elementLabelClasses($row_index = NULL) {
-    $classes = explode(' ', $this->options['element_label_class']);
+    $classes = $this->tokenizeValue($this->options['element_label_class'], $row_index);
+    $classes = explode(' ', $classes);
     foreach ($classes as &$class) {
-      $class = $this->tokenizeValue($class, $row_index);
       $class = Html::cleanCssIdentifier($class);
     }
     return implode(' ', $classes);
@@ -380,9 +383,9 @@ abstract class FieldPluginBase extends HandlerBase implements FieldHandlerInterf
    * {@inheritdoc}
    */
   public function elementWrapperClasses($row_index = NULL) {
-    $classes = explode(' ', $this->options['element_wrapper_class']);
+    $classes = $this->tokenizeValue($this->options['element_wrapper_class'], $row_index);
+    $classes = explode(' ', $classes);
     foreach ($classes as &$class) {
-      $class = $this->tokenizeValue($class, $row_index);
       $class = Html::cleanCssIdentifier($class);
     }
     return implode(' ', $classes);
@@ -857,7 +860,6 @@ abstract class FieldPluginBase extends HandlerBase implements FieldHandlerInterf
         ],
       ];
 
-
       // Get a list of the available fields and arguments for token replacement.
 
       // Setup the tokens for fields.
@@ -865,10 +867,10 @@ abstract class FieldPluginBase extends HandlerBase implements FieldHandlerInterf
       $optgroup_arguments = (string) t('Arguments');
       $optgroup_fields = (string) t('Fields');
       foreach ($previous as $id => $label) {
-        $options[$optgroup_fields]["{{ $id }}"] = substr(strrchr($label, ":"), 2 );
+        $options[$optgroup_fields]["{{ $id }}"] = substr(strrchr($label, ":"), 2);
       }
       // Add the field to the list of options.
-      $options[$optgroup_fields]["{{ {$this->options['id']} }}"] = substr(strrchr($this->adminLabel(), ":"), 2 );
+      $options[$optgroup_fields]["{{ {$this->options['id']} }}"] = substr(strrchr($this->adminLabel(), ":"), 2);
 
       foreach ($this->view->display_handler->getHandlers('argument') as $arg => $handler) {
         $options[$optgroup_arguments]["{{ arguments.$arg }}"] = $this->t('@argument title', ['@argument' => $handler->adminLabel()]);
@@ -1105,7 +1107,7 @@ abstract class FieldPluginBase extends HandlerBase implements FieldHandlerInterf
   /**
    * {@inheritdoc}
    */
-  public function preRender(&$values) { }
+  public function preRender(&$values) {}
 
   /**
    * {@inheritdoc}
@@ -1713,14 +1715,14 @@ abstract class FieldPluginBase extends HandlerBase implements FieldHandlerInterf
    * field ID is terms, then the tokens might be {{ terms__tid }} and
    * {{ terms__name }}.
    */
-  protected function addSelfTokens(&$tokens, $item) { }
+  protected function addSelfTokens(&$tokens, $item) {}
 
   /**
    * Document any special tokens this field might use for itself.
    *
    * @see addSelfTokens()
    */
-  protected function documentSelfTokens(&$tokens) { }
+  protected function documentSelfTokens(&$tokens) {}
 
   /**
    * {@inheritdoc}

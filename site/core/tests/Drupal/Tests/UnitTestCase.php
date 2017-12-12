@@ -8,14 +8,14 @@ use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\StringTranslation\PluralTranslatableMarkup;
-
+use PHPUnit\Framework\TestCase;
 
 /**
  * Provides a base class and helpers for Drupal unit tests.
  *
  * @ingroup testing
  */
-abstract class UnitTestCase extends \PHPUnit_Framework_TestCase {
+abstract class UnitTestCase extends TestCase {
 
   /**
    * The random generator.

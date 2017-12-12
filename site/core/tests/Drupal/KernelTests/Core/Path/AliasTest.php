@@ -16,16 +16,16 @@ use Drupal\Core\Path\AliasWhitelist;
 class AliasTest extends PathUnitTestBase {
 
   public function testCRUD() {
-    //Prepare database table.
+    // Prepare database table.
     $connection = Database::getConnection();
     $this->fixtures->createTables($connection);
 
-    //Create Path object.
+    // Create Path object.
     $aliasStorage = new AliasStorage($connection, $this->container->get('module_handler'));
 
     $aliases = $this->fixtures->sampleUrlAliases();
 
-    //Create a few aliases
+    // Create a few aliases
     foreach ($aliases as $idx => $alias) {
       $aliasStorage->save($alias['source'], $alias['alias'], $alias['langcode']);
 
@@ -34,11 +34,11 @@ class AliasTest extends PathUnitTestBase {
 
       $this->assertEqual(count($rows), 1, format_string('Created an entry for %alias.', ['%alias' => $alias['alias']]));
 
-      //Cache the pid for further tests.
+      // Cache the pid for further tests.
       $aliases[$idx]['pid'] = $rows[0]->pid;
     }
 
-    //Load a few aliases
+    // Load a few aliases
     foreach ($aliases as $alias) {
       $pid = $alias['pid'];
       $loadedAlias = $aliasStorage->load(['pid' => $pid]);
@@ -49,7 +49,7 @@ class AliasTest extends PathUnitTestBase {
     $loadedAlias = $aliasStorage->load(['source' => '/node/1']);
     $this->assertEqual($loadedAlias['alias'], '/alias_for_node_1_und', 'The last created alias loaded by default.');
 
-    //Update a few aliases
+    // Update a few aliases
     foreach ($aliases as $alias) {
       $fields = $aliasStorage->save($alias['source'], $alias['alias'] . '_updated', $alias['langcode'], $alias['pid']);
 
@@ -61,7 +61,7 @@ class AliasTest extends PathUnitTestBase {
       $this->assertEqual($pid, $alias['pid'], format_string('Updated entry for pid %pid.', ['%pid' => $pid]));
     }
 
-    //Delete a few aliases
+    // Delete a few aliases
     foreach ($aliases as $alias) {
       $pid = $alias['pid'];
       $aliasStorage->delete(['pid' => $pid]);
@@ -74,11 +74,11 @@ class AliasTest extends PathUnitTestBase {
   }
 
   public function testLookupPath() {
-    //Prepare database table.
+    // Prepare database table.
     $connection = Database::getConnection();
     $this->fixtures->createTables($connection);
 
-    //Create AliasManager and Path object.
+    // Create AliasManager and Path object.
     $aliasManager = $this->container->get('path.alias_manager');
     $aliasStorage = new AliasStorage($connection, $this->container->get('module_handler'));
 
@@ -214,6 +214,64 @@ class AliasTest extends PathUnitTestBase {
     $whitelist->destruct();
     $this->assertEqual($memoryCounterBackend->getCounter('get', 'path_alias_whitelist'), 1);
     $this->assertEqual($memoryCounterBackend->getCounter('set', 'path_alias_whitelist'), 0);
+  }
+
+  /**
+   * Tests situation where the whitelist cache is deleted mid-request.
+   */
+  public function testWhitelistCacheDeletionMidRequest() {
+    // Prepare database table.
+    $connection = Database::getConnection();
+    $this->fixtures->createTables($connection);
+
+    $memoryCounterBackend = new MemoryCounterBackend();
+
+    // Create AliasManager and Path object.
+    $aliasStorage = new AliasStorage($connection, $this->container->get('module_handler'));
+    $whitelist = new AliasWhitelist('path_alias_whitelist', $memoryCounterBackend, $this->container->get('lock'), $this->container->get('state'), $aliasStorage);
+    $aliasManager = new AliasManager($aliasStorage, $whitelist, $this->container->get('language_manager'), $memoryCounterBackend);
+
+    // Whitelist cache should not exist at all yet.
+    $this->assertFalse($memoryCounterBackend->get('path_alias_whitelist'));
+
+    // Add some aliases for both menu routes we have.
+    $aliasStorage->save('/admin/something', '/' . $this->randomMachineName());
+    $aliasStorage->save('/user/something', '/' . $this->randomMachineName());
+    $aliasManager->cacheClear();
+
+    // Lookup admin path in whitelist. It will query the DB and figure out
+    // that it indeed has an alias, and add it to the internal whitelist and
+    // flag it to be peristed to cache.
+    $this->assertTrue($whitelist->get('admin'));
+
+    // Destruct the whitelist so it persists its cache.
+    $whitelist->destruct();
+    $this->assertEquals($memoryCounterBackend->getCounter('set', 'path_alias_whitelist'), 1);
+    // Cache data should have data for 'user' and 'admin', even though just
+    // 'admin' was looked up. This is because the cache is primed with all
+    // menu router base paths.
+    $this->assertEquals(['user' => FALSE, 'admin' => TRUE], $memoryCounterBackend->get('path_alias_whitelist')->data);
+    $memoryCounterBackend->resetCounter();
+
+    // Re-initialize the the whitelist and lookup an alias for the 'user' path.
+    // Whitelist should load data from its cache, see that it hasn't done a
+    // check for 'user' yet, perform the check, then mark the result to be
+    // persisted to cache.
+    $whitelist = new AliasWhitelist('path_alias_whitelist', $memoryCounterBackend, $this->container->get('lock'), $this->container->get('state'), $aliasStorage);
+    $this->assertTrue($whitelist->get('user'));
+
+    // Delete the whitelist cache. This could happen from an outside process,
+    // like a code deployment that performs a cache rebuild.
+    $memoryCounterBackend->delete('path_alias_whitelist');
+
+    // Destruct whitelist so it attempts to save the whitelist data to cache.
+    // However it should recognize that the previous cache entry was deleted
+    // from underneath it and not save anything to cache, to protect from
+    // cache corruption.
+    $whitelist->destruct();
+    $this->assertEquals($memoryCounterBackend->getCounter('set', 'path_alias_whitelist'), 0);
+    $this->assertFalse($memoryCounterBackend->get('path_alias_whitelist'));
+    $memoryCounterBackend->resetCounter();
   }
 
 }

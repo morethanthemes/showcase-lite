@@ -129,7 +129,7 @@ class ViewEditForm extends ViewFormBase {
         '#account' => $this->entityManager->getStorage('user')->load($view->lock->owner),
       ];
       $lock_message_substitutions = [
-        '@user' => drupal_render($username),
+        '@user' => \Drupal::service('renderer')->render($username),
         '@age' => $this->dateFormatter->formatTimeDiffSince($view->lock->updated),
         ':url' => $view->url('break-lock-form'),
       ];
@@ -161,7 +161,6 @@ class ViewEditForm extends ViewFormBase {
         ],
       ],
     ];
-
 
     $form['displays']['top'] = $this->renderDisplayTop($view);
 
@@ -262,7 +261,7 @@ class ViewEditForm extends ViewFormBase {
         // options.
         $display_handler = $executable->displayHandlers->get($id);
         if ($attachments = $display_handler->getAttachedDisplays()) {
-          foreach ($attachments as $attachment ) {
+          foreach ($attachments as $attachment) {
             $attached_options = $executable->displayHandlers->get($attachment)->getOption('displays');
             unset($attached_options[$id]);
             $executable->displayHandlers->get($attachment)->setOption('displays', $attached_options);
@@ -275,7 +274,7 @@ class ViewEditForm extends ViewFormBase {
 
     // Rename display ids if needed.
     foreach ($executable->displayHandlers as $id => $display) {
-      if (!empty($display->display['new_id']) && empty($display->display['deleted'])) {
+      if (!empty($display->display['new_id']) && $display->display['new_id'] !== $display->display['id'] && empty($display->display['deleted'])) {
         $new_id = $display->display['new_id'];
         $display->display['id'] = $new_id;
         unset($display->display['new_id']);
@@ -289,6 +288,9 @@ class ViewEditForm extends ViewFormBase {
           'view' => $view->id(),
           'display_id' => $new_id,
         ]);
+      }
+      elseif (isset($display->display['new_id'])) {
+        unset($display->display['new_id']);
       }
     }
     $view->set('display', $displays);

@@ -30,9 +30,7 @@ class Table extends StylePluginBase implements CacheableDependencyInterface {
   protected $usesFields = TRUE;
 
   /**
-   * Does the style plugin allows to use style plugins.
-   *
-   * @var bool
+   * {@inheritdoc}
    */
   protected $usesRowPlugin = FALSE;
 
@@ -162,7 +160,7 @@ class Table extends StylePluginBase implements CacheableDependencyInterface {
    *   display has listed due to access control or other changes.
    *
    * @return array
-   *    An array of all the sanitized columns.
+   *   An array of all the sanitized columns.
    */
   public function sanitizeColumns($columns, $fields = NULL) {
     $sanitized = [];

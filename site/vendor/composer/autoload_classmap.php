@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'CallbackFilterIterator' => $vendorDir . '/symfony/polyfill-php54/Resources/stubs/CallbackFilterIterator.php',
     'Drupal' => $baseDir . '/core/lib/Drupal.php',
     'Drupal\\Component\\Utility\\Timer' => $baseDir . '/core/lib/Drupal/Component/Utility/Timer.php',
     'Drupal\\Component\\Utility\\Unicode' => $baseDir . '/core/lib/Drupal/Component/Utility/Unicode.php',
@@ -14,8 +13,6 @@ return array(
     'Drupal\\Core\\DrupalKernel' => $baseDir . '/core/lib/Drupal/Core/DrupalKernel.php',
     'Drupal\\Core\\DrupalKernelInterface' => $baseDir . '/core/lib/Drupal/Core/DrupalKernelInterface.php',
     'Drupal\\Core\\Site\\Settings' => $baseDir . '/core/lib/Drupal/Core/Site/Settings.php',
-    'RecursiveCallbackFilterIterator' => $vendorDir . '/symfony/polyfill-php54/Resources/stubs/RecursiveCallbackFilterIterator.php',
-    'SessionHandlerInterface' => $vendorDir . '/symfony/polyfill-php54/Resources/stubs/SessionHandlerInterface.php',
     'Symfony\\Component\\HttpFoundation\\FileBag' => $vendorDir . '/symfony/http-foundation/FileBag.php',
     'Symfony\\Component\\HttpFoundation\\HeaderBag' => $vendorDir . '/symfony/http-foundation/HeaderBag.php',
     'Symfony\\Component\\HttpFoundation\\ParameterBag' => $vendorDir . '/symfony/http-foundation/ParameterBag.php',

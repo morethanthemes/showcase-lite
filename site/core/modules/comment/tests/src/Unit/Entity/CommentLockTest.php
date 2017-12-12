@@ -69,6 +69,14 @@ class CommentLockTest extends UnitTestCase {
       ->method('getThread')
       ->will($this->returnValue(''));
 
+    $anon_user = $this->getMock('Drupal\Core\Session\AccountInterface');
+    $anon_user->expects($this->any())
+      ->method('isAnonymous')
+      ->will($this->returnValue(TRUE));
+    $comment->expects($this->any())
+      ->method('getOwner')
+      ->will($this->returnValue($anon_user));
+
     $parent_entity = $this->getMock('\Drupal\Core\Entity\ContentEntityInterface');
     $parent_entity->expects($this->atLeastOnce())
       ->method('getCacheTagsToInvalidate')
@@ -81,10 +89,6 @@ class CommentLockTest extends UnitTestCase {
     $comment->expects($this->any())
       ->method('getEntityType')
       ->will($this->returnValue($entity_type));
-    $comment->expects($this->at(1))
-      ->method('get')
-      ->with('status')
-      ->will($this->returnValue((object) ['value' => NULL]));
     $storage = $this->getMock('Drupal\comment\CommentStorageInterface');
 
     // preSave() should acquire the lock. (This is what's really being tested.)

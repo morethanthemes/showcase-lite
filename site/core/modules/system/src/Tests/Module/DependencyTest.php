@@ -1,6 +1,7 @@
 <?php
 
 namespace Drupal\system\Tests\Module;
+
 use Drupal\Component\Utility\Unicode;
 
 /**
@@ -87,6 +88,16 @@ class DependencyTest extends ModuleTestBase {
       '@module' => 'System incompatible core version test',
     ]), 'A module that depends on a module with an incompatible core version is marked as such.');
     $checkbox = $this->xpath('//input[@type="checkbox" and @disabled="disabled" and @name="modules[system_incompatible_core_version_dependencies_test][enable]"]');
+    $this->assert(count($checkbox) == 1, 'Checkbox for the module is disabled.');
+  }
+
+  /**
+   * Tests failing PHP version requirements.
+   */
+  public function testIncompatiblePhpVersionDependency() {
+    $this->drupalGet('admin/modules');
+    $this->assertRaw('This module requires PHP version 6502.* and is incompatible with PHP version ' . phpversion() . '.', 'User is informed when the PHP dependency requirement of a module is not met.');
+    $checkbox = $this->xpath('//input[@type="checkbox" and @disabled="disabled" and @name="modules[system_incompatible_php_version_test][enable]"]');
     $this->assert(count($checkbox) == 1, 'Checkbox for the module is disabled.');
   }
 

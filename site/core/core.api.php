@@ -606,6 +606,30 @@
  *  $settings['cache']['default'] = 'cache.custom';
  * @endcode
  *
+ * For cache bins that are stored in the database, the number of rows is limited
+ * to 5000 by default. This can be changed for all database cache bins. For
+ * example, to instead limit the number of rows to 50000:
+ * @code
+ * $settings['database_cache_max_rows']['default'] = 50000;
+ * @endcode
+ *
+ * Or per bin (in this example we allow infinite entries):
+ * @code
+ * $settings['database_cache_max_rows']['bins']['dynamic_page_cache'] = -1;
+ * @endcode
+ *
+ * For monitoring reasons it might be useful to figure out the amount of data
+ * stored in tables. The following SQL snippet can be used for that:
+ * @code
+ * SELECT table_name AS `Table`, table_rows AS 'Num. of Rows',
+ * ROUND(((data_length + index_length) / 1024 / 1024), 2) `Size in MB` FROM
+ * information_schema.TABLES WHERE table_schema = '***DATABASE_NAME***' AND
+ * table_name LIKE 'cache_%'  ORDER BY (data_length + index_length) DESC
+ * LIMIT 10;
+ * @endcode
+ *
+ * @see \Drupal\Core\Cache\DatabaseBackend
+ *
  * Finally, you can chain multiple cache backends together, see
  * \Drupal\Core\Cache\ChainedFastBackend and \Drupal\Core\Cache\BackendChain.
  *
@@ -2530,8 +2554,8 @@ function hook_validation_constraint_alter(array &$definitions) {
  *
  * @section sec_dispatch Dispatching events
  * To dispatch an event, call the
- * \Symfony\Component\EventDispatcher\EventDispatchInterface::dispatch() method
- * on the 'event_dispatcher' service (see the
+ * \Symfony\Component\EventDispatcher\EventDispatcherInterface::dispatch()
+ * method on the 'event_dispatcher' service (see the
  * @link container Services topic @endlink for more information about how to
  * interact with services). The first argument is the unique event name, which
  * you should normally define as a constant in a separate static class (see
