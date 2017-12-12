@@ -149,6 +149,8 @@ waypoints-sticky:
     js/waypoints/shortcuts/sticky.min.js: {}
   dependencies:
     - core/jquery
+    - core/jquery.once
+    - core/drupal
 
 waypoints-animations-init:
   version: VERSION
@@ -156,6 +158,8 @@ waypoints-animations-init:
     js/init/waypoints-animations-init.js: {}
   dependencies:
     - showcase_lite/waypoints
+    - core/jquery.once
+    - core/drupal
 
 magnific-popup:
   version: 1.1.0
@@ -173,6 +177,8 @@ magnific-popup-field-image-init:
     js/init/magnific-popup-field-image-init.js: {}
   dependencies:
     - showcase_lite/magnific-popup
+    - core/jquery.once
+    - core/drupal
 
 magnific-popup-field-member-photo-init:
   version: VERSION
@@ -223,6 +229,8 @@ flexslider-in-page-init:
   dependencies:
     - showcase_lite/flexslider-global
     - core/drupalSettings
+    - core/jquery.once
+    - core/drupal
 
 flexslider-nodes-slideshow:
   version: VERSION
@@ -276,6 +284,8 @@ count-to-init:
   dependencies:
     - showcase_lite/count-to
     - showcase_lite/waypoints
+    - core/jquery.once
+    - core/drupal
 
 node:
   version: VERSION
