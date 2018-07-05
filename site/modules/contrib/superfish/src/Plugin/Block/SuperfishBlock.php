@@ -6,6 +6,9 @@ use Drupal\system\Plugin\Block\SystemMenuBlock;
 use Drupal\Core\Menu\MenuTreeParameters;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Menu\MenuActiveTrailInterface;
+use Drupal\Core\Menu\MenuLinkTreeInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides a "Superfish" block.
@@ -19,6 +22,45 @@ use Drupal\Component\Utility\Html;
  * )
  */
 class SuperfishBlock extends SystemMenuBlock {
+
+  /**
+   * The active menu trail service.
+   *
+   * @var \Drupal\Core\Menu\MenuActiveTrailInterface
+   */
+  protected $menuActiveTrail;
+
+  /**
+   * Constructs a new SuperfishBlock.
+   *
+   * @param array $configuration
+   *   A configuration array containing information about the plugin instance.
+   * @param string $plugin_id
+   *   The plugin_id for the plugin instance.
+   * @param array $plugin_definition
+   *   The plugin implementation definition.
+   * @param \Drupal\Core\Menu\MenuLinkTreeInterface $menu_tree
+   *   The menu tree service.
+   * @param \Drupal\Core\Menu\MenuActiveTrailInterface $menu_active_trail
+   *   The active menu trail service.
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, MenuLinkTreeInterface $menu_tree, MenuActiveTrailInterface $menu_active_trail) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $menu_tree, $menu_active_trail);
+    $this->menuActiveTrail = $menu_active_trail;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('menu.link_tree'),
+      $container->get('menu.active_trail')
+    );
+  }
 
   /**
    * Overrides \Drupal\block\BlockBase::blockForm().
@@ -1194,7 +1236,7 @@ class SuperfishBlock extends SystemMenuBlock {
         case 2:
           $sfplugins['touchscreen']['mode'] = 'window_width';
           $tsbp = $this->configuration['touchbp'];
-          $sfplugins['touchscreen']['breakpoint'] = ($tsbp != 768) ? (int) $tsbp : '';
+          $sfplugins['touchscreen']['breakpoint'] = ($tsbp != 768) ? (float) $tsbp : '';
           break;
 
         case 3:
@@ -1279,7 +1321,7 @@ class SuperfishBlock extends SystemMenuBlock {
           $sfplugins['smallscreen']['mode'] = 'window_width';
           $ssbp = $this->configuration['smallbp'];
           if ($ssbp != 768) {
-            $sfplugins['smallscreen']['breakpoint'] = (int) $ssbp;
+            $sfplugins['smallscreen']['breakpoint'] = (float) $ssbp;
           }
           else {
             $sfplugins['smallscreen']['breakpoint'] = '';

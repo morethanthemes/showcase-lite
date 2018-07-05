@@ -15,6 +15,7 @@ function superfish_install() {
   else {
     drupal_set_message(t('Superfish library is missing. Please refer to the <a href="@documentation">plugin documentation</a> for how you can fix this issue; Once done, go to the <a href="@block">Block layout</a> page and use any of the "Place block" buttons to create a Superfish block.', ['@documentation' => 'http://drupal.org/node/1125896', '@block' => 'structure/block']), 'warning');
   }
+	drupal_set_message(t('If there was no Superfish block in the "Place block" form, go to the <a href="@performance">Performance</a> page and clear the cache once.', ['@performance' => 'admin/config/development/performance']));
 }
 
 /**
@@ -26,7 +27,7 @@ function superfish_requirements($phase) {
     $requirements['superfish']['title'] = t('Superfish library');
 
     if (superfish_library_check()) {
-      $requirements['superfish']['value'] = t('Installed at @location', ['@location' => superfish_library_path()]);
+      $requirements['superfish']['value'] = t('Installed; at @location', ['@location' => superfish_library_path()]);
       $requirements['superfish']['severity'] = REQUIREMENT_OK;
     }
     else {
